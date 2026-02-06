@@ -1,0 +1,88 @@
+.text-editor {
+  @apply w-full;
+}
+
+@media (max-width: 640px) {
+  .text-editor {
+    @apply w-4/5; /* 80% width on mobile */
+  }
+}
+
+.text-editor .ql-container {
+  @apply h-[200px] rounded-b-lg border border-t-0 border-gray-200 bg-black;
+}
+
+.text-editor .ql-toolbar {
+  @apply rounded-t-lg border border-gray-200 bg-white;
+}
+
+.text-editor .ql-editor {
+  @apply min-h-[200px] bg-white;
+}
+
+.text-editor .ql-editor.ql-blank::before {
+  @apply text-gray-400;
+}
+
+/* Dark mode styles */
+.dark .text-editor .ql-toolbar {
+  @apply bg-gray-600 border-gray-700;
+}
+
+.dark .text-editor .ql-container {
+  @apply border-gray-700;
+}
+
+.dark .text-editor .ql-editor {
+  @apply bg-gray-600 text-white;
+}
+
+.dark .text-editor .ql-snow.ql-toolbar button,
+.dark .text-editor .ql-snow .ql-toolbar button {
+  @apply text-gray-300;
+}
+
+.dark .text-editor .ql-snow.ql-toolbar button:hover,
+.dark .text-editor .ql-snow .ql-toolbar button:hover {
+  @apply text-white;
+}
+
+.dark .text-editor .ql-snow.ql-toolbar button.ql-active,
+.dark .text-editor .ql-snow .ql-toolbar button.ql-active {
+  @apply text-white;
+}
+
+/* Video wrapper and delete button styles */
+.video-wrapper {
+  @apply relative block w-full;
+}
+
+.video-wrapper::after {
+  content: "";
+  @apply absolute inset-0 bg-black bg-opacity-30 opacity-0 transition-opacity duration-200 pointer-events-none;
+}
+
+.video-wrapper:hover::after {
+  @apply opacity-100;
+}
+
+.video-wrapper:hover .video-delete-btn {
+  @apply opacity-100;
+}
+
+.video-delete-btn {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-red-500 text-white rounded-full border-2 border-white cursor-pointer flex items-center justify-center text-3xl font-bold opacity-0 transition-opacity duration-200 hover:bg-red-800 z-10;
+}
+
+.video-delete-btn:hover {
+  @apply bg-red-800;
+}
+
+/* Delete button for SEO preview */
+.seo-preview-delete-btn {
+  @apply absolute top-0 right-0  w-10 md:w-16 h-10 md:h-16 bg-red-500 text-white rounded-full border-2 border-white cursor-pointer flex items-center justify-center text-3xl font-bold hidden transition-opacity duration-200 hover:bg-red-800 z-10;
+}
+
+.seo-preview-outer:hover .seo-preview-delete-btn {
+  display: flex !important;
+}
