@@ -1,14 +1,14 @@
 'use client';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 
 import { ScrollArea } from '@radix-ui/themes';
 
-import Header from './Header';
+import Header from './header';
 import useNetworkStatus from '@/features/base/hooks/useNetworkStatus';
-import NoInternet from '../pages/errors/NoInternet';
 import { SidebarProvider } from '../ui/sidebar';
-import { AppSidebar } from './side-bar/app-sidebar';
+import { AppSidebar } from './side-bar';
 import { useRouter } from 'next/navigation';
+import NoInternet from '../pages/errors/no-internet';
 
 interface Props {
   children: React.ReactNode;
@@ -23,13 +23,6 @@ export default function PageLayout(props: { children: ReactNode }) {
   const router = useRouter();
   const isOnline = useNetworkStatus();
 
-  // useEffect(() => {
-  //   const storedToken = localStorage.getItem("token");
-  //   if (!storedToken) {
-  //     router.replace("/login");
-  //   }
-  // }, []);
-
   if (!isOnline) {
     return <NoInternet />;
   }
@@ -39,7 +32,7 @@ export default function PageLayout(props: { children: ReactNode }) {
       <SidebarProvider>
         <AppSidebar />
         {/* Page Content */}
-        <div className="max-h-screen h-[100dvh] flex flex-col w-full overflow-hidden">
+        <div className="max-h-screen  flex flex-col w-full overflow-hidden">
           <NavHeader />
           <PageContainer>{props.children}</PageContainer>
         </div>
@@ -53,7 +46,7 @@ function NavHeader() {
 }
 function PageContainer(props: { children: ReactNode }) {
   return (
-    <ScrollArea className="h-[calc(100vh-130px)] flex-grow flex flex-col justify-center items-center bg-secondary p-4">
+    <ScrollArea className="h-[calc(100vh-130px)] flex flex-col justify-center items-center bg-secondary p-4">
       <div className="p-4 pb-8 bg-background h-full rounded-lg">{props.children}</div>
     </ScrollArea>
   );

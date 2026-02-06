@@ -1,57 +1,49 @@
 'use client';
+import { Image } from '@/components/ui/image';
 import {
-  SidebarGroup,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarRail,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Menu } from '@/data/menu';
-import { usePathname } from 'next/navigation';
-import SidebarItemWithChild from './SidebarItemWithChild';
-import Link from 'next/link';
+import { useNavigation } from '@/features/base/hooks/useNavigation';
+import { cn } from '@/lib/utils';
+import { Box, Flex } from '@radix-ui/themes';
+import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { NavMain } from './nav-main';
 
-export function NavMain({ items }: { items: Menu[] }) {
-  const pathname = usePathname();
-
-  const { state, isMobile, setOpenMobile } = useSidebar();
-
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { paths } = useNavigation();
+  const { state, toggleSidebar } = useSidebar();
   return (
-    <SidebarGroup>
-      <SidebarMenu className="gap-2">
-        {items.map((item) => {
-          const hasSubPaths = !!item.subPaths;
-          const isPathMatched = item.active;
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <Box
+          className={cn(
+            state == 'expanded' ? 'px-4' : 'pl-4',
+            'h-[70px] bg-cover bg-center bg-no-repeat bg-primary',
+          )}
+        >
+          <Flex justify={'between'} align="center" className="h-full w-full">
+            {state == 'expanded' && (
+              <Image src="/primary-logo.png" width={130} height={40} alt="Profile Image" />
+            )}
 
-          return hasSubPaths ? (
-            <SidebarItemWithChild
-              key={item.name}
-              item={item}
-              isPathMatched={isPathMatched ?? false}
-            />
-          ) : (
-            <Link href={item.path} key={item.path}>
-              <SidebarMenuItem key={item.name}>
-                <SidebarMenuButton
-                  tooltip={item.name}
-                  isActive={pathname.startsWith(item.path)}
-                  variant="default"
-                  onClick={() => {
-                    if (isMobile) {
-                      setOpenMobile(false);
-                    }
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    {item.active ? item.activeIcon : item.icon}
-                    {(state === 'expanded' || isMobile) && <span>{item.name}</span>}
-                  </div>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </Link>
-          );
-        })}
-      </SidebarMenu>
-    </SidebarGroup>
+            <Flex className="cursor-pointer" onClick={toggleSidebar}>
+              {state == 'collapsed' ? (
+                <ChevronsRight className="text-white w-6 h-6" />
+              ) : (
+                <ChevronsLeft className="text-white w-6 h-6" />
+              )}
+            </Flex>
+          </Flex>
+        </Box>
+      </SidebarHeader>
+      <SidebarContent className="bg-secondary">
+        <NavMain items={paths} />
+      </SidebarContent>
+      <SidebarRail />
+    </Sidebar>
   );
 }

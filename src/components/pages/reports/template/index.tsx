@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import PageTitle from '@/components/shared/base/page-title';
 import { DataTable } from '@/components/shared/data-table';
-import TopFilters from '../components/TopFilters';
+import TopFilters from '../components/top-filters';
 import { DetailTable } from '@/components/shared/data-table/detail-table';
 import {
   popularTemplateColumnDefs,

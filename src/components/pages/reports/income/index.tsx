@@ -5,7 +5,7 @@ import PageTitle from '@/components/shared/base/page-title';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { DataTable } from '@/components/shared/data-table';
 import { columnDefs } from './components/columnDefs';
-import TopFilters from '../components/TopFilters';
+import TopFilters from '../components/top-filters';
 import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { useGetIncomeReport } from '@/features/report/income/services/queries';
 import { CurrencyFormat } from '@/utils/currencyFormat';

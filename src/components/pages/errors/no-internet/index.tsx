@@ -4,7 +4,7 @@ import React from 'react';
 
 const NoInternet = () => {
   return (
-    <div className="w-[100dvw] h-[100dvh] flex items-center justify-center">
+    <div className="w-dvw h-dvh flex items-center justify-center">
       <ErrorUI
         Icon={
           <svg

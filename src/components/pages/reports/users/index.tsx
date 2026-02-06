@@ -9,7 +9,7 @@ import {
   todayNewUsersColumnDefs,
   yearlyNewUsersColumnDefs,
 } from './components/columnDefs';
-import TopFilters from '../components/TopFilters';
+import TopFilters from '../components/top-filters';
 import SearchInput from '@/components/shared/input/search-input';
 import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { useGetUserReport } from '@/features/report/users/services/queries';
