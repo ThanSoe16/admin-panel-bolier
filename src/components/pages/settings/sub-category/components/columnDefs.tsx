@@ -5,9 +5,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
 import EditModal from "./EditModal";
 import StatusChangeDialog from "@/components/shared/status-change-dialog";
-import { SubCategoryData } from "@/features/sub-category/types";
+import { SubCategoryData } from "@/features/settings/sub-category/types";
 import { formatDate } from "@/utils/dateTime";
-import { useToggleSubCategory } from "@/features/sub-category/services/mutations";
+import { useToggleSubCategory } from "@/features/settings/sub-category/services/mutations";
 import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
 import DetailModal from "./DetailModal";
 import useGetLandingEngLanguageId from "@/features/base/hooks/useGetLandingEngLanguageId";
@@ -84,7 +84,7 @@ const CategoryName = (props: { target: SubCategoryData }) => {
   return (
     <div className="line-clamp-2">
       {target?.TemplateCategory?.TemplateCategoryContent?.find(
-        (item) => item.languageId === defaultLanguageId
+        (item) => item.languageId === defaultLanguageId,
       )?.name ?? "_"}
     </div>
   );
@@ -98,7 +98,7 @@ export const columnDefs: ColumnDef<SubCategoryData>[] = [
     cell: ({ row }) => (
       <div className="line-clamp-2">
         {row.original.TemplateSubCategoryContent.map((item) => item.name).join(
-          "/ "
+          "/ ",
         )}
       </div>
     ),

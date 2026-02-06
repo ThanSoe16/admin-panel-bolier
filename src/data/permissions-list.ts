@@ -27,176 +27,6 @@ export const permissions = [
     ],
   },
   {
-    name: "membership",
-    title: "Membership",
-    permissions: ["VIEW"],
-    subMenu: [
-      // {
-      //   name: "membership-plans",
-      //   title: "Membership Plans",
-      //   permissions: ["VIEW", "EDIT", "CREATE"],
-      // },
-      {
-        name: "feature-user-agreement",
-        title: "Feature & User Agreement",
-        permissions: ["VIEW", "EDIT", "CREATE", "DELETE"],
-      },
-      {
-        name: "tnc-plan",
-        title: "TNC Plan",
-        permissions: ["VIEW", "EDIT"],
-      },
-    ],
-  },
-
-  {
-    name: "mgmt-blog-template",
-    title: "Mgmt. Blog Template",
-    permissions: ["VIEW", "EDIT"],
-  },
-  {
-    name: "dev-mode-blog-tpl",
-    title: "Dev Mode Blog TPL",
-    permissions: ["VIEW", "CREATE", "EDIT"],
-  },
-  {
-    name: "blog-preferences",
-    title: "Blog Preferences",
-    permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-  },
-  {
-    name: "contact-us-forms",
-    title: "Contact Us Forms",
-    permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-  },
-  {
-    name: "payment-settings",
-    title: "Payment Settings",
-    permissions: ["VIEW", "CREATE", "EDIT"],
-
-    subMenu: [
-      {
-        name: "payment-methods",
-        title: "Payment Methods",
-        permissions: ["VIEW", "CREATE", "EDIT"],
-      },
-      {
-        name: "payment-accounts",
-        title: "Payment Accounts",
-        permissions: ["VIEW", "CREATE", "EDIT"],
-      },
-      {
-        name: "blog-service-fee",
-        title: "Transaction Fee",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "withdrawal-fee",
-        title: "Withdrawal Fee",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "accepted-receiving",
-        title: "Accepted Receiving Payment Methods",
-        permissions: ["VIEW", "CREATE", "EDIT"],
-      },
-      {
-        name: "exchange-rate",
-        title: "Exchange Rate & Service Fee",
-        permissions: ["VIEW", "CREATE", "EDIT"],
-      },
-      {
-        name: "blog-service-fee-tnc",
-        title: "Blog Service Fee T&C",
-        permissions: ["VIEW", "CREATE", "EDIT"],
-      },
-    ],
-  },
-  {
-    name: "sale-history",
-    title: "Sale History",
-    permissions: ["VIEW"],
-
-    subMenu: [
-      {
-        name: "template-sales",
-        title: "Template Sales",
-        permissions: ["VIEW"],
-      },
-      {
-        name: "blog-site-sales",
-        title: "Blog Site Sales",
-        permissions: ["VIEW"],
-      },
-      {
-        name: "hosting-sales",
-        title: "Hosting Sales",
-        permissions: ["VIEW"],
-      },
-      {
-        name: "server-sales",
-        title: "Server Sales",
-        permissions: ["VIEW"],
-      },
-      {
-        name: "maintain-sales",
-        title: "Maintain Sales",
-        permissions: ["VIEW"],
-      },
-    ],
-  },
-  {
-    name: "service-fee",
-    title: "Service Fee",
-    permissions: ["VIEW", "EDIT"],
-
-    subMenu: [
-      {
-        name: "maintain-fee",
-        title: "Maintain Fee",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "setup-fee",
-        title: "Setup Fee",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "hosting-fee",
-        title: "Hosting Fee",
-        permissions: ["VIEW", "EDIT"],
-      },
-    ],
-  },
-  {
-    name: "user-invoice",
-    title: "User Invoice",
-    permissions: ["VIEW", "CREATE"],
-  },
-  {
-    name: "notification",
-    title: "Notification",
-    permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-
-    subMenu: [
-      {
-        name: "maintain-renew",
-        title: "Maintain Renew",
-        permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-      },
-      // {
-      //   name: "server-renew",
-      //   title: "Server Renew",
-      //   permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-      // },
-      {
-        name: "hosting-renew",
-        title: "Hosting Renew",
-        permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
-      },
-    ],
-  },
-  {
     name: "admin-role",
     title: "Admin Role & Permission",
     permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
@@ -266,29 +96,13 @@ export const permissions = [
         permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
       },
       {
-        name: "share-template-social",
-        title: "Share Template Social",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
         name: "tutorials",
         title: "Tutorials",
         permissions: ["VIEW", "CREATE", "EDIT", "DELETE"],
       },
-
       {
         name: "otp-settings",
         title: "OTP Settings",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "email-registration-tnc",
-        title: "Email Registration T&C",
-        permissions: ["VIEW", "EDIT"],
-      },
-      {
-        name: "phone-registration-tnc",
-        title: "Phone Registration T&C",
         permissions: ["VIEW", "EDIT"],
       },
     ],

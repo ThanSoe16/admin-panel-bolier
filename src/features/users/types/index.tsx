@@ -1,6 +1,5 @@
 import Blog from "@/components/pages/users/details/components/Blog";
 import { fileUploadResponseSchema } from "@/features/base/types";
-import { acceptedReceivingPaymentSchema } from "@/features/payment-settings/accepted-receiving/types";
 import { z } from "zod";
 
 export const userSchema = z.object({
@@ -87,7 +86,7 @@ export const userPurchaseTemplatesSchema = z.object({
       z.object({
         name: z.string(),
         colorCode: z.array(z.object({ code: z.string(), name: z.string() })),
-      })
+      }),
     ),
     templateCode: z.string(),
     laptopThumbId: z.string(),
@@ -119,7 +118,7 @@ export const userPurchaseTemplatesSchema = z.object({
           name: z.string(),
           templateCategoryId: z.string(),
           languageId: z.string(),
-        })
+        }),
       ),
     }),
     TemplateOnTemplateSubCategory: z.array(
@@ -131,10 +130,10 @@ export const userPurchaseTemplatesSchema = z.object({
               name: z.string(),
               templateSubCategoryId: z.string(),
               languageId: z.string(),
-            })
+            }),
           ),
         }),
-      })
+      }),
     ),
   }),
 });
@@ -232,7 +231,7 @@ export const userReceivingAccountSchema = z.object({
   Status: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  AcceptedReceivingAccount: acceptedReceivingPaymentSchema,
+  AcceptedReceivingAccount: z.any(),
   QR: fileUploadResponseSchema,
 });
 

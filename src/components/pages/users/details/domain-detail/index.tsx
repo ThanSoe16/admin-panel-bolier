@@ -5,7 +5,7 @@ import { Icons } from "@/components/ui/icons";
 import { DetailTable } from "@/components/shared/detail-table";
 import { CircleAlert } from "lucide-react";
 import { formatDate } from "@/utils/dateTime";
-import DetailsSkeleton from "@/components/pages/sale-history/maintain-sales/components/SkeletonLoading";
+import { Loading } from "@/components/shared/loading";
 import { useGetUserDomainDetail } from "@/features/users/services/queries";
 import { getFeeTypeName } from "@/utils/getFeeTypeName";
 
@@ -43,7 +43,7 @@ const DomainDetails = ({ id, domainId }: { id: string; domainId: string }) => {
     {
       label: "Domain Purchased Status",
       value: getFeeTypeName(
-        data?.body?.data?.domainPurchasedType ?? "DOMAIN_REGISTRATION"
+        data?.body?.data?.domainPurchasedType ?? "DOMAIN_REGISTRATION",
       ),
     },
     {
@@ -131,7 +131,7 @@ const DomainDetails = ({ id, domainId }: { id: string; domainId: string }) => {
       value: formatDate(data?.body?.data?.paymentDate ?? ""),
     },
   ];
-  if (isLoading) return <DetailsSkeleton />;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="space-y-6 mb-10">

@@ -10,8 +10,8 @@ import { Loading } from "@/components/shared/loading";
 import {
   useGetSocialLinkIcons,
   useGetSocialLinks,
-} from "@/features/socials/services/queries";
-import { SocialLinksType } from "@/features/socials/types";
+} from "@/features/settings/socials/services/queries";
+import { SocialLinksType } from "@/features/settings/socials/types";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -30,7 +30,7 @@ import { ConfirmStatusDialog } from "./components/ConfirmDialog";
 import {
   useDragAndSortSocialLinks,
   useUpdateSocialLinks,
-} from "@/features/socials/services/mutations";
+} from "@/features/settings/socials/services/mutations";
 
 type SocialLinkFormType = {
   links: {
@@ -249,7 +249,7 @@ const SocialLinks = () => {
       }
     } catch (error: any) {
       toast.error(
-        error?.response?.data?.meta?.message ?? "Something went wrong"
+        error?.response?.data?.meta?.message ?? "Something went wrong",
       );
     }
   };
@@ -331,7 +331,7 @@ const SocialLinks = () => {
           onClose={() => setModalOpen(false)}
           availableLinks={
             Array.isArray(socialLinkIcons?.body?.data)
-              ? socialLinkIcons?.body?.data ?? []
+              ? (socialLinkIcons?.body?.data ?? [])
               : []
           }
           selectedLinks={data}

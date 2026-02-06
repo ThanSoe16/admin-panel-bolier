@@ -6,17 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { CurrencyFormat } from "@/utils/currencyFormat";
 import IncomeReport from "./components/IncomeReport";
-import DevTemplateList from "./components/DevTemplateList";
 import PopularCategory from "./components/PopularCategory";
 import { useGetDashboardData } from "@/features/dashboard/services/queries";
 import { Loading } from "@/components/shared/loading";
 import { formatYear } from "@/utils/dateTime";
-import { useGetPendingTemplates } from "@/features/dev-mode/services/queries";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetDashboardData();
-  const { data: pendingTemplates, isLoading: fetchingPendingTemplates } =
-    useGetPendingTemplates();
 
   const dashboardMetaData = [
     {
@@ -38,7 +34,7 @@ const Dashboard = () => {
       url: "/sale-history/blog-site",
     },
   ];
-  if (isLoading || fetchingPendingTemplates) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -76,7 +72,7 @@ const Dashboard = () => {
                   <div
                     className={cn(
                       index === 2 ? "hidden" : "md:block",
-                      "h-[80%] w-[1px] bg-[#E5E5E5] mr-4 hidden"
+                      "h-[80%] w-[1px] bg-[#E5E5E5] mr-4 hidden",
                     )}
                   />
                 </div>
@@ -84,15 +80,8 @@ const Dashboard = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
             <IncomeReport data={data?.body?.data} />
-            <DevTemplateList
-              data={
-                pendingTemplates?.pages.flatMap(
-                  (page) => page?.body?.data || []
-                ) ?? []
-              }
-            />
           </div>
 
           {data?.body?.data?.popularCategories.length > 0 && (

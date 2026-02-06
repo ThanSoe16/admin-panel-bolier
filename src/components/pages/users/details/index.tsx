@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import Domains from "./components/Domains";
 import PurchasedTemplates from "./components/PurchasedTemplates";
 import Blog from "./components/Blog";
-import Invoice from "./components/Invoice";
 import Profile from "./components/Profile";
 import TransactionHistory from "./components/TransactionHistory";
 import {
@@ -20,7 +19,6 @@ import { Flex, Grid } from "@radix-ui/themes";
 import { CurrencyFormat, MMKCurrencyFormat } from "@/utils/currencyFormat";
 import { ArrowLeftRight } from "lucide-react";
 import { Loading } from "@/components/shared/loading";
-import { useGetExchangeRate } from "@/features/payment-settings/exchange-rate-service/services/queries";
 
 const links = [
   {
@@ -39,7 +37,6 @@ const mainTabList = [
       "domains",
       "purchased-templates",
       "blogs",
-      "monthly-invoices",
       "earning-history",
       "withdrawal-history",
     ],
@@ -48,7 +45,6 @@ const mainTabList = [
       "domains",
       "purchased-templates",
       "blogs",
-      "monthly-invoices",
       "withdrawal-history",
       "earning-history",
     ],
@@ -73,10 +69,6 @@ const secondaryTabList = [
     label: "Blogs",
   },
   {
-    tab: `monthly-invoices`,
-    label: "Monthly Invoices",
-  },
-  {
     tab: `withdrawal-history`,
     label: "Withdrawal History",
   },
@@ -94,15 +86,6 @@ const UserDetails: React.FC<UserDetailsProps> = ({ id }) => {
   const searchParams = useSearchParams();
   const userDetail = useGetUserDetail(id);
   const userEarningSummary = useGetUserEarningSummary(id);
-  const exchangeRate = useGetExchangeRate({ search: "MMK" });
-
-  const mmkRate = exchangeRate?.data?.body?.data?.find(
-    (item) => item.BaseCurrency?.currencyCode === "MMK"
-  );
-
-  const mmkToUsd =
-    Number(mmkRate?.exchangeRate ?? 0) +
-      Number(mmkRate?.exchangeServiceFee ?? 0) || 1;
 
   return (
     <div>
@@ -134,21 +117,10 @@ const UserDetails: React.FC<UserDetailsProps> = ({ id }) => {
                     {CurrencyFormat(
                       Number(
                         userEarningSummary?.data?.body?.data?.netEarn?.toFixed(
-                          2
-                        ) ?? 0
-                      )
+                          2,
+                        ) ?? 0,
+                      ),
                     )}
-                  </p>
-                  <ArrowLeftRight size={17} />
-                  <p className="text-sm font-medium">
-                    {MMKCurrencyFormat(
-                      Number(
-                        userEarningSummary?.data?.body?.data?.netEarn?.toFixed(
-                          2
-                        ) ?? 0
-                      ) * mmkToUsd
-                    )}{" "}
-                    MMK
                   </p>
                 </Flex>
               </div>
@@ -160,21 +132,10 @@ const UserDetails: React.FC<UserDetailsProps> = ({ id }) => {
                     {CurrencyFormat(
                       Number(
                         userEarningSummary?.data?.body?.data?.totalEarning?.toFixed(
-                          2
-                        ) ?? 0
-                      )
+                          2,
+                        ) ?? 0,
+                      ),
                     )}
-                  </p>
-                  <ArrowLeftRight size={17} className="text-primary" />
-                  <p className="text-sm font-medium">
-                    {MMKCurrencyFormat(
-                      Number(
-                        userEarningSummary?.data?.body?.data?.totalEarning?.toFixed(
-                          2
-                        ) ?? 0
-                      ) * mmkToUsd
-                    )}{" "}
-                    MMK
                   </p>
                 </Flex>
               </div>
@@ -190,8 +151,6 @@ const UserDetails: React.FC<UserDetailsProps> = ({ id }) => {
                   return <PurchasedTemplates id={id} />;
                 case "blogs":
                   return <Blog id={id} />;
-                case "monthly-invoices":
-                  return <Invoice id={id} />;
                 case "withdrawal-history":
                   return <WithdrawalHistory id={id} />;
                 case "earning-history":

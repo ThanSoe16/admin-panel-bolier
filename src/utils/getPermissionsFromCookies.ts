@@ -20,7 +20,7 @@ export function getPermissionsFromCookies(): string[] {
     // Return keys that have a non-empty array value
     if (typeof parsed === "object" && parsed !== null) {
       return Object.keys(parsed).filter(
-        (key) => Array.isArray(parsed[key]) && parsed[key].length > 0
+        (key) => Array.isArray(parsed[key]) && parsed[key].length > 0,
       );
     }
 

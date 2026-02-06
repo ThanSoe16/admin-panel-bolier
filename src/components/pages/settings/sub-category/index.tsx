@@ -6,9 +6,9 @@ import SearchInput from "@/components/shared/search-input";
 import { columnDefs } from "./components/columnDefs";
 import CreateModal from "./components/CreateModal";
 import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetSubCategories } from "@/features/sub-category/services/queries";
+import { useGetSubCategories } from "@/features/settings/sub-category/services/queries";
 import { DraggableTable } from "@/components/shared/data-table/draggable-table";
-import { useOrderSubCategory } from "@/features/sub-category/services/mutations";
+import { useOrderSubCategory } from "@/features/settings/sub-category/services/mutations";
 import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
 import { Flex } from "@radix-ui/themes";
 import SelectBoxFilter from "@/components/shared/base/SelectBoxFilter";
@@ -20,7 +20,7 @@ const SubCategory = () => {
   const { query } = usePagination();
   const [category] = useQueryState("category");
   const subCategories = useGetSubCategories({
-    categoryId: category == "all" ? "" : category ?? "",
+    categoryId: category == "all" ? "" : (category ?? ""),
     word: query?.word,
     pageIndex: query?.pageIndex,
     rowPerPage: query?.rowPerPage,
@@ -35,7 +35,7 @@ const SubCategory = () => {
     { label: "All Categories", value: "all" },
     ...(categories.data?.body?.data?.map((item) => ({
       label: item.TemplateCategoryContent?.find(
-        (lang) => lang.languageId === defaultLanguageId
+        (lang) => lang.languageId === defaultLanguageId,
       )?.name,
       value: item.id,
     })) ?? []),

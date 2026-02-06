@@ -7,6 +7,8 @@ export const useNavigation = () => {
   const pathname = usePathname();
   const permissions = getPermissionsFromCookies(); // ✅ Now available
 
+  console.log("permissions", permissions);
+
   const paths = getAllPaths(pathname || "")
     .map((menu) => {
       if (!menu.subPaths) {
@@ -17,7 +19,7 @@ export const useNavigation = () => {
       }
 
       const filteredSubMenu = menu.subPaths?.filter((sub) =>
-        permissions.includes(sub.permission || "")
+        permissions.includes(sub.permission || ""),
       );
 
       if (filteredSubMenu && filteredSubMenu.length > 0) {
@@ -27,8 +29,6 @@ export const useNavigation = () => {
       return null;
     })
     .filter(Boolean) as Menu[];
-
-  console.log("paths", paths);
 
   return {
     paths,

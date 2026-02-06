@@ -10,8 +10,8 @@ import {
   SubCategoryData,
   UpdateSubCategoryRequest,
   updateSubCategorySchema,
-} from "@/features/sub-category/types";
-import { useUpdateSubCategory } from "@/features/sub-category/services/mutations";
+} from "@/features/settings/sub-category/types";
+import { useUpdateSubCategory } from "@/features/settings/sub-category/services/mutations";
 import SubCategoryForm from "./SubCategoryForm";
 
 interface EditModalProps {

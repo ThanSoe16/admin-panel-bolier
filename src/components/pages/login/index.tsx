@@ -6,7 +6,7 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import Cookies from "js-cookie";
+import { setAuthCookies } from "@/utils/auth-cookies";
 
 import { useForm } from "react-hook-form";
 import { LoginForm, loginSchema } from "@/features/auth/types";
@@ -39,101 +39,36 @@ const Login = () => {
 
   const submit = async (data: LoginForm) => {
     try {
-      // 1. Perform Login
-      const loginResponse = await login(data);
-
-      if (!loginResponse.meta?.success) {
-        toast.error(loginResponse?.meta?.message || "Login failed");
-        return;
-      }
-
-      const { accessToken, refreshToken } = loginResponse.body?.data || {};
-
-      if (!accessToken || !refreshToken) {
-        toast.error("Invalid response from server: Missing tokens");
-        return;
-      }
-
-      toast.success(loginResponse.meta.message || "Login success");
-
-      // 2. Store Tokens (Local State + Cookies)
-      setTokens(accessToken, refreshToken);
-
-      const cookieOptions = {
-        expires: 365 * 10,
-        secure: true,
-        sameSite: "lax",
-      } as const;
-      Cookies.set("token", JSON.stringify(accessToken), cookieOptions);
-
-      // 3. Fetch User Permissions
-      const meResponse = await fetchMe();
-      const userPermissions = meResponse.body?.data?.AdminRole?.permissions;
-
-      if (userPermissions) {
-        // Transform API response to Store format if needed
-        // API returns { id: string; value: string }[] but Store expects Record<string, string[]>
-        // Since the type error says it returns that array, we must convert it.
-        // Assuming 'id' is the permission key and 'value' is JSON string or just the value?
-        // Wait, let's look at the error again: "{ id: string; value: string; }[]".
-        // Usually `value` is the array of permissions like ["VIEW", "EDIT"].
-        // If it's a string, it might be JSON stringified.
-
-        let formattedPermissions: PermissionData = {} as PermissionData;
-
-        if (Array.isArray(userPermissions)) {
-          // Basic transformation
-          (userPermissions as any[]).forEach(
-            (p: { id: string; value: any }) => {
-              try {
-                // value might be string "[\"VIEW\"]" or array
-                const actions = Array.isArray(p.value)
-                  ? p.value
-                  : JSON.parse(p.value);
-                // @ts-ignore
-                formattedPermissions[p.id] = actions;
-              } catch (e) {
-                // fallback if not json
-                // @ts-ignore
-                formattedPermissions[p.id] = [p.value];
-              }
-            },
-          );
-        } else {
-          // It might already be the correct shape if the error was misleading or I misread
-          formattedPermissions = userPermissions as unknown as PermissionData;
-        }
-
-        // Update Store
-        setPermissions(formattedPermissions);
-
-        // Update Cookies
-        Cookies.set(
-          "permissions",
-          JSON.stringify(formattedPermissions),
-          cookieOptions,
+      const response = await login(data);
+      if (response.meta?.success) {
+        toast.success(response?.meta?.message ?? "");
+        setTokens(
+          response?.body?.data?.accessToken ?? "",
+          response?.body?.data?.refreshToken ?? "",
         );
 
-        // 4. Redirect based on permissions
-        // Small delay to ensure state/cookies propagate if needed, though with Zustand it should be instant for React components.
-        // Keeping a small delay for safety with router.push behavior in some cases.
-        setTimeout(() => {
-          const match = matchFirstStoredPermission(routePermissionMap);
-          if (match) {
-            router.push(match.path);
-          } else {
-            toast.error("No valid route found for your permissions");
-          }
-        }, 500);
+        fetchMe()
+          .then((res) => {
+            setAuthCookies(
+              response?.body?.data?.accessToken ?? "",
+              JSON.stringify(res.body?.data?.AdminRole?.permissions ?? []),
+            );
+
+            setTimeout(() => {
+              const match = matchFirstStoredPermission(routePermissionMap);
+              if (match) {
+                router.push(match.path);
+              }
+            }, 1000);
+          })
+          .finally(() => {});
       } else {
-        toast.warning("Logged in but no permissions found.");
+        const errorResponse: any = response;
+        toast.error(errorResponse.error?.meta?.message ?? "");
       }
     } catch (error: any) {
-      console.error("Login Check Error:", error);
       toast.error(
-        error?.response?.data?.meta?.message ??
-          error?.message ??
-          "Something went wrong during login",
+        error?.response?.data?.meta?.message ?? "Something went wrong",
       );
     }
   };
