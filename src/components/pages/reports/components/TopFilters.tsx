@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Tabs from '@/components/shared/tabs';
+import Tabs from '@/components/shared/base/tabs';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import MonthPicker from '@/components/ui/month-picker';
 import { DatePicker } from '@/components/ui/date-picker';

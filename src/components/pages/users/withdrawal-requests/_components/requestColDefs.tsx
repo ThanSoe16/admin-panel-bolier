@@ -4,10 +4,10 @@ import { ColumnDef } from '@tanstack/react-table';
 import { formatDate } from '@/utils/dateTime';
 import { WithdrawalRequestData } from '@/features/withdrawal/types';
 import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import Link from 'next/link';
 import { Flex } from '@radix-ui/themes';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
 
 const Actions = (props: { target: WithdrawalRequestData }) => {
   return (

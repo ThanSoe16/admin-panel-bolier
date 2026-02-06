@@ -1,5 +1,5 @@
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
-import EditButton from '@/components/shared/buttons/EditButton';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
+import EditButton from '@/components/shared/buttons/edit-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { formatDate } from '@/utils/dateTime';
 

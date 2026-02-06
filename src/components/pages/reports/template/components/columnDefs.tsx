@@ -1,9 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { PopularTemplateData, TemplateSaleData } from '@/features/report/template/types';
-import Status from '@/components/shared/Status';
+import Status from '@/components/shared/base/status';
 import { toSentenceCase } from '@/utils/toSentenceCase';
 import Link from 'next/link';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { formatDate, formatMonth, formatYear } from '@/utils/dateTime';
 import { ChevronRightIcon } from 'lucide-react';
 import { CurrencyFormat } from '@/utils/currencyFormat';

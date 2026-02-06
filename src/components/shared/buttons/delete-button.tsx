@@ -1,11 +1,12 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { type ButtonProps } from '@/components/ui/button';
-import TableBaseButton from './TableBaseButton';
+import { Button, type ButtonProps } from '@/components/ui/button';
+import TableBaseButton from './table-base-button';
 import { usePathname } from 'next/navigation';
 import { matchRouteToStoredPermission } from '@/utils/routeMatcher';
 import { routePermissionMap } from '@/data/route-permissions';
+import { Trash2 } from 'lucide-react';
 
 //just ui, have to implement permission logic
 
@@ -15,16 +16,19 @@ interface EditButtonProps extends ButtonProps {
   onClick?: () => void;
 }
 
-const EditButton: React.FC<EditButtonProps> = ({ basePath, asBtn = false, onClick = () => {} }) => {
+const DeleteButton: React.FC<EditButtonProps> = ({
+  basePath,
+  asBtn = false,
+  onClick = () => {},
+}) => {
   const pathname = usePathname();
   const match = matchRouteToStoredPermission(pathname, routePermissionMap);
-  if (!match.includes('EDIT')) return null;
+  if (!match.includes('DELETE')) return <div className="w-6" />;
 
   const button = (
-    <TableBaseButton onClick={asBtn ? onClick : undefined} uiType="edit">
-      {' '}
-      Edit
-    </TableBaseButton>
+    <Button variant={'ghost'} onClick={onClick} className="p-0">
+      <Trash2 className="text-red-500 min-w-6 min-h-6" />
+    </Button>
   );
 
   return asBtn ? (
@@ -36,4 +40,4 @@ const EditButton: React.FC<EditButtonProps> = ({ basePath, asBtn = false, onClic
   );
 };
 
-export default EditButton;
+export default DeleteButton;

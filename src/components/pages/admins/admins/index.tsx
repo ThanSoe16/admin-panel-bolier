@@ -2,12 +2,12 @@
 import { DataTable } from '@/components/shared/data-table';
 import { useGetAdmins, useGetRoles } from '@/features/admins/services/queries';
 import { usePagination } from '@/features/base/hooks/usePagination';
-import SearchInput from '@/components/shared/search-input';
+import SearchInput from '@/components/shared/input/search-input';
 import { Box, Flex } from '@radix-ui/themes';
-import CreateButton from '@/components/shared/buttons/CreateButton';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import CreateButton from '@/components/shared/buttons/create-button';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { adminColDefs } from './_components/AdminColDefs';
-import SelectBoxFilter from '@/components/shared/base/SelectBoxFilter';
+import SelectBoxFilter from '@/components/shared/input/select-box-filter';
 import { useQueryState } from 'nuqs';
 
 const Admins = () => {

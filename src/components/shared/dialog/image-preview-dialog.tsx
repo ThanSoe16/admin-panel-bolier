@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Eye, X } from 'lucide-react';
-import ProfileAvatar from '../base/ProfileAvatar';
+import ProfileAvatar from '../base/profile-avatar';
 import { cn } from '@/lib/utils';
 import {
   Dialog,

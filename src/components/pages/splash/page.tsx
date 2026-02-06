@@ -1,6 +1,6 @@
 'use client';
 
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { routePermissionMap } from '@/data/route-permissions';
 import { matchFirstStoredPermission } from '@/utils/routeMatcher';
 

@@ -1,13 +1,13 @@
 'use client';
 import { DataTable } from '@/components/shared/data-table';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useGetRoles } from '@/features/admins/services/queries';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { roleColDefs } from './components/RoleColDefs';
-import SearchInput from '@/components/shared/search-input';
+import SearchInput from '@/components/shared/input/search-input';
 import { Box, Flex } from '@radix-ui/themes';
-import CreateButton from '@/components/shared/buttons/CreateButton';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import CreateButton from '@/components/shared/buttons/create-button';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 
 const Roles = () => {
   const { query } = usePagination();

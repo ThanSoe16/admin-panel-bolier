@@ -1,4 +1,4 @@
-import ImagePicker from '@/components/shared/base/ImagePicker';
+import ImagePicker from '@/components/shared/input/image-picker';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { useApproveWithdrawalRequest } from '@/features/withdrawal/services/mutations';

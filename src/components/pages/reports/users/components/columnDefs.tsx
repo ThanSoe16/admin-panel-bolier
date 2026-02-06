@@ -1,9 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { UserReportListData } from '@/features/report/users/types';
-import Status from '@/components/shared/Status';
+import Status from '@/components/shared/base/status';
 import { toSentenceCase } from '@/utils/toSentenceCase';
 import Link from 'next/link';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { formatMonth, formatYear } from '@/utils/dateTime';
 
 export const todayNewUsersColumnDefs: ColumnDef<UserReportListData>[] = [

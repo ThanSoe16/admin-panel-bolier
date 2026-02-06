@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { ColumnDef } from '@tanstack/react-table';
 import dayjs from 'dayjs';
 import { UserData } from '@/features/users/types';

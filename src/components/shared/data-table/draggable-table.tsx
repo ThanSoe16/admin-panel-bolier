@@ -16,7 +16,7 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table';
 import { Pagination } from './Pagination';
 import { cn } from '@/lib/utils';
-import { Loading } from '../loading';
+import { Loading } from '../base/loading';
 import useSideBarStore from '@/store';
 import {
   DndContext,

@@ -1,5 +1,5 @@
-import ProfilePicker from '@/components/shared/base/ProfilePicker';
-import PageTitle from '@/components/shared/PageTitle';
+import ProfilePicker from '@/components/shared/input/profile-picker';
+import PageTitle from '@/components/shared/base/page-title';
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';

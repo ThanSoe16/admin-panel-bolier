@@ -3,7 +3,7 @@ import React from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useUpdateTutorial } from '@/features/settings/tutorials/services/mutations';
 import { UpdateTutorialRequest, updateTutorialSchema } from '@/features/settings/tutorials/types';
 import { TutorialData } from '@/features/settings/tutorials/types';

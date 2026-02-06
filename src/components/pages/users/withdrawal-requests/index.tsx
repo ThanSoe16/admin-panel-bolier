@@ -1,15 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import { DataTable } from '@/components/shared/data-table';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import {
   useGetWithdrawalRequests,
   useGetWithdrawalSetting,
 } from '@/features/withdrawal/services/queries';
-import SearchInput from '@/components/shared/search-input';
+import SearchInput from '@/components/shared/input/search-input';
 import { Flex } from '@radix-ui/themes';
-import SecondaryEditButton from '@/components/shared/buttons/SecondaryEditButton';
+import SecondaryEditButton from '@/components/shared/buttons/secondary-edit-button';
 import { requestColDefs } from './_components/requestColDefs';
 import WithdrawSetting from './_components/WithdrawSetting';
 import { Settings } from 'lucide-react';

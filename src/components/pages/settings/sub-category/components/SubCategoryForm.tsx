@@ -1,4 +1,4 @@
-import OptionSelect from '@/components/shared/OptionSelect';
+import OptionSelect from '@/components/shared/input/option-select';
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Image } from '@/components/ui/image';

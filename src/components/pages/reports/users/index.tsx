@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import dayjs from 'dayjs';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { DataTable } from '@/components/shared/data-table';
 import {
@@ -10,8 +10,8 @@ import {
   yearlyNewUsersColumnDefs,
 } from './components/columnDefs';
 import TopFilters from '../components/TopFilters';
-import SearchInput from '@/components/shared/search-input';
-import { DetailTable } from '@/components/shared/detail-table';
+import SearchInput from '@/components/shared/input/search-input';
+import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { useGetUserReport } from '@/features/report/users/services/queries';
 
 const UserReport = () => {

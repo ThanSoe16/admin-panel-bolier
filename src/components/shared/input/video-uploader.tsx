@@ -1,7 +1,7 @@
 'use client';
 import { Input } from '@/components/ui/input';
 import { Flex } from '@radix-ui/themes';
-import { Loading } from '../loading';
+import { Loading } from '../base/loading';
 import { useFileUpload } from '@/features/base/services/mutations';
 import { Video, X } from 'lucide-react';
 import { cn } from '@/lib/utils';

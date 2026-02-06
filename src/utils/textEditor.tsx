@@ -23,7 +23,7 @@ const replaceLinksWithPreview = async (htmlString: string): Promise<string> => {
       throw new Error('Failed to fetch URL');
     }
 
-    const SEOPreviewBlot = (await import('../components/shared/text-editor/SEOPreviewBlot'))
+    const SEOPreviewBlot = (await import('../components/shared/text-editor/seo-preview-blot'))
       .default;
 
     const blotNode = SEOPreviewBlot.create(data);

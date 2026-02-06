@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
-import { Loading } from '@/components/shared/loading';
+import PageTitle from '@/components/shared/base/page-title';
+import { Loading } from '@/components/shared/base/loading';
 import { useGetEarningWithdrawalTNC } from '@/features/settings/terms-conditions/services/queries';
 import { Grid } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';

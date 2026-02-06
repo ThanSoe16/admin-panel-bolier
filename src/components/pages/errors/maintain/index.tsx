@@ -1,5 +1,5 @@
 'use client';
-import ErrorUI from '@/components/shared/ErrorUI';
+import ErrorUI from '@/components/shared/containers/empty-container';
 import { useGetMe } from '@/features/auth/service/queries';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -24,6 +24,7 @@ const Maintain = () => {
             className="w-[210px] h-[210px] sm:w-[420px] sm:h-[420px] -my-4"
           />
         }
+        title="Under Maintenance"
         description={
           "We apologize for the inconvenience. Our website is currently under maintenance, and we're working to restore it as soon as possible."
         }

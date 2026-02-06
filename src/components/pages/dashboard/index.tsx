@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { CurrencyFormat } from '@/utils/currencyFormat';
 import IncomeReport from './components/IncomeReport';
 import PopularCategory from './components/PopularCategory';
 import { useGetDashboardData } from '@/features/dashboard/services/queries';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { formatYear } from '@/utils/dateTime';
 
 const Dashboard = () => {

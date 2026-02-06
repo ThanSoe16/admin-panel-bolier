@@ -17,7 +17,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { Pagination } from './Pagination';
 import { cn } from '@/lib/utils';
 import { PaginationTypes } from './table-base-types';
-import { Loading } from '../loading';
+import { Loading } from '../base/loading';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

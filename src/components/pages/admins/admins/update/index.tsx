@@ -1,9 +1,9 @@
 'use client';
 import { useGetAdminDetail } from '@/features/admins/services/queries';
 import AdminUpdateForm from '../_components/AdminUpdateForm';
-import { Loading } from '@/components/shared/loading';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
-import ErrorContainer from '@/components/shared/base/ErrorContainer';
+import { Loading } from '@/components/shared/base/loading';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
+import ErrorContainer from '@/components/shared/containers/error-container';
 
 const AdminUpdate = ({ id }: { id: string }) => {
   const adminDetail = useGetAdminDetail(id);

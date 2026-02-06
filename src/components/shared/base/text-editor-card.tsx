@@ -1,6 +1,6 @@
-import EditButton from '@/components/shared/buttons/EditButton';
+import EditButton from '@/components/shared/buttons/edit-button';
 import { Card, CardContent } from '@/components/ui/card';
-import ProfileAvatar from '../base/ProfileAvatar';
+import ProfileAvatar from './profile-avatar';
 import { formatDate } from '@/utils/dateTime';
 
 interface TextEditorCardProps {

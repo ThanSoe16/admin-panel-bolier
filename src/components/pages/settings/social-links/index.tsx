@@ -5,8 +5,8 @@ import { toast } from 'sonner';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Card, CardContent } from '@/components/ui/card';
-import PageTitle from '@/components/shared/PageTitle';
-import { Loading } from '@/components/shared/loading';
+import PageTitle from '@/components/shared/base/page-title';
+import { Loading } from '@/components/shared/base/loading';
 import {
   useGetSocialLinkIcons,
   useGetSocialLinks,

@@ -1,5 +1,5 @@
 // import ButtonImagePicker from "@/components/shared/base/ButtonImagePicker";
-import ButtonImagePicker from '@/components/shared/base/ButtonImagePicker';
+import ButtonImagePicker from '@/components/shared/input/button-image-picker';
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Image } from '@/components/ui/image';

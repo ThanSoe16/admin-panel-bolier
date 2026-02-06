@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { useRouter } from 'next/navigation';
-import BackBtn from '../back-btn/BackBtn';
+import BackBtn from '../buttons/back-btn';
 
 export interface BreadcrumbLink {
   href: string;

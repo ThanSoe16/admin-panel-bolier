@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
-import CustomTextArea from '@/components/shared/custom-textarea';
+import CustomTextArea from '@/components/shared/input/custom-textarea';
 import { Button } from '@/components/ui/button';
 import { PencilIcon } from 'lucide-react';
 import Image from 'next/image';

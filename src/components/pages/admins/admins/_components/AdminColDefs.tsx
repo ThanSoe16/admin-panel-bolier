@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { AdminData } from '@/features/admins/types';
 import { formatDate } from '@/utils/dateTime';
-import StatusSwitch from '@/components/shared/buttons/StatusSwitch';
+import StatusSwitch from '@/components/shared/buttons/status-switch';
 import { useUpdateAdmin } from '@/features/admins/services/mutations';
 import { useGetMe } from '@/features/auth/service/queries';
 

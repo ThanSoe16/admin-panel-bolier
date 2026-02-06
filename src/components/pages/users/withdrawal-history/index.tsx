@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import { DataTable } from '@/components/shared/data-table';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { useGetWithdrawal } from '@/features/withdrawal/services/queries';
 import { historyColDefs } from './_components/withdrawalColDefs';
-import SearchInput from '@/components/shared/search-input';
+import SearchInput from '@/components/shared/input/search-input';
 
 const WithdrawalHistory = () => {
   const { query } = usePagination();

@@ -3,7 +3,7 @@ import React from 'react';
 import { DataTable } from '@/components/shared/data-table';
 import { UserDomainData } from '@/features/users/types';
 import { ColumnDef } from '@tanstack/react-table';
-import Status from '@/components/shared/Status';
+import Status from '@/components/shared/base/status';
 import dayjs from 'dayjs';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { useGetUserDomains } from '@/features/users/services/queries';

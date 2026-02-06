@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { useGetEarningWithdrawalTNC } from '@/features/settings/terms-conditions/services/queries';
 import { TextEditor } from '@/components/shared/text-editor';
 import { Flex } from '@radix-ui/themes';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useUpdateEarningWithdrawalTNC } from '@/features/settings/terms-conditions/services/mutations';
 import { UpdateTermsConditionsRequest } from '@/features/settings/terms-conditions/types';
 import { toast } from 'sonner';

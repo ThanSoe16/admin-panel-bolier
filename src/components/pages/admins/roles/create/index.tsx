@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import RoleForm from '../components/RoleForm';
 import { useCreateRole } from '@/features/admins/services/mutations';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { permissionSchema } from '@/features/admins/types/permission.type';
 
 const CreateRole = () => {

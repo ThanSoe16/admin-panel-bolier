@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import ErrorUI from '@/components/shared/ErrorUI';
+import ErrorUI from '@/components/shared/containers/empty-container';
 import Image from 'next/image';
 
 const Page404 = () => {
@@ -15,6 +15,7 @@ const Page404 = () => {
           className="w-[210px] h-[210px] sm:w-[420px] sm:h-[420px] -my-4"
         />
       }
+      title="Page Not Found"
       description={"Sorry, we couldn't find that page."}
     />
   );

@@ -1,21 +1,21 @@
 'use client';
 import React, { useState } from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { useGetWithdrawalHistoryById } from '@/features/withdrawal/services/queries';
-import { Loading } from '@/components/shared/loading';
-import { DetailTable } from '@/components/shared/detail-table';
+import { Loading } from '@/components/shared/base/loading';
+import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { Flex } from '@radix-ui/themes';
 import { ArrowRightLeft, ChevronRight, X } from 'lucide-react';
 import { formatDate } from '@/utils/dateTime';
 import Link from 'next/link';
-import Status from '@/components/shared/Status';
-import CopyButton from '@/components/shared/base/CopyButton';
+import Status from '@/components/shared/base/status';
+import CopyButton from '@/components/shared/buttons/copy-button';
 import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
 import { Image } from '@/components/ui/image';
 import { useGetAdminDetail } from '@/features/admins/services/queries';
-import ImagePreview from '@/components/shared/image-preview';
+import ImagePreview from '@/components/shared/base/image-preview';
 import { ImagePreviewDialog } from '@/components/shared/dialog/image-preview-dialog';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
 
 const links = [
   {

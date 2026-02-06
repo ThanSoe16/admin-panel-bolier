@@ -1,19 +1,19 @@
 'use client';
 import React from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { useGetWithdrawalRequestById } from '@/features/withdrawal/services/queries';
-import { Loading } from '@/components/shared/loading';
-import { DetailTable } from '@/components/shared/detail-table';
+import { Loading } from '@/components/shared/base/loading';
+import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { Flex } from '@radix-ui/themes';
 import { ArrowRightLeft, ChevronRight } from 'lucide-react';
 import { formatDate } from '@/utils/dateTime';
 import Link from 'next/link';
-import Status from '@/components/shared/Status';
-import CopyButton from '@/components/shared/base/CopyButton';
+import Status from '@/components/shared/base/status';
+import CopyButton from '@/components/shared/buttons/copy-button';
 import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
 import ApproveWithdrawal from './_components/ApproveWithdrawal';
 import RejectWithdrawal from './_components/RejectWithdrawal';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
 
 const links = [
   {

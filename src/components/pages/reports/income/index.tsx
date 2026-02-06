@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
 import dayjs from 'dayjs';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { DataTable } from '@/components/shared/data-table';
 import { columnDefs } from './components/columnDefs';
 import TopFilters from '../components/TopFilters';
-import { DetailTable } from '@/components/shared/detail-table';
+import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { useGetIncomeReport } from '@/features/report/income/services/queries';
 import { CurrencyFormat } from '@/utils/currencyFormat';
 

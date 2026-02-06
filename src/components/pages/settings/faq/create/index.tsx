@@ -1,6 +1,6 @@
 'use client';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
-import { Loading } from '@/components/shared/loading';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
+import { Loading } from '@/components/shared/base/loading';
 import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import { CreateFAQRequest, createFAQSchema } from '@/features/faqs/types';
 import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';

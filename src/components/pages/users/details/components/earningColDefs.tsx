@@ -6,7 +6,7 @@ import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
 import { UserEarningHistoryData } from '@/features/users/types';
 import { Flex } from '@radix-ui/themes';
 import { ArrowLeftRight } from 'lucide-react';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
 
 export const earningColDefs: ColumnDef<UserEarningHistoryData>[] = [
   {

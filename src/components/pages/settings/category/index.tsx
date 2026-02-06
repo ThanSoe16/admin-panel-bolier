@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
-import CreateButton from '@/components/shared/buttons/CreateButton';
-import SearchInput from '@/components/shared/search-input';
+import PageTitle from '@/components/shared/base/page-title';
+import CreateButton from '@/components/shared/buttons/create-button';
+import SearchInput from '@/components/shared/input/search-input';
 import { columnDefs } from './components/columnDefs';
 import CreateModal from './components/CreateModal';
 import { useGetCategories } from '@/features/settings/category/services/queries';

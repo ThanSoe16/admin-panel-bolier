@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import ContactUsForm from './ContactUsForm';
 import { useGetContactUs } from '@/features/settings/contact-us/services/queries';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 
 const ContactUs = () => {
   const { data, isLoading } = useGetContactUs();

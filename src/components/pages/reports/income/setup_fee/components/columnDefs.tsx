@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { formatDate, formatMonth, formatYear } from '@/utils/dateTime';
 import { SetupFeeListData, SetupFeeTypeTableData } from '@/features/report/income/setup-fee/types';
 import { CurrencyFormat } from '@/utils/currencyFormat';

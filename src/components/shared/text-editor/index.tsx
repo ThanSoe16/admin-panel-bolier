@@ -8,11 +8,11 @@ import 'react-quill-new/dist/quill.core.css';
 import { Quill as QuillType } from 'react-quill-new';
 import { toast } from 'sonner';
 import { useFileUpload } from '@/features/base/services/mutations';
+import './quill-overrides.css';
 import './text-editor.css';
-import './TextEditor.css';
-import PhoneDialog from './PhoneDialog';
-import EmailDialog from './EmailDialog';
-import SEOLinkDialog from './SEOLinkDialog';
+import PhoneDialog from './phone-dialog';
+import EmailDialog from './email-dialog';
+import SEOLinkDialog from './seo-link-dialog';
 import { SEOPreviewData } from '@/features/base/types';
 import { emailSVGString, phoneSVGString } from '@/utils/textEditor';
 import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
@@ -22,9 +22,9 @@ const Quill = dynamic(
     const { default: RQ } = await import('react-quill-new');
     if (typeof window !== 'undefined') {
       const { ImageResize } = await import('quill-image-resize-module-ts');
-      const CustomVideoBlot = (await import('./CustomVideoBlot')).default;
-      const SEOPreviewBlot = (await import('./SEOPreviewBlot')).default;
-      const CustomLinkBlot = (await import('./CustomLInkBlot')).default;
+      const CustomVideoBlot = (await import('./custom-video-blot')).default;
+      const SEOPreviewBlot = (await import('./seo-preview-blot')).default;
+      const CustomLinkBlot = (await import('./custom-link-blot')).default;
 
       RQ.Quill.register('modules/imageResize', ImageResize);
       RQ.Quill.register(CustomVideoBlot);

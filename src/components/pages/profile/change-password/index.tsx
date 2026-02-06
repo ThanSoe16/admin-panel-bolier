@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useChangePassword } from '@/features/auth/service/mutations';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { Check, CircleAlert } from 'lucide-react';
 
 const validationRules = [

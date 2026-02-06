@@ -9,7 +9,7 @@ import {
 } from '@/features/settings/category/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { LandingLanguage } from '@/features/landing-languages/types';
 import { useUpdateCategory } from '@/features/settings/category/services/mutations';
 import CategoryForm from './CategoryForm';

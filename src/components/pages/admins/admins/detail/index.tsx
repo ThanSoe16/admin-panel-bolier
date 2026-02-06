@@ -1,9 +1,9 @@
 'use client';
-import ErrorContainer from '@/components/shared/base/ErrorContainer';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
-import { Loading } from '@/components/shared/loading';
-import PageTitle from '@/components/shared/PageTitle';
+import ErrorContainer from '@/components/shared/containers/error-container';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
+import { Loading } from '@/components/shared/base/loading';
+import PageTitle from '@/components/shared/base/page-title';
 import { Button } from '@/components/ui/button';
 import { useGetAdminDetail } from '@/features/admins/services/queries';
 import { cn } from '@/lib/utils';

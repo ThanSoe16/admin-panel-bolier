@@ -1,5 +1,5 @@
 'use client';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { Form } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { CreateAdminRequest, createAdminSchema } from '@/features/admins/types';

@@ -12,9 +12,9 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import Link from 'next/link';
-import ProfileAvatar from '../shared/base/ProfileAvatar';
+import ProfileAvatar from '../shared/base/profile-avatar';
 import { useGetMe } from '@/features/auth/service/queries';
-import { Loading } from '../shared/loading';
+import { Loading } from '../shared/base/loading';
 import { SidebarTrigger } from '../ui/sidebar';
 
 const Header = () => {

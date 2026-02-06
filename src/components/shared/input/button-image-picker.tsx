@@ -1,13 +1,14 @@
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import { Box, Flex } from '@radix-ui/themes';
-import { Loading } from '../loading';
+import { Loading } from '../base/loading';
 import { useFileUpload } from '@/features/base/services/mutations';
-import { Camera } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
 
-const ProfilePicker = ({
+const ButtonImagePicker = ({
   imageURL,
+  name,
+  setName,
   setImageURL,
   setImageID,
   className,
@@ -17,10 +18,13 @@ const ProfilePicker = ({
   height,
   limitations,
   id = 'file-picker',
+  disabled = false,
 }: {
   imageURL: string;
+  name?: string;
+  setName: (value: string) => void;
   setImageURL: React.Dispatch<React.SetStateAction<string>>;
-  setImageID: React.Dispatch<React.SetStateAction<string>>;
+  setImageID: (value: string) => void;
   className?: string;
   type?: string[];
   maxFileInKb?: number;
@@ -28,6 +32,7 @@ const ProfilePicker = ({
   height?: number;
   limitations?: React.ReactNode;
   id?: string;
+  disabled?: boolean;
 }) => {
   const photoUpload = useFileUpload();
 
@@ -63,6 +68,7 @@ const ProfilePicker = ({
     photoUpload.mutateAsync({ file: file }).then((res) => {
       setImageURL(res?.body?.data?.url ?? '');
       setImageID(res?.body?.data?.id ?? '');
+      setName(res?.body?.data?.name ?? '');
     });
   };
 
@@ -70,20 +76,16 @@ const ProfilePicker = ({
     <div>
       <Input
         type="file"
-        accept="image/*"
+        accept=".png, .jpg, .jpeg, .svg"
         className="hidden"
         onChange={handleFileChange}
         id={id ?? 'file-picker'}
+        disabled={disabled}
       />
 
-      <Flex className="space-x-4  " align="center">
+      <Flex className="space-x-4  relative" align="center">
         <Box
-          // className="bg-red-500"
-          className={cn(
-            className ? className : 'w-[150px] h-[150px] relative overflow-hidden',
-            !imageURL ? ' bg-blueLight-lightActive' : '',
-            'border rounded-full text-text-secondary bg-brand-secondary',
-          )}
+        // className="bg-red-500"
         >
           <label htmlFor={id ?? 'file-picker'}>
             {photoUpload.isPending ? (
@@ -95,30 +97,34 @@ const ProfilePicker = ({
                 direction="column"
                 justify="center"
                 align="center"
-                className="w-full h-full cursor-pointer rounded-full"
+                className="w-full h-full cursor-pointer "
               >
                 <img
                   src={imageURL}
                   alt="Selected logo"
-                  className="w-full h-full object-cover cursor-pointer rounded-full"
+                  className="object-contain cursor-pointer rounded-lg h-[40px] w-[40px]"
                 />
               </Flex>
             ) : (
               <Flex
-                direction="column"
                 justify="center"
                 align="center"
-                className="w-full h-full cursor-pointer"
+                className="w-full h-full cursor-pointer bg-primary rounded-xl px-4 py-3 gap-2"
               >
-                <Camera fill="blue" className="w-9 h-9 text-white" />
+                <Plus className="text-background" />
+                <div className="text-sm text-background">Upload Icon</div>
               </Flex>
             )}
           </label>
         </Box>
-        <div className="max-w-[230px]">{limitations}</div>
+        {imageURL && name && <div>{name}</div>}
+        {!imageURL && (
+          <div className="max-w-[450px] text-xs text-default-secondary">{limitations}</div>
+        )}
+        {imageURL && <X onClick={() => setImageURL('')} className="absolute right-0" />}
       </Flex>
     </div>
   );
 };
 
-export default ProfilePicker;
+export default ButtonImagePicker;

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { Card, CardContent } from '@/components/ui/card';
 import { useGetMaintenanceData } from '@/features/settings/maintenance/services/queries';
 import {

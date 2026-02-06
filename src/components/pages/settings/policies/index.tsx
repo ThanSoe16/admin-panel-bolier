@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
-import Tabs from '@/components/shared/tabs';
-import TextEditorCard from '@/components/shared/text-editor-card';
+import PageTitle from '@/components/shared/base/page-title';
+import Tabs from '@/components/shared/base/tabs';
+import TextEditorCard from '@/components/shared/base/text-editor-card';
 import { useRouter } from 'next/navigation';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { parseAsString, useQueryState } from 'nuqs';
@@ -12,9 +12,9 @@ import {
   useGetRecoveryPolicy,
   useGetRefundPolicy,
 } from '@/features/settings/policies/services/queries';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { Grid } from '@radix-ui/themes';
-import ErrorContainer from '@/components/shared/base/ErrorContainer';
+import ErrorContainer from '@/components/shared/containers/error-container';
 import { formatDate } from '@/utils/dateTime';
 
 const tabList = [

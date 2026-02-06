@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { Icons } from '@/components/ui/icons';
-import { DetailTable } from '@/components/shared/detail-table';
+import { DetailTable } from '@/components/shared/data-table/detail-table';
 import { CircleAlert } from 'lucide-react';
 import { formatDate } from '@/utils/dateTime';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useGetUserDomainDetail } from '@/features/users/services/queries';
 import { getFeeTypeName } from '@/utils/getFeeTypeName';
 

@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { Box, Flex } from '@radix-ui/themes';
-import { Loading } from '../loading';
+import { Loading } from '../base/loading';
 import { useFileUpload } from '@/features/base/services/mutations';
 import { ImagePlus, X } from 'lucide-react';
 import { useRef, useState } from 'react';

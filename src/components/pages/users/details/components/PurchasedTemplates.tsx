@@ -4,7 +4,7 @@ import Image from 'next/image';
 import dayjs from 'dayjs';
 import { useGetUserTemplates } from '@/features/users/services/queries';
 import { usePagination } from '@/features/base/hooks/usePagination';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
 import { useInView } from 'react-intersection-observer';
 

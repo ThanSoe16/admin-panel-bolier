@@ -16,7 +16,7 @@ import {
 import { LandingLanguage } from '@/features/landing-languages/types';
 import { TutorialsEnum } from '@/features/base/types/backend-defined-enums';
 import { CreateTutorialRequest } from '@/features/settings/tutorials/types';
-import VideoUploader from '@/components/shared/base/VideoUploader';
+import VideoUploader from '@/components/shared/input/video-uploader';
 import { X } from 'lucide-react';
 
 const getYouTubeEmbedUrl = (url: string) => {

@@ -1,279 +1,90 @@
-/* Default toolbar: single row */
-.ql-toolbar.ql-snow {
-  border: 1px solid #f4f4f4;
-  border-radius: 6px 6px 0 0;
-  background-color: #e6f1fd;
-  padding: 0 8px;
-  display: flex;
-  gap: 0;
-  align-items: center;
-  height: 42px;
-  min-width: 300px;
-}
+@reference "tailwindcss";
 
-.ql-editor {
-  font-size: 16px !important;
-  max-height: calc(90dvh - 220px);
-  overflow-y: auto;
-}
-
-.ql-editor.ql-blank:focus::before {
-  content: '';
-}
-
-.ql-editor p {
-  font-size: 16px !important;
-}
-
-/* Responsive: On smaller screens, allow wrapping and increase height */
-@media (max-width: 768px) {
-  .ql-editor {
-    max-height: calc(100dvh - 98px - 270px);
-  }
-  .ql-toolbar.ql-snow {
-    flex-wrap: wrap; /* allow buttons to wrap to next line */
-    height: auto; /* height expands based on rows */
-    width: 100%;
-    gap: 4px;
-    padding: 8px;
-  }
-
-  /* Optionally add spacing between button groups */
-  .ql-toolbar .ql-formats {
-    margin-bottom: 4px;
-  }
-}
-
-.ql-formats {
-  display: block;
-  gap: 8px;
-  align-items: center;
-  margin-right: 0 !important;
-}
-
-.ql-snow.ql-toolbar button,
-.ql-snow .ql-picker-label {
-  height: 20px;
-  padding: 0 0px;
-  margin: 0px 4px !important;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: #166ee5;
-}
-
-.ql-snow.ql-toolbar button {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  margin: 0px 4px !important;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ql-snow .ql-picker {
-  height: 24px;
-}
-
-.ql-snow .ql-picker-label {
-  padding: 0 8px;
-  min-width: 80px;
-  justify-content: space-between;
-  border: none;
-}
-
-.ql-snow .ql-stroke {
-  stroke: #166ee5;
-}
-
-.ql-snow .ql-fill {
-  fill: #166ee5;
-}
-
-.ql-snow.ql-toolbar button:hover {
-  background-color: rgba(22, 110, 229, 0.1);
-}
-
-.ql-snow.ql-toolbar button.ql-active {
-  background-color: #166ee5;
-}
-
-.ql-snow.ql-toolbar button.ql-active .ql-stroke {
-  stroke: white;
-}
-
-.ql-snow.ql-toolbar button.ql-active .ql-fill {
-  fill: white;
-}
-
-/* Fix alignment button styles */
-.ql-snow .ql-align.ql-picker {
-  width: auto;
-  height: 20px;
-}
-
-.ql-snow .ql-align .ql-picker-label {
-  padding: 0;
-  width: 20px;
-  min-width: 20px;
-}
-
-.ql-snow .ql-align .ql-picker-label::before {
-  line-height: 20px;
-}
-
-.ql-snow .ql-align.ql-picker .ql-picker-label svg {
-  display: none;
-}
-
-.ql-snow.ql-toolbar .ql-align button {
-  width: 20px;
-  height: 20px;
-}
-
-/* Ensure all alignment buttons show correctly */
-.ql-align-left .ql-picker-item[data-value=''],
-.ql-align-left .ql-picker-item[data-value='left'] {
-  display: block;
-}
-
-.ql-editor {
-  text-align: inherit;
-}
-
-[data-ql-align='left'] {
-  text-align: left;
-}
-
-[data-ql-align='center'] {
-  text-align: center;
-}
-
-[data-ql-align='right'] {
-  text-align: right;
-}
-
-[data-ql-align='justify'] {
-  text-align: justify;
-}
-
-.ql-container.ql-snow {
-  border: 1px solid #f4f4f4;
-  border-top: none;
-  border-radius: 0 0 6px 6px;
-  background-color: white;
-  min-height: 150px;
-  width: 100%;
+.text-editor {
+  @apply w-full;
 }
 
 @media (max-width: 640px) {
-  .ql-container.ql-snow {
-    @apply w-full min-w-[300px]; /* 80% width on mobile */
+  .text-editor {
+    @apply w-4/5; /* 80% width on mobile */
   }
 }
 
-.dark .ql-toolbar.ql-snow {
-  background-color: #1e293b;
-  border-color: #334155;
+.text-editor .ql-container {
+  @apply h-[200px] rounded-b-lg border border-t-0 border-gray-200 bg-black;
 }
 
-.dark .ql-container.ql-snow {
-  background-color: #0f172a;
-  border-color: #334155;
+.text-editor .ql-toolbar {
+  @apply rounded-t-lg border border-gray-200 bg-white;
 }
 
-.dark .ql-editor.ql-blank::before {
-  color: #64748b;
+.text-editor .ql-editor {
+  @apply min-h-[200px] bg-white;
 }
 
-.dark .ql-snow .ql-tooltip {
-  background-color: #1e293b;
-  color: white;
+.text-editor .ql-editor.ql-blank::before {
+  @apply text-gray-400;
 }
 
-.dark .ql-snow .ql-tooltip input[type='text'] {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: white;
+/* Dark mode styles */
+.dark .text-editor .ql-toolbar {
+  @apply bg-gray-600 border-gray-700;
 }
 
-.ql-tooltip.ql-editing[data-mode='link'] {
-  left: 0 !important;
+.dark .text-editor .ql-container {
+  @apply border-gray-700;
 }
 
-.ql-snow.ql-toolbar button:hover {
-  background-color: rgba(22, 110, 229, 0.1);
+.dark .text-editor .ql-editor {
+  @apply bg-gray-600 text-white;
 }
 
-.ql-snow.ql-toolbar button:hover .ql-stroke {
-  stroke: #166ee5;
+.dark .text-editor .ql-snow.ql-toolbar button,
+.dark .text-editor .ql-snow .ql-toolbar button {
+  @apply text-gray-300;
 }
 
-.ql-snow.ql-toolbar button:hover .ql-fill {
-  fill: #166ee5;
+.dark .text-editor .ql-snow.ql-toolbar button:hover,
+.dark .text-editor .ql-snow .ql-toolbar button:hover {
+  @apply text-white;
 }
 
-.ql-snow.ql-toolbar button.ql-active {
-  background-color: #166ee5;
+.dark .text-editor .ql-snow.ql-toolbar button.ql-active,
+.dark .text-editor .ql-snow .ql-toolbar button.ql-active {
+  @apply text-white;
 }
 
-.ql-snow.ql-toolbar button.ql-active .ql-stroke {
-  stroke: white;
+/* Video wrapper and delete button styles */
+.video-wrapper {
+  @apply relative block w-full;
 }
 
-.ql-snow.ql-toolbar button.ql-active .ql-fill {
-  fill: white;
+.video-wrapper::after {
+  content: '';
+  @apply absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-200 pointer-events-none;
 }
 
-.dark .ql-snow .ql-stroke {
-  stroke: #166ee5;
+.video-wrapper:hover::after {
+  @apply opacity-100;
 }
 
-.dark .ql-snow .ql-fill {
-  fill: #166ee5;
+.video-wrapper:hover .video-delete-btn {
+  @apply opacity-100;
 }
 
-.dark .ql-snow.ql-toolbar button:hover {
-  background-color: rgba(22, 110, 229, 0.1);
+.video-delete-btn {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-red-500 text-white rounded-full border-2 border-white cursor-pointer flex items-center justify-center text-3xl font-bold opacity-0 transition-opacity duration-200 hover:bg-red-800 z-10;
 }
 
-.dark .ql-snow.ql-toolbar button:hover .ql-stroke {
-  stroke: #166ee5;
+.video-delete-btn:hover {
+  @apply bg-red-800;
 }
 
-.dark .ql-snow.ql-toolbar button:hover .ql-fill {
-  fill: #166ee5;
+/* Delete button for SEO preview */
+.seo-preview-delete-btn {
+  @apply absolute top-0 right-0  w-10 md:w-16 h-10 md:h-16 bg-red-500 text-white rounded-full border-2 border-white cursor-pointer flex items-center justify-center text-3xl font-bold hidden transition-opacity duration-200 hover:bg-red-800 z-10;
 }
 
-.dark .ql-snow.ql-toolbar button.ql-active {
-  background-color: #166ee5;
-}
-
-.dark .ql-snow.ql-toolbar button.ql-active .ql-stroke {
-  stroke: white;
-}
-
-.dark .ql-snow.ql-toolbar button.ql-active .ql-fill {
-  fill: white;
-}
-
-ol {
-  list-style-type: decimal;
-  padding-left: 0px;
-}
-
-/* In text-editor.css or global styles */
-.ql-editor iframe {
-  width: 100%;
-  max-width: 100%;
-  min-height: fit-content;
-  border: none;
-}
-
-.ql-align-center {
-  @apply flex items-center justify-center w-full;
+.seo-preview-outer:hover .seo-preview-delete-btn {
+  display: flex !important;
 }

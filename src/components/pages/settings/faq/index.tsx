@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
-import PageTitle from '@/components/shared/PageTitle';
-import Tabs from '@/components/shared/tabs';
+import PageTitle from '@/components/shared/base/page-title';
+import Tabs from '@/components/shared/base/tabs';
 import QNA from './components/QNA';
-import CreateButton from '@/components/shared/buttons/CreateButton';
+import CreateButton from '@/components/shared/buttons/create-button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FAQTypesEnum } from '@/features/base/types/backend-defined-enums';
 import { useGetFAQs } from '@/features/faqs/services/queries';
-import { Loading } from '@/components/shared/loading';
-import NoDataUI from '@/components/shared/base/NoData';
+import { Loading } from '@/components/shared/base/loading';
+import NoDataUI from '@/components/shared/containers/no-data';
 
 const tabList = [
   {

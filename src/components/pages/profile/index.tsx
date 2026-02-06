@@ -1,16 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-import PageTitle from '@/components/shared/PageTitle';
+import PageTitle from '@/components/shared/base/page-title';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import { useGetMe } from '@/features/auth/service/queries';
-import { Loading } from '@/components/shared/loading';
-import Status from '@/components/shared/Status';
+import { Loading } from '@/components/shared/base/loading';
+import Status from '@/components/shared/base/status';
 import { Button } from '@/components/ui/button';
 import { LogOut, Pencil } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
-import LogoutDialog from '@/components/shared/LogoutDialog';
+import LogoutDialog from '@/components/shared/dialog/logout-dialog';
 import { toSentenceCase } from '@/utils/toSentenceCase';
 
 const Profile = () => {

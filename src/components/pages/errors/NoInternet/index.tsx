@@ -1,5 +1,5 @@
 'use client';
-import ErrorUI from '@/components/shared/ErrorUI';
+import ErrorUI from '@/components/shared/containers/empty-container';
 import React from 'react';
 
 const NoInternet = () => {
@@ -317,6 +317,7 @@ const NoInternet = () => {
             </defs>
           </svg>
         }
+        title="No Internet Connection"
         description={'Oops! No connection. Try checking your internet.'}
       />
     </div>

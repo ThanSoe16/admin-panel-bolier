@@ -9,7 +9,7 @@ import {
 } from '@/features/settings/contact-us/types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import CustomTextArea from '@/components/shared/custom-textarea';
+import CustomTextArea from '@/components/shared/input/custom-textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useUpdateContactUs } from '@/features/settings/contact-us/services/mutations';

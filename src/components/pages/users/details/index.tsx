@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
-import Tabs from '@/components/shared/tabs';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
+import Tabs from '@/components/shared/base/tabs';
 import { useSearchParams } from 'next/navigation';
 import Domains from './components/Domains';
 import PurchasedTemplates from './components/PurchasedTemplates';
@@ -15,7 +15,7 @@ import EarningHistory from './components/EarningHistory';
 import { Flex, Grid } from '@radix-ui/themes';
 import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
 import { ArrowLeftRight } from 'lucide-react';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 
 const links = [
   {

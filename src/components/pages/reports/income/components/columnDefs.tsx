@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ColumnDef } from '@tanstack/react-table';
 import { IncomeResultData } from '@/features/report/income/types';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import { CurrencyFormat } from '@/utils/currencyFormat';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { getFeeType } from '@/utils/getFeeTypeName';

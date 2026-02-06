@@ -2,9 +2,9 @@
 import React from 'react';
 import { Switch } from '@/components/ui/switch';
 import { ColumnDef } from '@tanstack/react-table';
-import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import TableBaseButton from '@/components/shared/buttons/table-base-button';
 import EditModal from './EditModal';
-import StatusChangeDialog from '@/components/shared/status-change-dialog';
+import StatusChangeDialog from '@/components/shared/dialog/status-change-dialog';
 import { SubCategoryData } from '@/features/settings/sub-category/types';
 import { formatDate } from '@/utils/dateTime';
 import { useToggleSubCategory } from '@/features/settings/sub-category/services/mutations';

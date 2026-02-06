@@ -1,8 +1,8 @@
 'use client';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { useGetRoleDetail } from '@/features/admins/services/queries';
 import UpdateRoleForm from '../components/UpdateRoleForm';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 
 const UpdateRole = ({ id }: { id: string }) => {
   const roleDetail = useGetRoleDetail(id);

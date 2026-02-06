@@ -1,5 +1,5 @@
 import { Flex } from '@radix-ui/themes';
-import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import ProfileAvatar from '@/components/shared/base/profile-avatar';
 import { UserReceivingAccountData } from '@/features/users/types';
 import ViewQRCode from './QRCode';
 

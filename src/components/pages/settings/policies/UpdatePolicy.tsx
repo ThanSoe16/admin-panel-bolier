@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { PageBreadcrumb } from '@/components/shared/base/bread-crumb';
 import { useRouter } from 'next/navigation';
 import { usePagination } from '@/features/base/hooks/usePagination';
 import { parseAsString, useQueryState } from 'nuqs';
@@ -18,7 +18,7 @@ import {
 } from '@/features/settings/policies/services/mutations';
 import { UpdatePolicyRequest } from '@/features/settings/policies/types';
 import { TextEditor } from '@/components/shared/text-editor';
-import { Loading } from '@/components/shared/loading';
+import { Loading } from '@/components/shared/base/loading';
 import { Button } from '@/components/ui/button';
 import { Flex } from '@radix-ui/themes';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Switch } from '@/components/ui/switch';
 import { formatDate } from '@/utils/dateTime';
-import StatusChangeDialog from '@/components/shared/status-change-dialog';
+import StatusChangeDialog from '@/components/shared/dialog/status-change-dialog';
 
 interface MaintenanceStatusCardProps {
   isActive: boolean;
