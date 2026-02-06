@@ -1,18 +1,12 @@
-import { Flex } from "@radix-ui/themes";
-import { Copy, CopyCheck } from "lucide-react";
-import { useState } from "react";
+import { Flex } from '@radix-ui/themes';
+import { Copy, CopyCheck } from 'lucide-react';
+import { useState } from 'react';
 
-const CopyButton = ({
-  value,
-  className,
-}: {
-  value: string;
-  className?: string;
-}) => {
+const CopyButton = ({ value, className }: { value: string; className?: string }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    if (typeof value === "string") {
+    if (typeof value === 'string') {
       navigator.clipboard.writeText(value);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { permissions } from "@/data/permissions-list";
+import { z } from 'zod';
+import { permissions } from '@/data/permissions-list';
 
 export type PermissionConfigItem = {
   name: string;
@@ -24,11 +24,9 @@ const generatePermissionSchema = () => {
   const processItem = (item: any) => {
     if (item.name && item.permissions) {
       // Ensure specific permissions are used if available, otherwise fallback
-      const perms = item.permissions.length > 0 ? item.permissions : ["VIEW"];
+      const perms = item.permissions.length > 0 ? item.permissions : ['VIEW'];
       // z.enum requires at least one value. Using spread with casting to satisfy Zod's input requirements
-      shape[item.name] = z
-        .array(z.enum(perms as [string, ...string[]]))
-        .catch([]);
+      shape[item.name] = z.array(z.enum(perms as [string, ...string[]])).catch([]);
     }
     if (item.subMenu) {
       item.subMenu.forEach(processItem);

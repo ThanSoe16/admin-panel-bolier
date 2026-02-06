@@ -1,25 +1,25 @@
-"use client";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import { Loading } from "@/components/shared/loading";
-import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
-import { CreateFAQRequest, createFAQSchema } from "@/features/faqs/types";
-import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
-import { toSentenceCase } from "@/utils/toSentenceCase";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { FAQTypesEnum } from "@/features/base/types/backend-defined-enums";
-import { useCreateFaq } from "@/features/faqs/services/mutations";
-import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+'use client';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { Loading } from '@/components/shared/loading';
+import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
+import { CreateFAQRequest, createFAQSchema } from '@/features/faqs/types';
+import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
+import { toSentenceCase } from '@/utils/toSentenceCase';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { FAQTypesEnum } from '@/features/base/types/backend-defined-enums';
+import { useCreateFaq } from '@/features/faqs/services/mutations';
+import { toast } from 'sonner';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const CreateFAQ = () => {
   const router = useRouter();
-  const tab = useSearchParams().get("tab") || FAQTypesEnum.PURCHASING_DOMAINS;
+  const tab = useSearchParams().get('tab') || FAQTypesEnum.PURCHASING_DOMAINS;
   const { data: landingLanguages, isLoading } = useGetLandingLanguages();
 
   const { mutateAsync, isPending } = useCreateFaq();
@@ -37,8 +37,8 @@ const CreateFAQ = () => {
       form.reset({
         type: tab as FAQTypesEnum,
         contents: landingLanguages.body.data.map((language) => ({
-          question: "",
-          answer: "",
+          question: '',
+          answer: '',
           languageId: language.id,
         })),
       });
@@ -56,16 +56,16 @@ const CreateFAQ = () => {
 
   const links = [
     {
-      href: "",
-      label: "FAQs",
+      href: '',
+      label: 'FAQs',
     },
     {
       href: `/settings/faqs?tab=${tab}`,
       label: toSentenceCase(tab),
     },
     {
-      href: "",
-      label: "Create New",
+      href: '',
+      label: 'Create New',
     },
   ];
 
@@ -102,10 +102,7 @@ const CreateFAQ = () => {
                       alt="icon"
                       className="rounded-full w-5 h-5"
                     />
-                    <p className="font-bold text-default text-base">
-                      {" "}
-                      For {language.name}{" "}
-                    </p>
+                    <p className="font-bold text-default text-base"> For {language.name} </p>
                   </div>
 
                   <FormField
@@ -130,11 +127,7 @@ const CreateFAQ = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="input-field"
-                            placeholder="Answer"
-                          />
+                          <Textarea {...field} className="input-field" placeholder="Answer" />
                         </FormControl>
                       </FormItem>
                     )}
@@ -153,8 +146,8 @@ const CreateFAQ = () => {
               Cancel
             </Button>
             <Button loading={isPending} addDoneIcon>
-              {" "}
-              Create{" "}
+              {' '}
+              Create{' '}
             </Button>
           </div>
         </form>

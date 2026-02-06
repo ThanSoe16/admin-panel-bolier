@@ -1,28 +1,28 @@
-"use client";
-import React from "react";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import { useGetWithdrawalRequestById } from "@/features/withdrawal/services/queries";
-import { Loading } from "@/components/shared/loading";
-import { DetailTable } from "@/components/shared/detail-table";
-import { Flex } from "@radix-ui/themes";
-import { ArrowRightLeft, ChevronRight } from "lucide-react";
-import { formatDate } from "@/utils/dateTime";
-import Link from "next/link";
-import Status from "@/components/shared/Status";
-import CopyButton from "@/components/shared/base/CopyButton";
-import { CurrencyFormat, MMKCurrencyFormat } from "@/utils/currencyFormat";
-import ApproveWithdrawal from "./_components/ApproveWithdrawal";
-import RejectWithdrawal from "./_components/RejectWithdrawal";
-import ProfileAvatar from "@/components/shared/base/ProfileAvatar";
+'use client';
+import React from 'react';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { useGetWithdrawalRequestById } from '@/features/withdrawal/services/queries';
+import { Loading } from '@/components/shared/loading';
+import { DetailTable } from '@/components/shared/detail-table';
+import { Flex } from '@radix-ui/themes';
+import { ArrowRightLeft, ChevronRight } from 'lucide-react';
+import { formatDate } from '@/utils/dateTime';
+import Link from 'next/link';
+import Status from '@/components/shared/Status';
+import CopyButton from '@/components/shared/base/CopyButton';
+import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
+import ApproveWithdrawal from './_components/ApproveWithdrawal';
+import RejectWithdrawal from './_components/RejectWithdrawal';
+import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
 
 const links = [
   {
-    label: "Withdrawal Requests",
-    href: "/users/withdrawal-requests",
+    label: 'Withdrawal Requests',
+    href: '/users/withdrawal-requests',
   },
   {
-    label: "Details",
-    href: "",
+    label: 'Details',
+    href: '',
   },
 ];
 
@@ -30,11 +30,10 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
   const { data, isLoading } = useGetWithdrawalRequestById(id);
   const detailData = data?.body;
 
-  const exchangeRate =
-    (detailData?.exchangeRate ?? 0) + (detailData?.exchangeFee ?? 0);
+  const exchangeRate = (detailData?.exchangeRate ?? 0) + (detailData?.exchangeFee ?? 0);
 
   const withdrawalPercentage =
-    detailData?.withdrawFeeType == "PERCENTAGE"
+    detailData?.withdrawFeeType == 'PERCENTAGE'
       ? (detailData?.withdrawFee ?? 0) / 100
       : (detailData?.withdrawFee ?? 0) / exchangeRate;
 
@@ -44,17 +43,15 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
 
   const withdrawalDetails = [
     {
-      label: "Withdrawal ID",
+      label: 'Withdrawal ID',
       value: detailData?.transactionId,
     },
     {
-      label: "Requested Date",
-      value: detailData?.requestedDate
-        ? formatDate(detailData?.requestedDate)
-        : "",
+      label: 'Requested Date',
+      value: detailData?.requestedDate ? formatDate(detailData?.requestedDate) : '',
     },
     {
-      label: "",
+      label: '',
       value: (
         <Link
           href={`/users/all/${detailData?.OneSiteUser.id}?tab=withdrawal-history`}
@@ -69,33 +66,31 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
 
   const userDetails = [
     {
-      label: "Username",
+      label: 'Username',
       value: <p className="truncate">{detailData?.OneSiteUser.username}</p>,
     },
     {
-      label: "Email",
+      label: 'Email',
       value: <p className="truncate">{detailData?.OneSiteUser.email}</p>,
     },
     {
-      label: "Joined On",
-      value: detailData?.OneSiteUser.joinData
-        ? formatDate(detailData?.OneSiteUser.joinData)
-        : "",
+      label: 'Joined On',
+      value: detailData?.OneSiteUser.joinData ? formatDate(detailData?.OneSiteUser.joinData) : '',
     },
 
     {
-      label: "Status",
+      label: 'Status',
       value: (
         <div className="flex items-center justify-center">
           <Status
-            showGreenDot={detailData?.OneSiteUser?.status === "ACTIVE"}
-            status={detailData?.OneSiteUser?.status?.toLowerCase() ?? ""}
+            showGreenDot={detailData?.OneSiteUser?.status === 'ACTIVE'}
+            status={detailData?.OneSiteUser?.status?.toLowerCase() ?? ''}
           />
         </div>
       ),
     },
     {
-      label: "",
+      label: '',
       value: (
         <Link
           href={`/users/all/${detailData?.OneSiteUser?.id}?tab=domains`}
@@ -110,44 +105,36 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
 
   const paymentDetails = [
     {
-      label: "Withdrawal to",
+      label: 'Withdrawal to',
       value: (
-        <Flex align={"center"} className="gap-1">
+        <Flex align={'center'} className="gap-1">
           <ProfileAvatar
             name={
-              detailData?.OnesiteUserReceivingAccount?.AcceptedReceivingAccount.name.charAt(
-                0
-              ) || ""
+              detailData?.OnesiteUserReceivingAccount?.AcceptedReceivingAccount.name.charAt(0) || ''
             }
             photo={
-              detailData?.OnesiteUserReceivingAccount.AcceptedReceivingAccount
-                ?.File?.url || ""
+              detailData?.OnesiteUserReceivingAccount.AcceptedReceivingAccount?.File?.url || ''
             }
             className="w-7 h-7"
           />
-          <p>
-            {
-              detailData?.OnesiteUserReceivingAccount.AcceptedReceivingAccount
-                .name
-            }
-          </p>
+          <p>{detailData?.OnesiteUserReceivingAccount.AcceptedReceivingAccount.name}</p>
         </Flex>
       ),
     },
     {
-      label: "Recipient Acc. Name",
+      label: 'Recipient Acc. Name',
       value: (
         <CopyButton
-          value={detailData?.OnesiteUserReceivingAccount?.accountName ?? ""}
+          value={detailData?.OnesiteUserReceivingAccount?.accountName ?? ''}
           className="line-clamp-2"
         />
       ),
     },
     {
-      label: "Recipient Acc. Number",
+      label: 'Recipient Acc. Number',
       value: (
         <CopyButton
-          value={detailData?.OnesiteUserReceivingAccount?.accountNumber ?? ""}
+          value={detailData?.OnesiteUserReceivingAccount?.accountNumber ?? ''}
           className="max-w-[80%] md:max-w-[90%] truncate"
         />
       ),
@@ -156,13 +143,13 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
 
   const feeDetails = [
     {
-      label: "Exchange Rate at Requested Time",
-      value: `$1` + " = " + CurrencyFormat(exchangeRate) + " MMK",
+      label: 'Exchange Rate at Requested Time',
+      value: `$1` + ' = ' + CurrencyFormat(exchangeRate) + ' MMK',
     },
     {
-      label: "Total Withdrawal Amount",
+      label: 'Total Withdrawal Amount',
       value: (
-        <Flex align={"center"} className="gap-2">
+        <Flex align={'center'} className="gap-2">
           <p>$ {CurrencyFormat(detailData?.totalRequestAmount ?? 0)}</p>
           <ArrowRightLeft className="w-4 h-4 text-primary" />
           <p>{MMKCurrencyFormat(requestedAmount)} MMK</p>
@@ -170,27 +157,20 @@ const WithdrawalRequestDetail = ({ id }: { id: string }) => {
       ),
     },
     {
-      label: "Withdrawal Fee",
-      value: MMKCurrencyFormat(withdrawalFeeAmount) + " MMK",
+      label: 'Withdrawal Fee',
+      value: MMKCurrencyFormat(withdrawalFeeAmount) + ' MMK',
     },
     {
-      label: "Final Withdrawal Amount",
+      label: 'Final Withdrawal Amount',
       value: (
-        <p className="text-primary">
-          {MMKCurrencyFormat(detailData?.paidAmount ?? 0) + " MMK"}
-        </p>
+        <p className="text-primary">{MMKCurrencyFormat(detailData?.paidAmount ?? 0) + ' MMK'}</p>
       ),
     },
   ];
 
   return (
     <div className="space-y-4">
-      <Flex
-        justify={"between"}
-        align={"center"}
-        wrap={"wrap"}
-        className="gap-2"
-      >
+      <Flex justify={'between'} align={'center'} wrap={'wrap'} className="gap-2">
         <PageBreadcrumb links={links} enableBack />
         {detailData && (
           <Flex className="gap-2">

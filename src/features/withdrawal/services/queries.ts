@@ -1,10 +1,10 @@
-import { PaginationFilter } from "@/features/base/types";
-import withdrawalApiService from "./api";
-import { useQuery } from "@tanstack/react-query";
+import { PaginationFilter } from '@/features/base/types';
+import withdrawalApiService from './api';
+import { useQuery } from '@tanstack/react-query';
 
 export const useGetWithdrawal = (filter: PaginationFilter) => {
   return useQuery({
-    queryKey: ["withdrawal-history", filter],
+    queryKey: ['withdrawal-history', filter],
     queryFn: () => withdrawalApiService.getWithdrawalHistory(filter),
     refetchOnWindowFocus: false,
   });
@@ -12,7 +12,7 @@ export const useGetWithdrawal = (filter: PaginationFilter) => {
 
 export const useGetWithdrawalHistoryById = (id: string) => {
   return useQuery({
-    queryKey: ["withdrawal-history-detail", id],
+    queryKey: ['withdrawal-history-detail', id],
     queryFn: () => withdrawalApiService.getWithdrawalHistoryById(id),
     refetchOnWindowFocus: false,
   });
@@ -20,7 +20,7 @@ export const useGetWithdrawalHistoryById = (id: string) => {
 
 export const useGetWithdrawalRequests = (filter: PaginationFilter) => {
   return useQuery({
-    queryKey: ["withdrawal-requests", filter],
+    queryKey: ['withdrawal-requests', filter],
     queryFn: () => withdrawalApiService.getWithdrawalRequests(filter),
     refetchOnWindowFocus: false,
   });
@@ -28,7 +28,7 @@ export const useGetWithdrawalRequests = (filter: PaginationFilter) => {
 
 export const useGetWithdrawalRequestById = (id: string) => {
   return useQuery({
-    queryKey: ["withdrawal-request-detail", id],
+    queryKey: ['withdrawal-request-detail', id],
     queryFn: () => withdrawalApiService.getWithdrawalRequestById(id),
     refetchOnWindowFocus: false,
   });
@@ -36,7 +36,7 @@ export const useGetWithdrawalRequestById = (id: string) => {
 
 export const useGetWithdrawalSetting = () => {
   return useQuery({
-    queryKey: ["withdrawal-setting"],
+    queryKey: ['withdrawal-setting'],
     queryFn: () => withdrawalApiService.getWithdrawalSetting(),
     refetchOnWindowFocus: false,
   });

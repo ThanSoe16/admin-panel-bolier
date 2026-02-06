@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Flex } from "@radix-ui/themes";
-import Image from "next/image";
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Flex } from '@radix-ui/themes';
+import Image from 'next/image';
 
 export default function Forbidden() {
   const router = useRouter();
@@ -24,14 +24,11 @@ export default function Forbidden() {
         className="mb-6"
       />
 
-      <h1 className="text-5xl font-bold text-destructive mb-4 animate-pulse">
-        403 - Forbidden
-      </h1>
+      <h1 className="text-5xl font-bold text-destructive mb-4 animate-pulse">403 - Forbidden</h1>
 
       <p className="text-lg text-gray-600 mb-6">
         Oops! You don’t have access to view this page. <br />
-        Please contact your system administrator if you believe this is a
-        mistake.
+        Please contact your system administrator if you believe this is a mistake.
       </p>
 
       <Button

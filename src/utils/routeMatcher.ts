@@ -1,13 +1,11 @@
-import { getStoredPermissions } from "./getStoredPermissions";
+import { getStoredPermissions } from './getStoredPermissions';
 
 export function matchRouteToPermission(
   pathname: string,
-  routeMap: Record<string, { module: string; action: string }>
+  routeMap: Record<string, { module: string; action: string }>,
 ) {
   for (const pattern in routeMap) {
-    const regex = new RegExp(
-      "^" + pattern.replace(/\*/g, "[^/]+").replace(/\//g, "\\/") + "$"
-    );
+    const regex = new RegExp('^' + pattern.replace(/\*/g, '[^/]+').replace(/\//g, '\\/') + '$');
 
     if (regex.test(pathname)) {
       return routeMap[pattern];
@@ -19,18 +17,15 @@ export function matchRouteToPermission(
 
 export function matchRouteToStoredPermission(
   pathname: string,
-  routeMap: Record<string, { module: string; action: string }>
+  routeMap: Record<string, { module: string; action: string }>,
 ) {
   const routes = getStoredPermissions();
   for (const pattern in routeMap) {
-    const regex = new RegExp(
-      "^" + pattern.replace(/\*/g, "[^/]+").replace(/\//g, "\\/") + "$"
-    );
+    const regex = new RegExp('^' + pattern.replace(/\*/g, '[^/]+').replace(/\//g, '\\/') + '$');
 
     if (regex.test(pathname)) {
       const route = routeMap[pattern];
-      if (routes[route.module]?.includes(route.action))
-        return routes[route.module];
+      if (routes[route.module]?.includes(route.action)) return routes[route.module];
     }
   }
 
@@ -38,7 +33,7 @@ export function matchRouteToStoredPermission(
 }
 
 export function matchFirstStoredPermission(
-  routeMap: Record<string, { module: string; action: string }>
+  routeMap: Record<string, { module: string; action: string }>,
 ): { path: string; module: string; action: string } | null {
   const routes = getStoredPermissions();
 

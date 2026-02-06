@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { JSX } from "react";
+import { z } from 'zod';
+import { JSX } from 'react';
 
 export interface MetaResponse {
   success: boolean;
@@ -62,23 +62,23 @@ export type FileUploadResponse = z.infer<typeof fileUploadResponseSchema>;
 export const passwordSchema = z
   .string()
   .regex(/[A-Z]/, {
-    message: "Password must contain at least one uppercase letter",
+    message: 'Password must contain at least one uppercase letter',
   })
   .regex(/[a-z]/, {
-    message: "Password must contain at least one lowercase letter",
+    message: 'Password must contain at least one lowercase letter',
   })
-  .regex(/\d/, { message: "Password must contain at least one number" })
+  .regex(/\d/, { message: 'Password must contain at least one number' })
   .regex(/[\W_]/, {
-    message: "Password must contain at least one special character",
+    message: 'Password must contain at least one special character',
   })
-  .regex(/^(?!.*[#-]).*$/, { message: "Password cannot contain # or -" })
-  .min(6, { message: "Password must be at least 6 characters long" });
+  .regex(/^(?!.*[#-]).*$/, { message: 'Password cannot contain # or -' })
+  .min(6, { message: 'Password must be at least 6 characters long' });
 
 export const phoneSchema = z
   .string()
   .optional()
   .refine((val) => !val || /^09\d{7,13}$/.test(val), {
-    message: "Phone number must be 9-15 digits long",
+    message: 'Phone number must be 9-15 digits long',
   });
 
 export interface IOptions {

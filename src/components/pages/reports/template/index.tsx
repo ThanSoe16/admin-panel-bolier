@@ -1,35 +1,35 @@
-"use client";
-import dayjs from "dayjs";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import { DataTable } from "@/components/shared/data-table";
-import TopFilters from "../components/TopFilters";
-import { DetailTable } from "@/components/shared/detail-table";
+'use client';
+import dayjs from 'dayjs';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import { DataTable } from '@/components/shared/data-table';
+import TopFilters from '../components/TopFilters';
+import { DetailTable } from '@/components/shared/detail-table';
 import {
   popularTemplateColumnDefs,
   todaySaleTemplateColumnDefs,
   monthlySaleTemplateColumnDefs,
   yearlySaleTemplateColumnDefs,
-} from "./components/columnDefs";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetTemplateReport } from "@/features/report/template/services/queries";
+} from './components/columnDefs';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetTemplateReport } from '@/features/report/template/services/queries';
 
 const TemplateReport = () => {
   const { date, tab } = usePagination();
   const { data, isLoading } = useGetTemplateReport({
     date:
-      tab === "monthly"
-        ? dayjs(date).format("YYYY-MM")
-        : tab === "yearly"
-        ? dayjs(date).format("YYYY")
-        : date,
-    type: tab ?? "daily",
+      tab === 'monthly'
+        ? dayjs(date).format('YYYY-MM')
+        : tab === 'yearly'
+          ? dayjs(date).format('YYYY')
+          : date,
+    type: tab ?? 'daily',
   });
 
   const detailTableData = React.useMemo(() => {
     const templateCategories = [
       {
-        label: "Total Categories",
+        label: 'Total Categories',
         value: data?.body?.data?.totalCategories,
       },
     ];
@@ -45,14 +45,14 @@ const TemplateReport = () => {
 
   const currentDataTable = React.useMemo(() => {
     switch (tab) {
-      case "monthly":
+      case 'monthly':
         return {
           data: data?.body?.data?.templateSaleList ?? [],
           columns: monthlySaleTemplateColumnDefs,
           isShowNo: false,
           header: <PageTitle>All Templates</PageTitle>,
         };
-      case "yearly":
+      case 'yearly':
         return {
           data: data?.body?.data?.templateSaleList ?? [],
           columns: yearlySaleTemplateColumnDefs,
@@ -76,7 +76,7 @@ const TemplateReport = () => {
       <TopFilters />
 
       <DetailTable data={detailTableData} title="Categories" />
-      {tab === "daily" && (
+      {tab === 'daily' && (
         <div className="w-[calc(100dvw-65px)] md:w-full">
           <DataTable
             isLoading={isLoading}

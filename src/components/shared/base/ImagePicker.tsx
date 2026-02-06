@@ -1,16 +1,16 @@
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { Box, Flex } from "@radix-ui/themes";
-import { Loading } from "../loading";
-import { useFileUpload } from "@/features/base/services/mutations";
-import { ImagePlus, X } from "lucide-react";
-import { useRef, useState } from "react";
-import { cleanAndRenameFile } from "@/utils/cleanAndRenameFile";
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { Box, Flex } from '@radix-ui/themes';
+import { Loading } from '../loading';
+import { useFileUpload } from '@/features/base/services/mutations';
+import { ImagePlus, X } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
 
 const ImagePicker = ({
   defaultUrl,
   onChange,
-  uniqueKey = "image-uploader",
+  uniqueKey = 'image-uploader',
   maxFileSizeInKb,
   className,
   closeClassName,
@@ -25,7 +25,7 @@ const ImagePicker = ({
   closeClassName?: string;
 }) => {
   const { mutateAsync: uploadFile, isPending } = useFileUpload();
-  const [url, setUrl] = useState(defaultUrl ?? "");
+  const [url, setUrl] = useState(defaultUrl ?? '');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,13 +41,13 @@ const ImagePicker = ({
         }
       }
       uploadFile({ file: file }).then((res) => {
-        setUrl(res?.body?.data?.url ?? "");
+        setUrl(res?.body?.data?.url ?? '');
         onChange({
-          url: res?.body?.data?.url ?? "",
-          fileId: res?.body?.data?.id ?? "",
+          url: res?.body?.data?.url ?? '',
+          fileId: res?.body?.data?.id ?? '',
         });
         if (fileInputRef?.current) {
-          fileInputRef.current.value = res?.body?.data?.id ?? "";
+          fileInputRef.current.value = res?.body?.data?.id ?? '';
         }
       });
     } catch (error) {}
@@ -60,19 +60,19 @@ const ImagePicker = ({
         accept={acceptFiles}
         className="hidden"
         onChange={handleFileChange}
-        id={uniqueKey ?? "file-picker"}
+        id={uniqueKey ?? 'file-picker'}
       />
 
       <Flex className="space-x-4 relative" align="center">
         <Box
           // className="bg-red-500"
           className={cn(
-            "w-[150px] h-[150px] overflow-hidden",
+            'w-[150px] h-[150px] overflow-hidden',
             !url
-              ? " bg-blueLight-lightActive border-dashed border-primary"
-              : "border-dashed border-primary",
+              ? ' bg-blueLight-lightActive border-dashed border-primary'
+              : 'border-dashed border-primary',
             className,
-            "border rounded-2xl text-text-secondary bg-brand-secondary"
+            'border rounded-2xl text-text-secondary bg-brand-secondary',
           )}
         >
           {url && (
@@ -80,19 +80,19 @@ const ImagePicker = ({
               align="center"
               justify="center"
               className={cn(
-                "absolute top-[-7px] left-[135px] bg-gray-500 rounded-full cursor-pointer p-1",
-                closeClassName
+                'absolute top-[-7px] left-[135px] bg-gray-500 rounded-full cursor-pointer p-1',
+                closeClassName,
               )}
               onClick={(e) => {
                 e.stopPropagation();
-                setUrl("");
-                onChange({ url: "", fileId: "" });
+                setUrl('');
+                onChange({ url: '', fileId: '' });
               }}
             >
               <X className="text-white w-4 h-4" />
             </Flex>
           )}
-          <label htmlFor={uniqueKey ?? "file-picker"}>
+          <label htmlFor={uniqueKey ?? 'file-picker'}>
             {isPending ? (
               <div className="pt-8">
                 <Loading />

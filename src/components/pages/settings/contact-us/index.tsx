@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import PageTitle from "@/components/shared/PageTitle";
-import ContactUsForm from "./ContactUsForm";
-import { useGetContactUs } from "@/features/settings/contact-us/services/queries";
-import { Loading } from "@/components/shared/loading";
+'use client';
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import PageTitle from '@/components/shared/PageTitle';
+import ContactUsForm from './ContactUsForm';
+import { useGetContactUs } from '@/features/settings/contact-us/services/queries';
+import { Loading } from '@/components/shared/loading';
 
 const ContactUs = () => {
   const { data, isLoading } = useGetContactUs();

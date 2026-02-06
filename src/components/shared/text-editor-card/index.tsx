@@ -1,7 +1,7 @@
-import EditButton from "@/components/shared/buttons/EditButton";
-import { Card, CardContent } from "@/components/ui/card";
-import ProfileAvatar from "../base/ProfileAvatar";
-import { formatDate } from "@/utils/dateTime";
+import EditButton from '@/components/shared/buttons/EditButton';
+import { Card, CardContent } from '@/components/ui/card';
+import ProfileAvatar from '../base/ProfileAvatar';
+import { formatDate } from '@/utils/dateTime';
 
 interface TextEditorCardProps {
   flagSrc: string;
@@ -26,11 +26,7 @@ const TextEditorCard = ({
         <div className="space-y-4">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-2">
-              <ProfileAvatar
-                photo={flagSrc}
-                name={language}
-                className="rounded-full"
-              />
+              <ProfileAvatar photo={flagSrc} name={language} className="rounded-full" />
               <span className="text-placeholder-secondary font-semibold normal-text">
                 {language}
               </span>
@@ -45,7 +41,10 @@ const TextEditorCard = ({
             <span className="text-default">{formatDate(updatedOn)}</span>
           </p>
           <div className="">
-            <div className="text-default-secondary" dangerouslySetInnerHTML={{ __html: description }} />
+            <div
+              className="text-default-secondary"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           </div>
         </div>
       </CardContent>

@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { CirclePlus, Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import { matchRouteToStoredPermission } from "@/utils/routeMatcher";
-import { routePermissionMap } from "@/data/route-permissions";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { CirclePlus, Plus } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import { matchRouteToStoredPermission } from '@/utils/routeMatcher';
+import { routePermissionMap } from '@/data/route-permissions';
 
 //just ui, have to implement permission logic
 
@@ -28,16 +28,16 @@ const CreateButton: React.FC<CreateButtonProps> = ({
   const pathname = usePathname();
   const match = matchRouteToStoredPermission(pathname, routePermissionMap);
 
-  if (!match?.includes("CREATE")) return null;
+  if (!match?.includes('CREATE')) return null;
 
   const button = (
     <Button
       onClick={asBtn ? onClick : undefined}
       className={cn(
-        "text-sm !min-w-8 w-8 h-8 md:!min-w-[130px] md:h-11",
-        asBtn && "fixed bottom-6 right-6 z-50 md:static "
+        'text-sm !min-w-8 w-8 h-8 md:!min-w-[130px] md:h-11',
+        asBtn && 'fixed bottom-6 right-6 z-50 md:static ',
       )}
-      size={"lg"}
+      size={'lg'}
       loading={isLoading}
       disabled={disabled}
     >
@@ -50,10 +50,7 @@ const CreateButton: React.FC<CreateButtonProps> = ({
   return asBtn ? (
     <div>{button}</div>
   ) : (
-    <Link
-      href={`${basePath}/create`}
-      className="fixed bottom-4 right-6 z-50 md:static"
-    >
+    <Link href={`${basePath}/create`} className="fixed bottom-4 right-6 z-50 md:static">
       {button}
     </Link>
   );

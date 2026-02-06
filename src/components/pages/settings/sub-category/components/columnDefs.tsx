@@ -1,16 +1,16 @@
 'use client"';
-import React from "react";
-import { Switch } from "@/components/ui/switch";
-import { ColumnDef } from "@tanstack/react-table";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import EditModal from "./EditModal";
-import StatusChangeDialog from "@/components/shared/status-change-dialog";
-import { SubCategoryData } from "@/features/settings/sub-category/types";
-import { formatDate } from "@/utils/dateTime";
-import { useToggleSubCategory } from "@/features/settings/sub-category/services/mutations";
-import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
-import DetailModal from "./DetailModal";
-import useGetLandingEngLanguageId from "@/features/base/hooks/useGetLandingEngLanguageId";
+import React from 'react';
+import { Switch } from '@/components/ui/switch';
+import { ColumnDef } from '@tanstack/react-table';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import EditModal from './EditModal';
+import StatusChangeDialog from '@/components/shared/status-change-dialog';
+import { SubCategoryData } from '@/features/settings/sub-category/types';
+import { formatDate } from '@/utils/dateTime';
+import { useToggleSubCategory } from '@/features/settings/sub-category/services/mutations';
+import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
+import DetailModal from './DetailModal';
+import useGetLandingEngLanguageId from '@/features/base/hooks/useGetLandingEngLanguageId';
 
 const Actions = (props: { target: SubCategoryData }) => {
   const { data: landingLanguages, isLoading } = useGetLandingLanguages();
@@ -60,15 +60,12 @@ const StatusChange = (props: { target: SubCategoryData }) => {
 
   return (
     <div className="flex flex-row gap-2 items-center">
-      <Switch
-        checked={target.Status === "ACTIVE"}
-        onCheckedChange={() => setOpen(true)}
-      />
-      <p> {target.Status === "ACTIVE" ? "On" : "Off"} </p>
+      <Switch checked={target.Status === 'ACTIVE'} onCheckedChange={() => setOpen(true)} />
+      <p> {target.Status === 'ACTIVE' ? 'On' : 'Off'} </p>
       {open && (
         <StatusChangeDialog
           open={open}
-          isActive={target.Status === "ACTIVE"}
+          isActive={target.Status === 'ACTIVE'}
           handleClose={() => setOpen(false)}
           handleChange={handleChange}
           type="subCategory"
@@ -85,55 +82,51 @@ const CategoryName = (props: { target: SubCategoryData }) => {
     <div className="line-clamp-2">
       {target?.TemplateCategory?.TemplateCategoryContent?.find(
         (item) => item.languageId === defaultLanguageId,
-      )?.name ?? "_"}
+      )?.name ?? '_'}
     </div>
   );
 };
 
 export const columnDefs: ColumnDef<SubCategoryData>[] = [
   {
-    accessorKey: "name",
-    header: "Sub Category Name",
+    accessorKey: 'name',
+    header: 'Sub Category Name',
     size: 200,
     cell: ({ row }) => (
       <div className="line-clamp-2">
-        {row.original.TemplateSubCategoryContent.map((item) => item.name).join(
-          "/ ",
-        )}
+        {row.original.TemplateSubCategoryContent.map((item) => item.name).join('/ ')}
       </div>
     ),
   },
   {
-    accessorKey: "TemplateCategory",
-    header: "Main Category Name",
+    accessorKey: 'TemplateCategory',
+    header: 'Main Category Name',
     size: 100,
     cell: ({ row }) => <CategoryName target={row.original} />,
   },
   {
-    accessorKey: "createdAt",
-    header: "Created on",
+    accessorKey: 'createdAt',
+    header: 'Created on',
     size: 200,
     cell: ({ row }) => <span>{formatDate(row.original.createdAt)}</span>,
   },
   {
-    accessorKey: "updatedAt",
-    header: "Updated on",
+    accessorKey: 'updatedAt',
+    header: 'Updated on',
     size: 200,
     cell: ({ row }) => (
-      <span>
-        {row.original.updatedAt ? formatDate(row.original.updatedAt) : "-"}
-      </span>
+      <span>{row.original.updatedAt ? formatDate(row.original.updatedAt) : '-'}</span>
     ),
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: 'status',
+    header: 'Status',
     size: 150,
     cell: ({ row }) => <StatusChange target={row.original} />,
   },
   {
-    id: "actions",
-    header: "Actions",
+    id: 'actions',
+    header: 'Actions',
     cell: ({ row }) => <Actions target={row.original} />,
   },
 ];

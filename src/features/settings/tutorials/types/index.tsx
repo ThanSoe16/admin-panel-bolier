@@ -1,11 +1,11 @@
-import { z } from 'zod'
+import { z } from 'zod';
 import { fileUploadResponseSchema } from '@/features/base/types';
 import { TutorialsEnum } from '@/features/base/types/backend-defined-enums';
 import { landingLanguageSchema } from '@/features/landing-languages/types';
 
 export const tutorialsFilter = z.object({
-  type:z.nativeEnum(TutorialsEnum)
-})
+  type: z.nativeEnum(TutorialsEnum),
+});
 export type TutorialsFilter = z.infer<typeof tutorialsFilter>;
 
 export const tutorialSchema = z.object({
@@ -26,9 +26,9 @@ export const tutorialSchema = z.object({
       name: z.string(),
       description: z.string(),
       languageId: z.string(),
-      Language: landingLanguageSchema
-    })
-  )
+      Language: landingLanguageSchema,
+    }),
+  ),
 });
 
 export type TutorialData = z.infer<typeof tutorialSchema>;
@@ -41,9 +41,9 @@ export const createTutorialSchema = z.object({
     z.object({
       languageId: z.string(),
       name: z.string(),
-      description: z.string()
-    })
-  )
+      description: z.string(),
+    }),
+  ),
 });
 
 export type CreateTutorialRequest = z.infer<typeof createTutorialSchema>;
@@ -51,12 +51,12 @@ export type CreateTutorialRequest = z.infer<typeof createTutorialSchema>;
 export const updateTutorialSchema = createTutorialSchema.extend({
   TutorialContent: z.array(
     z.object({
-      id:z.string(),
+      id: z.string(),
       languageId: z.string(),
       name: z.string(),
-      description: z.string()
-    })
-  )
-})
+      description: z.string(),
+    }),
+  ),
+});
 
 export type UpdateTutorialRequest = z.infer<typeof updateTutorialSchema>;

@@ -1,30 +1,28 @@
-
-
-.rdp-vhidden{
+.rdp-vhidden {
   display: none !important;
 }
 
-.rdp-caption_dropdowns{
+.rdp-caption_dropdowns {
   display: flex;
   flex-direction: row;
   gap: 4px;
 }
 
-.rdp-dropdown_month > select{
+.rdp-dropdown_month > select {
   padding: 4px;
   border-radius: 4px;
   border-color: gray;
 }
 
-.rdp-dropdown_month > div{
+.rdp-dropdown_month > div {
   display: none !important;
 }
 
-.rdp-dropdown_year > div{
+.rdp-dropdown_year > div {
   display: none !important;
 }
 
-.rdp-dropdown_year > select{
+.rdp-dropdown_year > select {
   padding: 4px;
   border-radius: 4px;
   border-color: gray;

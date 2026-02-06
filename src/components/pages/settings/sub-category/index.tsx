@@ -1,26 +1,26 @@
-"use client";
-import React from "react";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import PageTitle from "@/components/shared/PageTitle";
-import SearchInput from "@/components/shared/search-input";
-import { columnDefs } from "./components/columnDefs";
-import CreateModal from "./components/CreateModal";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetSubCategories } from "@/features/settings/sub-category/services/queries";
-import { DraggableTable } from "@/components/shared/data-table/draggable-table";
-import { useOrderSubCategory } from "@/features/settings/sub-category/services/mutations";
-import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
-import { Flex } from "@radix-ui/themes";
-import SelectBoxFilter from "@/components/shared/base/SelectBoxFilter";
-import { useGetCategories } from "@/features/settings/category/services/queries";
-import { useQueryState } from "nuqs";
-import useGetLandingEngLanguageId from "@/features/base/hooks/useGetLandingEngLanguageId";
+'use client';
+import React from 'react';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import PageTitle from '@/components/shared/PageTitle';
+import SearchInput from '@/components/shared/search-input';
+import { columnDefs } from './components/columnDefs';
+import CreateModal from './components/CreateModal';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetSubCategories } from '@/features/settings/sub-category/services/queries';
+import { DraggableTable } from '@/components/shared/data-table/draggable-table';
+import { useOrderSubCategory } from '@/features/settings/sub-category/services/mutations';
+import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
+import { Flex } from '@radix-ui/themes';
+import SelectBoxFilter from '@/components/shared/base/SelectBoxFilter';
+import { useGetCategories } from '@/features/settings/category/services/queries';
+import { useQueryState } from 'nuqs';
+import useGetLandingEngLanguageId from '@/features/base/hooks/useGetLandingEngLanguageId';
 
 const SubCategory = () => {
   const { query } = usePagination();
-  const [category] = useQueryState("category");
+  const [category] = useQueryState('category');
   const subCategories = useGetSubCategories({
-    categoryId: category == "all" ? "" : (category ?? ""),
+    categoryId: category == 'all' ? '' : (category ?? ''),
     word: query?.word,
     pageIndex: query?.pageIndex,
     rowPerPage: query?.rowPerPage,
@@ -32,11 +32,10 @@ const SubCategory = () => {
   const defaultLanguageId = useGetLandingEngLanguageId();
 
   const categoryStatus = [
-    { label: "All Categories", value: "all" },
+    { label: 'All Categories', value: 'all' },
     ...(categories.data?.body?.data?.map((item) => ({
-      label: item.TemplateCategoryContent?.find(
-        (lang) => lang.languageId === defaultLanguageId,
-      )?.name,
+      label: item.TemplateCategoryContent?.find((lang) => lang.languageId === defaultLanguageId)
+        ?.name,
       value: item.id,
     })) ?? []),
   ];
@@ -63,18 +62,13 @@ const SubCategory = () => {
           isShowNo={false}
           renderHeader={() => (
             <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-start items-start md:items-center">
-              {" "}
+              {' '}
               <div className="flex flex-col md:flex-row flex-grow gap-0 md:gap-4 justify-start items-center">
                 <CreateButton asBtn onClick={() => setOpen(true)} />
                 <SearchInput placeholder="Search by sub category name" />
               </div>
               <div className="w-[200px]">
-                {categoryStatus && (
-                  <SelectBoxFilter
-                    arr={categoryStatus}
-                    selectParam="category"
-                  />
-                )}
+                {categoryStatus && <SelectBoxFilter arr={categoryStatus} selectParam="category" />}
               </div>
             </div>
           )}

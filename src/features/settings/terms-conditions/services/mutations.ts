@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UpdateTermsConditionsRequest } from "../types";
-import termsConditionApiService from "./api";
-import { toast } from "sonner";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { UpdateTermsConditionsRequest } from '../types';
+import termsConditionApiService from './api';
+import { toast } from 'sonner';
 
 export const useUpdateTermsConditions = () => {
   const queryClient = useQueryClient();
@@ -14,8 +14,8 @@ export const useUpdateTermsConditions = () => {
       toast.error(error?.response?.data?.meta?.message);
     },
     onSuccess: async (response, variables) => {
-      toast.success("updated successfully");
-      await queryClient.invalidateQueries({ queryKey: ["terms-conditions"] });
+      toast.success('updated successfully');
+      await queryClient.invalidateQueries({ queryKey: ['terms-conditions'] });
     },
   });
 };
@@ -31,9 +31,9 @@ export const useUpdateEarningWithdrawalTNC = () => {
       toast.error(error?.response?.data?.meta?.message);
     },
     onSuccess: async (response, variables) => {
-      toast.success("updated successfully");
+      toast.success('updated successfully');
       await queryClient.invalidateQueries({
-        queryKey: ["earning-withdrawal-tnc"],
+        queryKey: ['earning-withdrawal-tnc'],
       });
     },
   });

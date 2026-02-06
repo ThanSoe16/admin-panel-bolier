@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import * as React from 'react';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 
 interface DetailTableProps {
   data: {

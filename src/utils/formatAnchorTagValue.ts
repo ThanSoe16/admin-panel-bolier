@@ -15,15 +15,15 @@ const formatAnchorTagValue = (url: string): string => {
   const isEmail = EMAIL_REGEX.test(trimmed);
 
   if (isPhone) {
-    const cleaned = trimmed.replace(/\s+/g, "");
-    return trimmed.startsWith("tel:") ? trimmed : `tel:${cleaned}`;
+    const cleaned = trimmed.replace(/\s+/g, '');
+    return trimmed.startsWith('tel:') ? trimmed : `tel:${cleaned}`;
   }
 
   if (isEmail) {
-    return trimmed.startsWith("mailto:") ? trimmed : `mailto:${trimmed}`;
+    return trimmed.startsWith('mailto:') ? trimmed : `mailto:${trimmed}`;
   }
 
-  return trimmed?.includes(":") ? trimmed : `https://${trimmed}`;
+  return trimmed?.includes(':') ? trimmed : `https://${trimmed}`;
 };
 
 export default formatAnchorTagValue;

@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { X } from "lucide-react";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { X } from 'lucide-react';
+import Image from 'next/image';
 
 interface ModalProps {
   imageUrl: string;

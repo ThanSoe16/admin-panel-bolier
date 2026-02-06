@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { CirclePlus, Edit, PencilLine, Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import { matchRouteToStoredPermission } from "@/utils/routeMatcher";
-import { routePermissionMap } from "@/data/route-permissions";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { CirclePlus, Edit, PencilLine, Plus } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import { matchRouteToStoredPermission } from '@/utils/routeMatcher';
+import { routePermissionMap } from '@/data/route-permissions';
 
 //just ui, have to implement permission logic
 
@@ -25,25 +25,25 @@ const SecondaryEditButton: React.FC<CreateButtonProps> = ({
   asBtn = false,
   onClick = () => {},
   isLoading,
-  btnName = "Edit All",
-  className = "",
+  btnName = 'Edit All',
+  className = '',
   icon = <PencilLine />,
 }) => {
   const pathname = usePathname();
   const match = matchRouteToStoredPermission(pathname, routePermissionMap);
 
-  if (!match?.includes("EDIT")) return null;
+  if (!match?.includes('EDIT')) return null;
 
   const button = (
     <Button
       onClick={asBtn ? onClick : undefined}
       className={cn(
-        "text-sm !min-w-8 h-8 md:!min-w-[110px] md:h-11 bg-secondary border-primary text-primary",
-        className
+        'text-sm !min-w-8 h-8 md:!min-w-[110px] md:h-11 bg-secondary border-primary text-primary',
+        className,
       )}
-      size={"lg"}
+      size={'lg'}
       loading={isLoading}
-      variant={"outline"}
+      variant={'outline'}
     >
       {icon}
       <span className="hidden md:inline">{btnName}</span>
@@ -53,10 +53,7 @@ const SecondaryEditButton: React.FC<CreateButtonProps> = ({
   return asBtn ? (
     <div>{button}</div>
   ) : (
-    <Link
-      href={`${basePath}/create`}
-      className="fixed bottom-4 right-6 z-50 md:static"
-    >
+    <Link href={`${basePath}/create`} className="fixed bottom-4 right-6 z-50 md:static">
       {button}
     </Link>
   );

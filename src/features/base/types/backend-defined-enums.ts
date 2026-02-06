@@ -1,41 +1,40 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export enum TemplateSocialStatusEnum {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum FAQTypesEnum {
-  PURCHASING_DOMAINS = "PURCHASING_DOMAINS",
-  EXPIRED_DOMAINS = "EXPIRED_DOMAINS",
-  PAYMENT = "PAYMENT",
-  OTHERS = "OTHERS",
+  PURCHASING_DOMAINS = 'PURCHASING_DOMAINS',
+  EXPIRED_DOMAINS = 'EXPIRED_DOMAINS',
+  PAYMENT = 'PAYMENT',
+  OTHERS = 'OTHERS',
 }
 
 export enum TemplateStatusEnum {
-  PENDING = "PENDING",
-  REVIEW = "REVIEW",
-  READY = "READY",
-  LAUNCH = "LAUNCH",
-  UNLAUNCH = "UNLAUNCH",
-
+  PENDING = 'PENDING',
+  REVIEW = 'REVIEW',
+  READY = 'READY',
+  LAUNCH = 'LAUNCH',
+  UNLAUNCH = 'UNLAUNCH',
 }
 
 export enum ScreenKeysEnum {
-  LAPTOP = "laptop",
-  TABLET = "tablet",
-  MOBILE = "mobile",
+  LAPTOP = 'laptop',
+  TABLET = 'tablet',
+  MOBILE = 'mobile',
 }
 
 export enum TutorialsEnum {
-  LANDING = "LANDING",
-  PURCHASED_TEMPLATE = "PURCHASED_TEMPLATE"
+  LANDING = 'LANDING',
+  PURCHASED_TEMPLATE = 'PURCHASED_TEMPLATE',
 }
 
 export enum NotificationEnum {
-  EXPIRING = "expiring",
-  RENEW = "renew",
-  EXPIRED = "expired"
+  EXPIRING = 'expiring',
+  RENEW = 'renew',
+  EXPIRED = 'expired',
 }
 // export enum LandingLanguageEnum {
 //   ENGLISH = "en",
@@ -56,20 +55,20 @@ export const landingLanguageSchema = z.object({
     createdAt: z.string(),
     updatedAt: z.string(),
   }),
-})
+});
 
 export enum STATUS_ENUM {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum NOTI_SETTING_TIME_UNITS_ENUM {
-  DAYS = "DAYS",
-  WEEKS = "WEEKS",
-  MONTHS = "MONTHS",
+  DAYS = 'DAYS',
+  WEEKS = 'WEEKS',
+  MONTHS = 'MONTHS',
 }
 
 export enum RegistrationTermsConditionsTypeEnum {
-  EMAIL = "EMAIL",
-  PHONE = "PHONE",
+  EMAIL = 'EMAIL',
+  PHONE = 'PHONE',
 }

@@ -1,8 +1,8 @@
-import React from "react";
-import { ArrowLeft } from "lucide-react";
-import { Text } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { ArrowLeft } from 'lucide-react';
+import { Text } from '@radix-ui/themes';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 const BackBtn = () => {
   const router = useRouter();
@@ -13,9 +13,7 @@ const BackBtn = () => {
       onClick={() => router.back()}
     >
       <ArrowLeft />
-      <Text className="text-xs md:text-sm text-text-primary font-normal">
-        Back
-      </Text>
+      <Text className="text-xs md:text-sm text-text-primary font-normal">Back</Text>
     </Button>
   );
 };

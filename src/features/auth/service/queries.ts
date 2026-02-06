@@ -3,14 +3,12 @@ import {
   // useInfiniteQuery,
   // useQueries,
   useQuery,
-} from "@tanstack/react-query";
-import authApiService from "./api";
-
-
+} from '@tanstack/react-query';
+import authApiService from './api';
 
 export const useGetMe = () => {
   return useQuery({
-    queryKey: ["me"],
+    queryKey: ['me'],
     queryFn: authApiService.getMe,
     refetchOnWindowFocus: false,
   });

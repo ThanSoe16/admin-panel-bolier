@@ -1,18 +1,18 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useForm } from 'react-hook-form';
 import {
   updateCategorySchema,
   CategoryData,
   UpdateCategoryRequest,
-} from "@/features/settings/category/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
-import { Loading } from "@/components/shared/loading";
-import { LandingLanguage } from "@/features/landing-languages/types";
-import { useUpdateCategory } from "@/features/settings/category/services/mutations";
-import CategoryForm from "./CategoryForm";
+} from '@/features/settings/category/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form } from '@/components/ui/form';
+import { Loading } from '@/components/shared/loading';
+import { LandingLanguage } from '@/features/landing-languages/types';
+import { useUpdateCategory } from '@/features/settings/category/services/mutations';
+import CategoryForm from './CategoryForm';
 
 interface EditModalProps {
   open: boolean;
@@ -60,10 +60,7 @@ const EditModal: React.FC<EditModalProps> = ({
           <Loading />
         ) : (
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(submit)}
-              className="flex flex-col "
-            >
+            <form onSubmit={form.handleSubmit(submit)} className="flex flex-col ">
               <CategoryForm
                 form={form}
                 handleClose={handleClose}

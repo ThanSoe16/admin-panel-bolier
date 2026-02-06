@@ -1,15 +1,15 @@
-"use client";
+'use client';
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-import { Menu } from "@/data/menu";
-import { usePathname } from "next/navigation";
-import SidebarItemWithChild from "./SidebarItemWithChild";
-import Link from "next/link";
+} from '@/components/ui/sidebar';
+import { Menu } from '@/data/menu';
+import { usePathname } from 'next/navigation';
+import SidebarItemWithChild from './SidebarItemWithChild';
+import Link from 'next/link';
 
 export function NavMain({ items }: { items: Menu[] }) {
   const pathname = usePathname();
@@ -44,9 +44,7 @@ export function NavMain({ items }: { items: Menu[] }) {
                 >
                   <div className="flex items-center gap-2">
                     {item.active ? item.activeIcon : item.icon}
-                    {(state === "expanded" || isMobile) && (
-                      <span>{item.name}</span>
-                    )}
+                    {(state === 'expanded' || isMobile) && <span>{item.name}</span>}
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>

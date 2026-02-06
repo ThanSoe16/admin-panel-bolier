@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Eye, X } from "lucide-react";
-import ProfileAvatar from "../base/ProfileAvatar";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { Eye, X } from 'lucide-react';
+import ProfileAvatar from '../base/ProfileAvatar';
+import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 interface ImagePreviewDialogProps {
   src: string;
@@ -20,29 +20,26 @@ interface ImagePreviewDialogProps {
 
 export function ImagePreviewDialog({
   src,
-  alt = "Preview image",
+  alt = 'Preview image',
   className,
 }: ImagePreviewDialogProps) {
   if (!src)
     return (
       <ProfileAvatar
-        photo={src ?? ""}
+        photo={src ?? ''}
         name={alt.charAt(0).toUpperCase()}
-        className={cn("w-18 h-14 rounded-lg", className)}
+        className={cn('w-18 h-14 rounded-lg', className)}
       />
     );
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div
-          className="relative group cursor-pointer"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="relative group cursor-pointer" onClick={(e) => e.stopPropagation()}>
           <ProfileAvatar
             photo={src}
             name={alt.charAt(0).toUpperCase()}
-            className={cn("w-18 h-14 rounded-lg", className)}
+            className={cn('w-18 h-14 rounded-lg', className)}
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
             <Eye className="text-white w-5 h-5" />

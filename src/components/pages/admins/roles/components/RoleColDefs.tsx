@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import { ColumnDef } from "@tanstack/react-table";
-import Link from "next/link";
-import { RoleData } from "@/features/admins/types";
-import { formatDate } from "@/utils/dateTime";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import { useUpdateRole } from "@/features/admins/services/mutations";
-import StatusSwitch from "@/components/shared/buttons/StatusSwitch";
+'use client';
+import React from 'react';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+import { RoleData } from '@/features/admins/types';
+import { formatDate } from '@/utils/dateTime';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import { useUpdateRole } from '@/features/admins/services/mutations';
+import StatusSwitch from '@/components/shared/buttons/StatusSwitch';
 
 const Actions = (props: { target: RoleData }) => {
   return (
@@ -30,13 +30,13 @@ const AccessSwitch = (props: { target: RoleData }) => {
       id: props?.target?.id,
       name: props?.target?.name,
       permissions: props?.target?.permissions,
-      Status: props?.target?.Status == "ACTIVE" ? "INACTIVE" : "ACTIVE",
+      Status: props?.target?.Status == 'ACTIVE' ? 'INACTIVE' : 'ACTIVE',
     });
   };
 
   return (
     <StatusSwitch
-      value={props?.target?.Status == "ACTIVE"}
+      value={props?.target?.Status == 'ACTIVE'}
       onChange={handleChange}
       activeLabel="On"
       inactiveLabel="Off"
@@ -48,31 +48,31 @@ const AccessSwitch = (props: { target: RoleData }) => {
 
 export const roleColDefs: ColumnDef<RoleData>[] = [
   {
-    accessorKey: "name",
-    header: "Role Name",
+    accessorKey: 'name',
+    header: 'Role Name',
     size: 150,
     cell: ({ row }) => <div className="line-clamp-1">{row.original.name}</div>,
   },
   {
-    accessorKey: "userCount",
-    header: "Total User",
+    accessorKey: 'userCount',
+    header: 'Total User',
     cell: ({ row }) => <span>{CurrencyFormat(row.original.userCount)}</span>,
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: 'createdAt',
     size: 150,
-    header: "Created on",
+    header: 'Created on',
     cell: ({ row }) => <span>{formatDate(row.original.createdAt)}</span>,
   },
   {
-    accessorKey: "status",
+    accessorKey: 'status',
     size: 150,
-    header: "Status",
+    header: 'Status',
     cell: ({ row }) => <AccessSwitch target={row.original} />,
   },
   {
-    id: "actions",
-    header: "Actions",
+    id: 'actions',
+    header: 'Actions',
     size: 150,
     cell: ({ row }) => <Actions target={row.original} />,
   },

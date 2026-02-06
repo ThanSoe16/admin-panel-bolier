@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const userSchema = z.object({
   id: z.number(),
@@ -20,8 +20,8 @@ export type UpdateUserForm = z.infer<typeof updateUserSchema>;
 // here are really used api, upper are for just sample but can't delete
 
 export const loginSchema = z.object({
-  loginId: z.string().min(1, { message: "Login ID is required" }),
-  password: z.string().min(1, { message: "Password is required" }),
+  loginId: z.string().min(1, { message: 'Login ID is required' }),
+  password: z.string().min(1, { message: 'Password is required' }),
 });
 
 export type LoginForm = z.infer<typeof loginSchema>;
@@ -78,19 +78,19 @@ export type Admin = z.infer<typeof AdminSchema>;
 
 const passwordSchema = z
   .string()
-  .min(8, { message: "Password must be at least 8 characters long" })
-  .max(12, { message: "Password must not exceed 12 characters" })
+  .min(8, { message: 'Password must be at least 8 characters long' })
+  .max(12, { message: 'Password must not exceed 12 characters' })
   .refine((val) => /[A-Z]/.test(val), {
-    message: "Password must contain at least one uppercase letter",
+    message: 'Password must contain at least one uppercase letter',
   })
   .refine((val) => /[a-z]/.test(val), {
-    message: "Password must contain at least one lowercase letter",
+    message: 'Password must contain at least one lowercase letter',
   })
   .refine((val) => /\d/.test(val), {
-    message: "Password must contain at least one number",
+    message: 'Password must contain at least one number',
   })
   .refine((val) => /[^A-Za-z0-9]/.test(val), {
-    message: "Password must contain at least one special character",
+    message: 'Password must contain at least one special character',
   });
 
 export const changePasswordSchema = z
@@ -100,12 +100,12 @@ export const changePasswordSchema = z
     confirmPassword: passwordSchema,
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Confirm password must match new password.",
-    path: ["confirmPassword"],
+    message: 'Confirm password must match new password.',
+    path: ['confirmPassword'],
   })
   .refine((data) => data.newPassword !== data.currentPassword, {
-    message: "New password must be different from the current password.",
-    path: ["newPassword"],
+    message: 'New password must be different from the current password.',
+    path: ['newPassword'],
   });
 
 export type ChangePasswordForm = z.infer<typeof changePasswordSchema>;

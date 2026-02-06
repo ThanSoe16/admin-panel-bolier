@@ -1,7 +1,7 @@
-import ProfileAvatar from "@/components/shared/base/ProfileAvatar";
-import EditButton from "@/components/shared/buttons/EditButton";
-import { Card, CardContent } from "@/components/ui/card";
-import { formatDate } from "@/utils/dateTime";
+import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import EditButton from '@/components/shared/buttons/EditButton';
+import { Card, CardContent } from '@/components/ui/card';
+import { formatDate } from '@/utils/dateTime';
 
 interface TermsCardProps {
   flagSrc: string;
@@ -26,11 +26,7 @@ const TermsCard = ({
         <div className="space-y-4">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-2">
-              <ProfileAvatar
-                photo={flagSrc}
-                name={language}
-                className="rounded-full"
-              />
+              <ProfileAvatar photo={flagSrc} name={language} className="rounded-full" />
               <span className="text-placeholder-secondary font-semibold normal-text">
                 {language}
               </span>
@@ -44,7 +40,10 @@ const TermsCard = ({
             <span className="mr-[10%]">Updated On: </span>
             <span className="text-default">{formatDate(updatedOn)}</span>
           </p>
-          <div className="text-default-secondary" dangerouslySetInnerHTML={{ __html: description }} />
+          <div
+            className="text-default-secondary"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
       </CardContent>
     </Card>

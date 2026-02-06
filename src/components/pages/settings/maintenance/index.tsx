@@ -1,10 +1,16 @@
-'use client'
+'use client';
 import React from 'react';
 import PageTitle from '@/components/shared/PageTitle';
 import { Card, CardContent } from '@/components/ui/card';
 import { useGetMaintenanceData } from '@/features/settings/maintenance/services/queries';
-import { useUpdateMaintenance, useUpdateMaintenanceStatus } from '@/features/settings/maintenance/services/mutations';
-import { UpdateMaintenanceRequest, updateMaintenanceSchema } from '@/features/settings/maintenance/types';
+import {
+  useUpdateMaintenance,
+  useUpdateMaintenanceStatus,
+} from '@/features/settings/maintenance/services/mutations';
+import {
+  UpdateMaintenanceRequest,
+  updateMaintenanceSchema,
+} from '@/features/settings/maintenance/types';
 import { MaintenanceStatusCard } from './components/MaintenanceStatusCard';
 import { MaintenanceMessageForm } from './components/MaintenanceMessageForm';
 import { useForm } from 'react-hook-form';
@@ -20,17 +26,17 @@ const Maintenance = () => {
   const form = useForm<UpdateMaintenanceRequest>({
     resolver: zodResolver(updateMaintenanceSchema),
     defaultValues: {
-      MaintenanceContent: []
-    }
+      MaintenanceContent: [],
+    },
   });
 
   React.useEffect(() => {
     if (maintenanceData?.body?.data) {
       const defaultValues = {
-        MaintenanceContent: maintenanceData.body.data.MaintenanceContent.map(content => ({
+        MaintenanceContent: maintenanceData.body.data.MaintenanceContent.map((content) => ({
           id: content.id,
-          message: content.message
-        }))
+          message: content.message,
+        })),
       };
       form.reset(defaultValues);
     }
@@ -39,7 +45,7 @@ const Maintenance = () => {
   const onSubmit = async (data: UpdateMaintenanceRequest) => {
     try {
       const res = await updateMaintenance.mutateAsync(data);
-      if(res?.meta?.success) {
+      if (res?.meta?.success) {
         setIsEditing(false);
       }
     } catch (error) {
@@ -52,13 +58,13 @@ const Maintenance = () => {
   };
 
   if (isLoading) {
-    return <MaintenanceSkeleton/>
+    return <MaintenanceSkeleton />;
   }
 
   return (
-    <Card className='border-none shadow-none'>
-      <CardContent className='flex flex-col items-start justify-center h-full gap-4'>
-        <PageTitle className='mb-0'>System Maintenance</PageTitle>
+    <Card className="border-none shadow-none">
+      <CardContent className="flex flex-col items-start justify-center h-full gap-4">
+        <PageTitle className="mb-0">System Maintenance</PageTitle>
 
         <MaintenanceStatusCard
           isActive={maintenanceData?.body?.data?.isActive ?? true}

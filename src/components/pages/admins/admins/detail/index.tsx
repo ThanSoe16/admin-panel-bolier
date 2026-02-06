@@ -1,18 +1,18 @@
-"use client";
-import ErrorContainer from "@/components/shared/base/ErrorContainer";
-import ProfileAvatar from "@/components/shared/base/ProfileAvatar";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import { Loading } from "@/components/shared/loading";
-import PageTitle from "@/components/shared/PageTitle";
-import { Button } from "@/components/ui/button";
-import { useGetAdminDetail } from "@/features/admins/services/queries";
-import { cn } from "@/lib/utils";
-import { formatDate } from "@/utils/dateTime";
-import { passwordDecrypt } from "@/utils/passwordDescrypt";
-import { Box, Flex, Grid } from "@radix-ui/themes";
-import { Check, Copy, CopyCheck, Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
-import { JSX, useState } from "react";
+'use client';
+import ErrorContainer from '@/components/shared/base/ErrorContainer';
+import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { Loading } from '@/components/shared/loading';
+import PageTitle from '@/components/shared/PageTitle';
+import { Button } from '@/components/ui/button';
+import { useGetAdminDetail } from '@/features/admins/services/queries';
+import { cn } from '@/lib/utils';
+import { formatDate } from '@/utils/dateTime';
+import { passwordDecrypt } from '@/utils/passwordDescrypt';
+import { Box, Flex, Grid } from '@radix-ui/themes';
+import { Check, Copy, CopyCheck, Eye, EyeOff } from 'lucide-react';
+import Link from 'next/link';
+import { JSX, useState } from 'react';
 
 const AdminDetail = ({ id }: { id: string }) => {
   const adminDetail = useGetAdminDetail(id);
@@ -33,38 +33,28 @@ const AdminDetail = ({ id }: { id: string }) => {
     const [visible, setVisible] = useState(false);
     const [copied, setCopied] = useState(false);
 
-    const displayValue = isPassword && !visible ? "••••••••" : value;
+    const displayValue = isPassword && !visible ? '••••••••' : value;
 
     const handleCopy = () => {
-      if (typeof value === "string") {
+      if (typeof value === 'string') {
         navigator.clipboard.writeText(value);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }
     };
     return (
-      <Grid
-        columns={"2"}
-        className={cn(isFirst && "border-t", "py-4 border-b")}
-      >
+      <Grid columns={'2'} className={cn(isFirst && 'border-t', 'py-4 border-b')}>
         <div className="font-medium">{title}</div>
         <Flex align="center" className="gap-2">
           <div>{displayValue}</div>
           {isPassword && (
-            <div
-              onClick={() => setVisible((prev) => !prev)}
-              className="cursor-pointer"
-            >
+            <div onClick={() => setVisible((prev) => !prev)} className="cursor-pointer">
               {!visible ? <EyeOff size={18} /> : <Eye size={18} />}
             </div>
           )}
           {isCopy && (
             <div onClick={handleCopy} className="cursor-pointer">
-              {copied ? (
-                <CopyCheck size={18} className="text-green-500" />
-              ) : (
-                <Copy size={18} />
-              )}
+              {copied ? <CopyCheck size={18} className="text-green-500" /> : <Copy size={18} />}
             </div>
           )}
         </Flex>
@@ -76,8 +66,8 @@ const AdminDetail = ({ id }: { id: string }) => {
     <div className="space-y-4 pb-4">
       <PageBreadcrumb
         links={[
-          { label: "Admin Lists", href: "/admins/list" },
-          { label: "Admin Details", href: "#" },
+          { label: 'Admin Lists', href: '/admins/list' },
+          { label: 'Admin Details', href: '#' },
         ]}
         enableBack
       />
@@ -91,51 +81,36 @@ const AdminDetail = ({ id }: { id: string }) => {
           <div className="space-y-4">
             <Flex justify="center">
               <ProfileAvatar
-                photo={adminDetail?.data?.body?.data?.Avatar?.url ?? ""}
-                name={adminDetail?.data?.body?.data?.name ?? ""}
+                photo={adminDetail?.data?.body?.data?.Avatar?.url ?? ''}
+                name={adminDetail?.data?.body?.data?.name ?? ''}
                 className="w-[160px] h-[160px] rounded-full"
               />
             </Flex>
             <div>
-              <AdminRow
-                title="Admin Name"
-                value={adminDetail?.data?.body?.data?.name}
-                isFirst
-              />
-              <AdminRow
-                title="Phone Number"
-                value={adminDetail?.data?.body?.data?.phone}
-              />
-              <AdminRow
-                title="Login ID"
-                value={adminDetail?.data?.body?.data?.loginId}
-                isCopy
-              />
+              <AdminRow title="Admin Name" value={adminDetail?.data?.body?.data?.name} isFirst />
+              <AdminRow title="Phone Number" value={adminDetail?.data?.body?.data?.phone} />
+              <AdminRow title="Login ID" value={adminDetail?.data?.body?.data?.loginId} isCopy />
               <AdminRow
                 title="Password"
                 value={passwordDecrypt(
-                  adminDetail?.data?.body?.data?.encryptedPassword ?? "",
-                  adminDetail?.data?.body?.data?.iv ?? "",
-                  adminDetail?.data?.body?.data?.key ?? ""
+                  adminDetail?.data?.body?.data?.encryptedPassword ?? '',
+                  adminDetail?.data?.body?.data?.iv ?? '',
+                  adminDetail?.data?.body?.data?.key ?? '',
                 )}
                 isPassword
               />
-              <AdminRow
-                title="Admin Role"
-                value={adminDetail?.data?.body?.data?.AdminRole.name}
-              />
+              <AdminRow title="Admin Role" value={adminDetail?.data?.body?.data?.AdminRole.name} />
               <AdminRow
                 title="Status"
                 value={
                   <div>
-                    {adminDetail?.data?.body?.data?.AdminAccountStatus ==
-                    "ACTIVE" ? (
-                      <Flex align={"center"} className="space-x-2">
+                    {adminDetail?.data?.body?.data?.AdminAccountStatus == 'ACTIVE' ? (
+                      <Flex align={'center'} className="space-x-2">
                         <Box className="h-2 w-2 bg-green-500 rounded-full" />
                         <div>Active</div>
                       </Flex>
                     ) : (
-                      <Flex align={"center"} className="space-x-2">
+                      <Flex align={'center'} className="space-x-2">
                         <Box className="h-2 w-2 bg-red-500 rounded-full" />
                         <div>Inactive</div>
                       </Flex>
@@ -145,15 +120,11 @@ const AdminDetail = ({ id }: { id: string }) => {
               />
               <AdminRow
                 title="Created on"
-                value={formatDate(
-                  adminDetail?.data?.body?.data?.createdAt ?? ""
-                )}
+                value={formatDate(adminDetail?.data?.body?.data?.createdAt ?? '')}
               />
               <AdminRow
                 title="Last Updated on"
-                value={formatDate(
-                  adminDetail?.data?.body?.data?.updatedAt ?? ""
-                )}
+                value={formatDate(adminDetail?.data?.body?.data?.updatedAt ?? '')}
               />
             </div>
             <Flex justify="end">

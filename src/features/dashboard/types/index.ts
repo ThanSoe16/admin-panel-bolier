@@ -1,17 +1,17 @@
-import { z } from "zod"
+import { z } from 'zod';
 
 export const barChartCountSchema = z.object({
   templateCounts: z.number(),
   hostingCounts: z.number(),
-  serverCounts: z.number()
-})
+  serverCounts: z.number(),
+});
 export type BarChartData = z.infer<typeof barChartCountSchema>;
 
 export const popularCategorySchema = z.object({
   categoryId: z.string(),
   categoryName: z.string(),
-  count: z.number()
-})
+  count: z.number(),
+});
 export type PopularCategoryData = z.infer<typeof popularCategorySchema>;
 
 export const dashboardSchema = z.object({
@@ -22,6 +22,6 @@ export const dashboardSchema = z.object({
   percentage: z.number(),
   trend: z.string(),
   barchart: barChartCountSchema,
-  popularCategories: z.array(popularCategorySchema)
-})
+  popularCategories: z.array(popularCategorySchema),
+});
 export type DashboardData = z.infer<typeof dashboardSchema>;

@@ -1,22 +1,22 @@
-import { MoneyInput } from "@/components/shared/base/MoneyInput";
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { MoneyInput } from '@/components/shared/base/MoneyInput';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useUpdateOTPSettings } from "@/features/settings/otp-settings/services/mutations";
+} from '@/components/ui/select';
+import { useUpdateOTPSettings } from '@/features/settings/otp-settings/services/mutations';
 import {
   OTPSettingsData,
   UpdateOTPSettingsRequest,
   updateOTPSettingsSchema,
-} from "@/features/settings/otp-settings/types";
-import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+} from '@/features/settings/otp-settings/types';
+import { cn } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
 const OTPSettingForm = ({
   data,
@@ -91,14 +91,12 @@ const OTPSettingForm = ({
                         defaultValue={field.value}
                         disabled={disabled}
                       >
-                        <SelectTrigger
-                          className={cn("border-0 shadow-none focus:ring-0")}
-                        >
+                        <SelectTrigger className={cn('border-0 shadow-none focus:ring-0')}>
                           <SelectValue />
                         </SelectTrigger>
 
                         <SelectContent>
-                          {["MINUTE", "HOUR"].map((item, key) => (
+                          {['MINUTE', 'HOUR'].map((item, key) => (
                             <SelectItem value={item} key={key}>
                               {item} (s)
                             </SelectItem>
@@ -148,7 +146,7 @@ const OTPSettingForm = ({
                         </SelectTrigger>
 
                         <SelectContent>
-                          {["MINUTE", "HOUR"].map((item, key) => (
+                          {['MINUTE', 'HOUR'].map((item, key) => (
                             <SelectItem value={item} key={key}>
                               {item} (s)
                             </SelectItem>
@@ -201,7 +199,7 @@ const OTPSettingForm = ({
           />
           <div className="flex flex-row gap-4 justify-end items-center mt-4">
             <Button
-              variant={!disabled ? "outline" : "default"}
+              variant={!disabled ? 'outline' : 'default'}
               className="min-w-[110px]"
               type="button"
               onClick={() => {
@@ -211,9 +209,9 @@ const OTPSettingForm = ({
                   setEditEnable(true);
                 }
               }}
-              size={"lg"}
+              size={'lg'}
             >
-              {!disabled ? "Cancel" : "Edit"}
+              {!disabled ? 'Cancel' : 'Edit'}
             </Button>
             {!disabled && (
               <Button
@@ -221,7 +219,7 @@ const OTPSettingForm = ({
                 loading={updateOTPSettings.isPending}
                 addDoneIcon
                 disabled={!form.formState.isValid}
-                size={"lg"}
+                size={'lg'}
               >
                 Update
               </Button>

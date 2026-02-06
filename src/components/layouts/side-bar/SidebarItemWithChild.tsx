@@ -1,42 +1,30 @@
-"use client";
-import React, { useState } from "react";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverPortal,
-} from "@/components/ui/popover";
+'use client';
+import React, { useState } from 'react';
+import { Popover, PopoverTrigger, PopoverContent, PopoverPortal } from '@/components/ui/popover';
 import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-import { Menu } from "@/data/menu";
-import { usePathname } from "next/navigation";
-import { ChevronRight } from "lucide-react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import Link from "next/link";
+} from '@/components/ui/sidebar';
+import { Menu } from '@/data/menu';
+import { usePathname } from 'next/navigation';
+import { ChevronRight } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import Link from 'next/link';
 
 interface SidebarItemWithChildProps {
   item: Menu;
   isPathMatched: boolean;
 }
 
-const SidebarItemWithChild: React.FC<SidebarItemWithChildProps> = ({
-  item,
-  isPathMatched,
-}) => {
+const SidebarItemWithChild: React.FC<SidebarItemWithChildProps> = ({ item, isPathMatched }) => {
   const pathname = usePathname();
   const { state, isMobile } = useSidebar();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (state === "collapsed" && !isMobile) {
+  if (state === 'collapsed' && !isMobile) {
     return (
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>

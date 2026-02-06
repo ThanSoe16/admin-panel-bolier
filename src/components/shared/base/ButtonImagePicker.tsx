@@ -1,9 +1,9 @@
-import { Input } from "@/components/ui/input";
-import { Box, Flex } from "@radix-ui/themes";
-import { Loading } from "../loading";
-import { useFileUpload } from "@/features/base/services/mutations";
-import { Plus, X } from "lucide-react";
-import { cleanAndRenameFile } from "@/utils/cleanAndRenameFile";
+import { Input } from '@/components/ui/input';
+import { Box, Flex } from '@radix-ui/themes';
+import { Loading } from '../loading';
+import { useFileUpload } from '@/features/base/services/mutations';
+import { Plus, X } from 'lucide-react';
+import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
 
 const ButtonImagePicker = ({
   imageURL,
@@ -17,7 +17,7 @@ const ButtonImagePicker = ({
   width,
   height,
   limitations,
-  id = "file-picker",
+  id = 'file-picker',
   disabled = false,
 }: {
   imageURL: string;
@@ -42,21 +42,21 @@ const ButtonImagePicker = ({
     file = cleanAndRenameFile(file);
     const allowedFormats = type;
     if (allowedFormats && !allowedFormats.includes(file.type)) {
-      alert("Only .jpg, .jpeg, and .png files are supported.");
+      alert('Only .jpg, .jpeg, and .png files are supported.');
       return;
     }
 
     const maxSize = maxFileInKb ? maxFileInKb * 1024 : 0;
     if (maxSize && file.size > maxSize) {
-      alert("File size must be less than 500 KB.");
+      alert('File size must be less than 500 KB.');
       return;
     }
     if (width && height) {
-      const img = document.createElement("img");
+      const img = document.createElement('img');
       const objectURL = URL.createObjectURL(file);
       img.onload = () => {
         if (img.width !== 500 || img.height !== 500) {
-          alert("Image dimensions must be exactly 500 x 500 px.");
+          alert('Image dimensions must be exactly 500 x 500 px.');
           URL.revokeObjectURL(objectURL);
           return;
         }
@@ -66,9 +66,9 @@ const ButtonImagePicker = ({
       img.src = objectURL;
     }
     photoUpload.mutateAsync({ file: file }).then((res) => {
-      setImageURL(res?.body?.data?.url ?? "");
-      setImageID(res?.body?.data?.id ?? "");
-      setName(res?.body?.data?.name ?? "");
+      setImageURL(res?.body?.data?.url ?? '');
+      setImageID(res?.body?.data?.id ?? '');
+      setName(res?.body?.data?.name ?? '');
     });
   };
 
@@ -79,7 +79,7 @@ const ButtonImagePicker = ({
         accept=".png, .jpg, .jpeg, .svg"
         className="hidden"
         onChange={handleFileChange}
-        id={id ?? "file-picker"}
+        id={id ?? 'file-picker'}
         disabled={disabled}
       />
 
@@ -87,7 +87,7 @@ const ButtonImagePicker = ({
         <Box
         // className="bg-red-500"
         >
-          <label htmlFor={id ?? "file-picker"}>
+          <label htmlFor={id ?? 'file-picker'}>
             {photoUpload.isPending ? (
               <div className="pt-8">
                 <Loading />
@@ -119,13 +119,9 @@ const ButtonImagePicker = ({
         </Box>
         {imageURL && name && <div>{name}</div>}
         {!imageURL && (
-          <div className="max-w-[450px] text-xs text-default-secondary">
-            {limitations}
-          </div>
+          <div className="max-w-[450px] text-xs text-default-secondary">{limitations}</div>
         )}
-        {imageURL && (
-          <X onClick={() => setImageURL("")} className="absolute right-0" />
-        )}
+        {imageURL && <X onClick={() => setImageURL('')} className="absolute right-0" />}
       </Flex>
     </div>
   );

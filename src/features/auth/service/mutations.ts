@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ChangePasswordAPIPayload, LoginForm } from "../types";
-import authApiService from "./api";
-import { toast } from "sonner";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ChangePasswordAPIPayload, LoginForm } from '../types';
+import authApiService from './api';
+import { toast } from 'sonner';
 
 export const useLogin = () => {
   const queryClient = useQueryClient();
@@ -13,7 +13,7 @@ export const useLogin = () => {
     onSettled: async (_, error) => {
       if (error) {
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["me"] });
+        await queryClient.invalidateQueries({ queryKey: ['me'] });
       }
     },
   });
@@ -22,15 +22,14 @@ export const useLogin = () => {
 export const useChangePassword = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: ChangePasswordAPIPayload) =>
-      authApiService.changePassword(data),
+    mutationFn: (data: ChangePasswordAPIPayload) => authApiService.changePassword(data),
 
     onSettled: async (_, error) => {
       if (error) {
         const errorResponse: any = error;
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.refetchQueries({ queryKey: ["me"] });
+        await queryClient.refetchQueries({ queryKey: ['me'] });
       }
     },
   });
@@ -47,7 +46,7 @@ export const useGetMe = () => {
 
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.refetchQueries({ queryKey: ["me"] });
+        await queryClient.refetchQueries({ queryKey: ['me'] });
       }
     },
   });

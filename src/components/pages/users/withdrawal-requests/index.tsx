@@ -1,18 +1,18 @@
-"use client";
-import React, { useState } from "react";
-import { DataTable } from "@/components/shared/data-table";
-import PageTitle from "@/components/shared/PageTitle";
-import { usePagination } from "@/features/base/hooks/usePagination";
+'use client';
+import React, { useState } from 'react';
+import { DataTable } from '@/components/shared/data-table';
+import PageTitle from '@/components/shared/PageTitle';
+import { usePagination } from '@/features/base/hooks/usePagination';
 import {
   useGetWithdrawalRequests,
   useGetWithdrawalSetting,
-} from "@/features/withdrawal/services/queries";
-import SearchInput from "@/components/shared/search-input";
-import { Flex } from "@radix-ui/themes";
-import SecondaryEditButton from "@/components/shared/buttons/SecondaryEditButton";
-import { requestColDefs } from "./_components/requestColDefs";
-import WithdrawSetting from "./_components/WithdrawSetting";
-import { Settings } from "lucide-react";
+} from '@/features/withdrawal/services/queries';
+import SearchInput from '@/components/shared/search-input';
+import { Flex } from '@radix-ui/themes';
+import SecondaryEditButton from '@/components/shared/buttons/SecondaryEditButton';
+import { requestColDefs } from './_components/requestColDefs';
+import WithdrawSetting from './_components/WithdrawSetting';
+import { Settings } from 'lucide-react';
 
 const WithdrawalRequest = () => {
   const { query } = usePagination();
@@ -37,11 +37,7 @@ const WithdrawalRequest = () => {
           query={query}
           isLoading={withdrawals?.isLoading}
           renderHeader={() => (
-            <Flex
-              justify={"between"}
-              align={"center"}
-              className="flex flex-row gap-0 md:gap-4 "
-            >
+            <Flex justify={'between'} align={'center'} className="flex flex-row gap-0 md:gap-4 ">
               <SearchInput
                 placeholder="Search by username or withdrawal ID"
                 className="md:w-[400px]"

@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const landingLanguageSchema = z.object({
   id: z.string(),
   fileId: z.string(),
   name: z.string(),
   key: z.string(),
-  status: z.enum(["ACTIVE", "INACTIVE"]),
+  status: z.enum(['ACTIVE', 'INACTIVE']),
   createdAt: z.string(),
   updatedAt: z.string(),
   File: z.object({

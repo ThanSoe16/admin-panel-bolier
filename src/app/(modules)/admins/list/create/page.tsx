@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import CreateAdmin from "@/components/pages/admins/admins/create";
+import { NextPage } from 'next';
+import CreateAdmin from '@/components/pages/admins/admins/create';
 
 const AdminCreatePage: NextPage = () => {
   return <CreateAdmin />;

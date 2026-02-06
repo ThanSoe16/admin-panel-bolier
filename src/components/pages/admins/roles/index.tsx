@@ -1,21 +1,21 @@
-"use client";
-import { DataTable } from "@/components/shared/data-table";
-import { Loading } from "@/components/shared/loading";
-import { useGetRoles } from "@/features/admins/services/queries";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { roleColDefs } from "./components/RoleColDefs";
-import SearchInput from "@/components/shared/search-input";
-import { Box, Flex } from "@radix-ui/themes";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
+'use client';
+import { DataTable } from '@/components/shared/data-table';
+import { Loading } from '@/components/shared/loading';
+import { useGetRoles } from '@/features/admins/services/queries';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { roleColDefs } from './components/RoleColDefs';
+import SearchInput from '@/components/shared/search-input';
+import { Box, Flex } from '@radix-ui/themes';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
 
 const Roles = () => {
   const { query } = usePagination();
-  const roles = useGetRoles(query || "");
+  const roles = useGetRoles(query || '');
 
   return (
     <div className="space-y-4">
-      <PageBreadcrumb links={[{ label: "Role & Permissions", href: "#" }]} />
+      <PageBreadcrumb links={[{ label: 'Role & Permissions', href: '#' }]} />
       <Box className="table-container">
         <DataTable
           columns={roleColDefs}

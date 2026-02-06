@@ -1,11 +1,11 @@
-"use client"
+'use client';
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Plus, MoreVertical } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Plus, MoreVertical } from 'lucide-react';
 import { TutorialsEnum } from '@/features/base/types/backend-defined-enums';
 import { useGetFAQs } from '@/features/settings/tutorials/services/queries';
 import { TutorialData } from '@/features/settings/tutorials/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
 import CreateModal from './components/CreateModal';
@@ -16,7 +16,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
 const getYouTubeEmbedUrl = (url: string) => {
   // Handle both regular YouTube URLs and already embedded URLs
@@ -27,11 +27,11 @@ const getYouTubeEmbedUrl = (url: string) => {
   // Extract video ID from various YouTube URL formats
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url?.match(regExp);
-  
+
   if (match && match[2].length === 11) {
     return `https://www.youtube.com/embed/${match[2]}`;
   }
-  
+
   // If it's not a YouTube URL, return the original URL
   return url;
 };
@@ -48,7 +48,7 @@ const Tutorials = () => {
 
   const tabList = [
     { value: TutorialsEnum.LANDING, label: 'Landing Tutorials' },
-    { value: TutorialsEnum.PURCHASED_TEMPLATE, label: 'Template Tutorials' }
+    { value: TutorialsEnum.PURCHASED_TEMPLATE, label: 'Template Tutorials' },
   ];
 
   const handleOpenCreateDialog = () => {
@@ -83,7 +83,7 @@ const Tutorials = () => {
               'py-2 px-4 rounded-xl text-sm',
               activeTab === tab.value
                 ? 'bg-brand-secondary text-brand border border-stroke-secondary font-bold'
-                : 'bg-[#F7F7F7] text-default-secondary'
+                : 'bg-[#F7F7F7] text-default-secondary',
             )}
           >
             {tab.label}
@@ -98,14 +98,16 @@ const Tutorials = () => {
           <div className="grid gap-4">
             {tutorialsData?.body?.data.map((tutorial) => (
               <Card key={tutorial.id}>
-                <CardHeader className='!pb-0'>
+                <CardHeader className="!pb-0">
                   <div className="flex justify-between items-start">
-                    <div className='flex flex-col gap-2'>
+                    <div className="flex flex-col gap-2">
                       <CardTitle>
-                        {tutorial.TutorialContent.find(content => content.Language.key === "en")?.name || tutorial.TutorialContent[0]?.name}
+                        {tutorial.TutorialContent.find((content) => content.Language.key === 'en')
+                          ?.name || tutorial.TutorialContent[0]?.name}
                       </CardTitle>
                       <CardDescription>
-                        {tutorial.TutorialContent.find(content => content.Language.key === "en")?.description || tutorial.TutorialContent[0]?.description}
+                        {tutorial.TutorialContent.find((content) => content.Language.key === 'en')
+                          ?.description || tutorial.TutorialContent[0]?.description}
                       </CardDescription>
                     </div>
                     <div className="hidden md:flex items-center justify-center gap-2">
@@ -135,7 +137,7 @@ const Tutorials = () => {
                           <DropdownMenuItem onClick={() => handleOpenEditDialog(tutorial)}>
                             Edit
                           </DropdownMenuItem>
-                          <DropdownMenuItem 
+                          <DropdownMenuItem
                             onClick={() => handleOpenDeleteDialog(tutorial)}
                             className="text-destructive"
                           >
@@ -146,8 +148,8 @@ const Tutorials = () => {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className=''>
-                  <div className='w-full h-fit'>
+                <CardContent className="">
+                  <div className="w-full h-fit">
                     {tutorial.videoId ? (
                       <video
                         src={tutorial?.Video?.url}
@@ -172,29 +174,35 @@ const Tutorials = () => {
         )}
       </div>
 
-      {isCreateDialogOpen && <CreateModal
-        open={isCreateDialogOpen}
-        handleClose={() => setIsCreateDialogOpen(false)}
-        languages={landingLanguages?.body?.data || []}
-      />}
+      {isCreateDialogOpen && (
+        <CreateModal
+          open={isCreateDialogOpen}
+          handleClose={() => setIsCreateDialogOpen(false)}
+          languages={landingLanguages?.body?.data || []}
+        />
+      )}
 
-      {isEditDialogOpen && <EditModal
-        open={isEditDialogOpen}
-        handleClose={() => {
-          setIsEditDialogOpen(false);
-          setSelectedTutorial(null);
-        }}
-        tutorial={selectedTutorial}
-      />}
+      {isEditDialogOpen && (
+        <EditModal
+          open={isEditDialogOpen}
+          handleClose={() => {
+            setIsEditDialogOpen(false);
+            setSelectedTutorial(null);
+          }}
+          tutorial={selectedTutorial}
+        />
+      )}
 
-      {isDeleteDialogOpen && <DeleteModal
-        open={isDeleteDialogOpen}
-        handleClose={() => {
-          setIsDeleteDialogOpen(false);
-          setSelectedTutorial(null);
-        }}
-        tutorial={selectedTutorial}
-      />}
+      {isDeleteDialogOpen && (
+        <DeleteModal
+          open={isDeleteDialogOpen}
+          handleClose={() => {
+            setIsDeleteDialogOpen(false);
+            setSelectedTutorial(null);
+          }}
+          tutorial={selectedTutorial}
+        />
+      )}
     </div>
   );
 };

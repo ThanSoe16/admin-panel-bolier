@@ -1,7 +1,7 @@
-import SocialLinksApiService from "./api";
-import { useQueryClient } from "@tanstack/react-query";
-import { useMutation } from "@tanstack/react-query";
-import { SocialLinksDragType, SocialLinksForm } from "../types";
+import SocialLinksApiService from './api';
+import { useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
+import { SocialLinksDragType, SocialLinksForm } from '../types';
 
 export const useUpdateSocialLinks = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useUpdateSocialLinks = () => {
     onSettled: async (_, error) => {
       if (error) {
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["social-links"] });
+        await queryClient.invalidateQueries({ queryKey: ['social-links'] });
       }
     },
   });
@@ -27,7 +27,7 @@ export const useDragAndSortSocialLinks = () => {
     onSettled: async (_, error) => {
       if (error) {
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["social-links"] });
+        await queryClient.invalidateQueries({ queryKey: ['social-links'] });
       }
     },
   });

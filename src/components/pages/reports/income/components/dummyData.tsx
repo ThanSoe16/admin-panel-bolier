@@ -1,49 +1,49 @@
-import { IncomeReportData } from "@/features/report/income/types";
+import { IncomeReportData } from '@/features/report/income/types';
 
 export const dummyIncomeData: IncomeReportData[] = [
   {
-    id: "TX-001",
-    pageType: "purchase-template",
-    type: "Purchase Template",
-    amount: 500,  
-    status: "COMPLETED",
+    id: 'TX-001',
+    pageType: 'purchase-template',
+    type: 'Purchase Template',
+    amount: 500,
+    status: 'COMPLETED',
     date: new Date().toISOString(),
-    customer: "John Doe"
+    customer: 'John Doe',
   },
   {
-    id: "TX-002",
-    pageType: "setup-fee",
-    type: "Setup Fee (Blog Sites)",
+    id: 'TX-002',
+    pageType: 'setup-fee',
+    type: 'Setup Fee (Blog Sites)',
     amount: 500,
-    status: "COMPLETED",
+    status: 'COMPLETED',
     date: new Date().toISOString(),
-    customer: "Jane Smith"
+    customer: 'Jane Smith',
   },
   {
-    id: "TX-003",
-    pageType: "hosting-fee",
-    type: "Hosting Fee ",
+    id: 'TX-003',
+    pageType: 'hosting-fee',
+    type: 'Hosting Fee ',
     amount: 500,
-    status: "PENDING",
+    status: 'PENDING',
     date: new Date().toISOString(),
-    customer: "Acme Corp"
+    customer: 'Acme Corp',
   },
   {
-    id: "TX-004",
-    pageType: "maintain-fee",
-    type: "Maintain Fee",
+    id: 'TX-004',
+    pageType: 'maintain-fee',
+    type: 'Maintain Fee',
     amount: 500,
-    status: "COMPLETED",
+    status: 'COMPLETED',
     date: new Date().toISOString(),
-    customer: "Global Enterprises"
+    customer: 'Global Enterprises',
   },
   {
-    id: "TX-005",
-    pageType: "server-fee",
-    type: "Server Fee",
+    id: 'TX-005',
+    pageType: 'server-fee',
+    type: 'Server Fee',
     amount: 500,
-    status: "COMPLETED",
+    status: 'COMPLETED',
     date: new Date().toISOString(),
-    customer: "Tech Solutions"
-  }
-]
+    customer: 'Tech Solutions',
+  },
+];

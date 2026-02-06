@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import { Box, Flex } from "@radix-ui/themes";
-import { useUserInfo } from "@/features/base/hooks/useUserInfo";
-import { ChevronDown } from "lucide-react";
+'use client';
+import React from 'react';
+import { Box, Flex } from '@radix-ui/themes';
+import { useUserInfo } from '@/features/base/hooks/useUserInfo';
+import { ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,19 +10,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import Link from "next/link";
-import ProfileAvatar from "../shared/base/ProfileAvatar";
-import { useGetMe } from "@/features/auth/service/queries";
-import { Loading } from "../shared/loading";
-import { SidebarTrigger } from "../ui/sidebar";
+} from '../ui/dropdown-menu';
+import Link from 'next/link';
+import ProfileAvatar from '../shared/base/ProfileAvatar';
+import { useGetMe } from '@/features/auth/service/queries';
+import { Loading } from '../shared/loading';
+import { SidebarTrigger } from '../ui/sidebar';
 
 const Header = () => {
   const { removeAllData } = useUserInfo();
   const { data, isLoading } = useGetMe();
 
   const logoutHandler = () => {
-    window.location.href = "/login";
+    window.location.href = '/login';
     removeAllData();
     return;
   };
@@ -37,20 +37,15 @@ const Header = () => {
             <DropdownMenuTrigger>
               <div className="flex items-center gap-x-2 ">
                 <ProfileAvatar
-                  photo={
-                    data?.body?.data?.Avatar?.url ??
-                    "/images/default-profile.png"
-                  }
-                  name={data?.body?.data?.name ?? ""}
+                  photo={data?.body?.data?.Avatar?.url ?? '/images/default-profile.png'}
+                  name={data?.body?.data?.name ?? ''}
                   className="w-9 h-9 rounded-full"
                 />
                 <div className="text-start">
                   <div className="text-sm font-medium text-background max-w-[100px] truncate">
                     {data?.body?.data?.name}
                   </div>
-                  <div className="text-xs text-background">
-                    {data?.body?.data?.AdminRole?.name}
-                  </div>
+                  <div className="text-xs text-background">{data?.body?.data?.AdminRole?.name}</div>
                 </div>
                 <ChevronDown className="text-background h-5 w-5" />
               </div>
@@ -61,9 +56,7 @@ const Header = () => {
               <Link href={`/profile`}>
                 <DropdownMenuItem>Profile</DropdownMenuItem>
               </Link>
-              <DropdownMenuItem onClick={logoutHandler}>
-                Logout
-              </DropdownMenuItem>
+              <DropdownMenuItem onClick={logoutHandler}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}

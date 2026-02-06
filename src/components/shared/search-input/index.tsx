@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useRef, useState, useEffect } from "react";
-import { Search, X } from "lucide-react";
-import { usePagination } from "@/features/base/hooks/usePagination";
+import React, { useRef, useState, useEffect } from 'react';
+import { Search, X } from 'lucide-react';
+import { usePagination } from '@/features/base/hooks/usePagination';
 
 interface SearchInputProps {
   placeholder?: string;
@@ -10,14 +10,10 @@ interface SearchInputProps {
   className?: string; // For custom styling
 }
 
-const SearchInput = ({
-  placeholder,
-  debounceDelay = 600,
-  className,
-}: SearchInputProps) => {
+const SearchInput = ({ placeholder, debounceDelay = 600, className }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null); // Create a ref for the input element
   const { handleSearchChange, word } = usePagination();
-  const [inputValue, setInputValue] = useState(word || ""); // Initialize input value with the current query state
+  const [inputValue, setInputValue] = useState(word || ''); // Initialize input value with the current query state
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -32,8 +28,8 @@ const SearchInput = ({
   }, [inputValue, debounceDelay, handleSearchChange]);
 
   const clearInput = () => {
-    setInputValue("");
-    handleSearchChange(""); // Clear the query param
+    setInputValue('');
+    handleSearchChange(''); // Clear the query param
     inputRef.current?.focus(); // Refocus the input field
   };
 
@@ -59,18 +55,18 @@ const SearchInput = ({
         type="text"
         value={inputValue}
         onChange={(e) => {
-          if (e.target.value == "") {
+          if (e.target.value == '') {
             clearInput();
           } else {
             setInputValue(e.target.value);
           }
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             handleSearch();
           }
         }}
-        placeholder={placeholder || "Search"}
+        placeholder={placeholder || 'Search'}
         className="flex-grow border-none bg-transparent outline-none placeholder-gray-500 w-full pr-7 mr-1"
         autoComplete="off"
       />

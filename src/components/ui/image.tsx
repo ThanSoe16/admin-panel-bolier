@@ -1,6 +1,6 @@
-import NextImage, { ImageProps } from "next/image";
+import NextImage, { ImageProps } from 'next/image';
 
-interface CustomImageProps extends Omit<ImageProps, "src"> {
+interface CustomImageProps extends Omit<ImageProps, 'src'> {
   src: string;
   className?: string;
 }

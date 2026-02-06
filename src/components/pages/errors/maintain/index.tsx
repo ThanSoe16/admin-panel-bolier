@@ -1,16 +1,16 @@
-"use client";
-import ErrorUI from "@/components/shared/ErrorUI";
-import { useGetMe } from "@/features/auth/service/queries";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React from "react";
+'use client';
+import ErrorUI from '@/components/shared/ErrorUI';
+import { useGetMe } from '@/features/auth/service/queries';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 const Maintain = () => {
   const router = useRouter();
   const { isSuccess } = useGetMe();
 
   if (isSuccess) {
-    router.push("/");
+    router.push('/');
   }
   return (
     <div className="w-[100dvw] h-[100dvh] flex items-center justify-center">

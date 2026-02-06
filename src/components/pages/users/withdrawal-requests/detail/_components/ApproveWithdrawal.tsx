@@ -1,35 +1,35 @@
-import ImagePicker from "@/components/shared/base/ImagePicker";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useApproveWithdrawalRequest } from "@/features/withdrawal/services/mutations";
-import { WithdrawalRequestDetailData } from "@/features/withdrawal/types";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import { Flex } from "@radix-ui/themes";
-import { Check } from "lucide-react";
-import { useState } from "react";
-import UserAccount from "./UserAccount";
-import { usePathname, useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { matchRouteToStoredPermission } from "@/utils/routeMatcher";
-import { routePermissionMap } from "@/data/route-permissions";
+import ImagePicker from '@/components/shared/base/ImagePicker';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useApproveWithdrawalRequest } from '@/features/withdrawal/services/mutations';
+import { WithdrawalRequestDetailData } from '@/features/withdrawal/types';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import { Flex } from '@radix-ui/themes';
+import { Check } from 'lucide-react';
+import { useState } from 'react';
+import UserAccount from './UserAccount';
+import { usePathname, useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { matchRouteToStoredPermission } from '@/utils/routeMatcher';
+import { routePermissionMap } from '@/data/route-permissions';
 
 const ApproveWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
   const router = useRouter();
   const { mutateAsync, isPending } = useApproveWithdrawalRequest();
 
   const [open, setOpen] = useState(false);
-  const [proofOfPayment, setProofOfPayment] = useState<string>("");
-  const [proofOfPaymentFileId, setProofOfPaymentFileId] = useState<string>("");
+  const [proofOfPayment, setProofOfPayment] = useState<string>('');
+  const [proofOfPaymentFileId, setProofOfPaymentFileId] = useState<string>('');
 
   const pathname = usePathname();
   const match = matchRouteToStoredPermission(pathname, routePermissionMap);
 
-  if (!match?.includes("EDIT")) return null;
+  if (!match?.includes('EDIT')) return null;
 
   const exchangeRate = (data?.exchangeRate ?? 0) + (data?.exchangeFee ?? 0);
 
   const withdrawalPercentage =
-    data?.withdrawFeeType == "PERCENTAGE"
+    data?.withdrawFeeType == 'PERCENTAGE'
       ? (data?.withdrawFee ?? 0) / 100
       : (data?.withdrawFee ?? 0) / exchangeRate;
 
@@ -37,21 +37,11 @@ const ApproveWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
 
   const withdrawalFeeAmount = requestedAmount * withdrawalPercentage;
 
-  const List = ({
-    name,
-    value,
-    minute,
-  }: {
-    name: string;
-    value: string;
-    minute?: boolean;
-  }) => {
+  const List = ({ name, value, minute }: { name: string; value: string; minute?: boolean }) => {
     return (
-      <Flex justify={"between"}>
+      <Flex justify={'between'}>
         <p className="">{name} : </p>
-        <p className={cn("text-right", minute && "text-destructive")}>
-          {value}
-        </p>
+        <p className={cn('text-right', minute && 'text-destructive')}>{value}</p>
       </Flex>
     );
   };
@@ -67,8 +57,8 @@ const ApproveWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
   };
 
   const handleReset = () => {
-    setProofOfPayment("");
-    setProofOfPaymentFileId("");
+    setProofOfPayment('');
+    setProofOfPaymentFileId('');
     setOpen(false);
   };
 
@@ -82,23 +72,23 @@ const ApproveWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
           <DialogTitle>Confirm Withdrawal</DialogTitle>
           <div className="space-y-1">
             <List
-              name={"Withdrawal Amount"}
-              value={"$ " + CurrencyFormat(data.totalRequestAmount)}
+              name={'Withdrawal Amount'}
+              value={'$ ' + CurrencyFormat(data.totalRequestAmount)}
             />
             <List
-              name={"Exchange Rate at Requested Time"}
-              value={"$1 = " + CurrencyFormat(exchangeRate) + " MMK"}
+              name={'Exchange Rate at Requested Time'}
+              value={'$1 = ' + CurrencyFormat(exchangeRate) + ' MMK'}
             />
             <List
-              name={"Withdrawal Amount in MMK"}
-              value={CurrencyFormat(requestedAmount) + " MMK"}
+              name={'Withdrawal Amount in MMK'}
+              value={CurrencyFormat(requestedAmount) + ' MMK'}
             />
             <List
-              name={"Withdrawal Service Fee"}
-              value={CurrencyFormat(withdrawalFeeAmount) + " MMK"}
+              name={'Withdrawal Service Fee'}
+              value={CurrencyFormat(withdrawalFeeAmount) + ' MMK'}
               minute
             />
-            <Flex justify={"between"} className=" pb-2">
+            <Flex justify={'between'} className=" pb-2">
               <p className="">Actual Withdrawal Amount : </p>
               <p className="text-right text-2xl font-semibold">
                 {CurrencyFormat(data.paidAmount)} MMK
@@ -120,12 +110,12 @@ const ApproveWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
                 acceptFiles=".jpg, .jpeg, .png"
               />
             </div>
-            <Flex justify={"end"} className="pt-4 space-x-2">
-              <Button variant={"outline"} size={"lg"} onClick={handleReset}>
+            <Flex justify={'end'} className="pt-4 space-x-2">
+              <Button variant={'outline'} size={'lg'} onClick={handleReset}>
                 Cancel
               </Button>
               <Button
-                size={"lg"}
+                size={'lg'}
                 addDoneIcon
                 disabled={!proofOfPaymentFileId}
                 onClick={handleConfirm}

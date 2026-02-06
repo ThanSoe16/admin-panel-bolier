@@ -1,28 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  allDefaultPermissions,
-  allPermissionsDefaults,
-  permissions,
-} from "@/data/permissions";
-import { cn } from "@/lib/utils";
-import { Flex } from "@radix-ui/themes";
-import { ChevronDownCircle, ChevronUpCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import SubPermissionItem from "./SubPermissionItem";
-import PermissionItem from "./PermissionItem";
-import { isEqual } from "lodash";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { allDefaultPermissions, allPermissionsDefaults, permissions } from '@/data/permissions';
+import { cn } from '@/lib/utils';
+import { Flex } from '@radix-ui/themes';
+import { ChevronDownCircle, ChevronUpCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import SubPermissionItem from './SubPermissionItem';
+import PermissionItem from './PermissionItem';
+import { isEqual } from 'lodash';
 
-const RoleForm = ({
-  form,
-  mode = "create",
-}: {
-  form: any;
-  mode: "create" | "update" | "view";
-}) => {
+const RoleForm = ({ form, mode = 'create' }: { form: any; mode: 'create' | 'update' | 'view' }) => {
   const router = useRouter();
   const [openDropdowns, setOpenDropdowns] = useState<{
     [key: string]: boolean;
@@ -38,7 +28,7 @@ const RoleForm = ({
     form.reset();
     router.back();
   };
-  const permissionsWatch = form.watch("permissions");
+  const permissionsWatch = form.watch('permissions');
 
   const allSelected = () => {
     const current = permissionsWatch;
@@ -53,14 +43,10 @@ const RoleForm = ({
     });
   };
   const toggleSelectAll = () => {
-    form.setValue(
-      "permissions",
-      allSelected() ? allDefaultPermissions : allPermissionsDefaults,
-      {
-        shouldDirty: true,
-        shouldValidate: true,
-      }
-    );
+    form.setValue('permissions', allSelected() ? allDefaultPermissions : allPermissionsDefaults, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   };
 
   return (
@@ -75,7 +61,7 @@ const RoleForm = ({
                 {...field}
                 error={!!form.formState.errors.name}
                 placeholder="Enter role name"
-                readOnly={mode === "view"}
+                readOnly={mode === 'view'}
               />
             </FormControl>
           </FormItem>
@@ -88,7 +74,7 @@ const RoleForm = ({
           <Checkbox
             checked={allSelected()}
             onCheckedChange={toggleSelectAll}
-            disabled={mode === "view"}
+            disabled={mode === 'view'}
           />
           <div>Select All</div>
         </Flex>
@@ -105,10 +91,10 @@ const RoleForm = ({
                   }
                 }}
                 className={cn(
-                  item.subMenu && openDropdowns[item.name] && "border-b",
-                  "p-4 relative"
+                  item.subMenu && openDropdowns[item.name] && 'border-b',
+                  'p-4 relative',
                 )}
-                wrap={{ initial: "wrap", md: "nowrap" }}
+                wrap={{ initial: 'wrap', md: 'nowrap' }}
               >
                 {item.subMenu ? (
                   openDropdowns[item.name] ? (
@@ -117,9 +103,7 @@ const RoleForm = ({
                     <ChevronDownCircle className="absolute top-4 right-4" />
                   )
                 ) : null}
-                <div className="font-bold w-full md:w-[400px] truncate">
-                  {item.title}
-                </div>
+                <div className="font-bold w-full md:w-[400px] truncate">{item.title}</div>
               </Flex>
               {openDropdowns[item.name] &&
                 item.subMenu.map((subItem, key) => (
@@ -167,21 +151,13 @@ const RoleForm = ({
         </div>
       ))}
 
-      {mode != "view" && (
+      {mode != 'view' && (
         <Flex justify="end" className="space-x-2">
-          <Button
-            size="lg"
-            variant="outline"
-            type="button"
-            onClick={resetHandler}
-          >
+          <Button size="lg" variant="outline" type="button" onClick={resetHandler}>
             Cancel
           </Button>
-          <Button
-            size="lg"
-            disabled={isEqual(form.watch("permissions"), allDefaultPermissions)}
-          >
-            {mode == "create" ? "Create" : "Update"}
+          <Button size="lg" disabled={isEqual(form.watch('permissions'), allDefaultPermissions)}>
+            {mode == 'create' ? 'Create' : 'Update'}
           </Button>
         </Flex>
       )}

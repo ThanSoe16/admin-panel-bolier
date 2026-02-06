@@ -1,11 +1,9 @@
-
-
 import Quill from 'quill';
 import 'react-quill-new/dist/quill.snow.css';
 import { SEOPreviewData } from '@/features/base/types';
 
 // Custom Blot for SEO Preview
-const BlockEmbed = Quill.import("blots/block/embed") as any;
+const BlockEmbed = Quill.import('blots/block/embed') as any;
 
 class SEOPreviewBlot extends BlockEmbed {
   static blotName = 'seo-preview';
@@ -105,7 +103,7 @@ class SEOPreviewBlot extends BlockEmbed {
     innerBox.appendChild(textSection);
 
     // Create delete button
-    const deleteBtn = document.createElement("button");
+    const deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = `
          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
            <path d="M3 6H5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -115,17 +113,17 @@ class SEOPreviewBlot extends BlockEmbed {
          </svg>
        `;
 
-    deleteBtn.classList.add("seo-preview-delete-btn");
-    deleteBtn.style.display = "none";
-    deleteBtn.setAttribute("type", "button");
-    deleteBtn.setAttribute("contenteditable", "false");
+    deleteBtn.classList.add('seo-preview-delete-btn');
+    deleteBtn.style.display = 'none';
+    deleteBtn.setAttribute('type', 'button');
+    deleteBtn.setAttribute('contenteditable', 'false');
 
     // Add click handler for delete
-    deleteBtn.addEventListener("click", (e) => {
+    deleteBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       const blot = Quill.find(node) as any;
-      if (blot && typeof blot.remove === "function") {
+      if (blot && typeof blot.remove === 'function') {
         blot.remove();
       }
     });
@@ -149,10 +147,9 @@ class SEOPreviewBlot extends BlockEmbed {
       ogImage: img ? img.src : '',
       ogTitle: title ? title.textContent : '',
       ogDescription: description ? description.textContent : '',
-      url: url ? url.textContent : ''
+      url: url ? url.textContent : '',
     };
   }
 }
 
 export default SEOPreviewBlot;
-

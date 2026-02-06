@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { templateIncomeFilter } from "../../purchase-templates/types";
-import { oneSiteUserSchema } from "@/features/base/types";
+import { z } from 'zod';
+import { templateIncomeFilter } from '../../purchase-templates/types';
+import { oneSiteUserSchema } from '@/features/base/types';
 
 export const domainFeeFilter = templateIncomeFilter
   .extend({
@@ -48,6 +48,4 @@ export const domainRenewalFeeReportSchema = z.object({
   newDomainRenewalFees: domainFeeTableSchema,
   domainRenewalList: z.array(domainFeeListSchema),
 });
-export type DomainRenewalFeeReportResponse = z.infer<
-  typeof domainRenewalFeeReportSchema
->;
+export type DomainRenewalFeeReportResponse = z.infer<typeof domainRenewalFeeReportSchema>;

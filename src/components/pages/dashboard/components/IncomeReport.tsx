@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import dayjs from "dayjs";
-import Link from "next/link";
-import { ChevronRight, ArrowUp, ArrowDown } from "lucide-react";
-import { IncomeBarChart } from "./IncomeBarChart";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import { DashboardData } from "@/features/dashboard/types";
-import { formatYear } from "@/utils/dateTime";
-import { cn } from "@/lib/utils";
+'use client';
+import React from 'react';
+import dayjs from 'dayjs';
+import Link from 'next/link';
+import { ChevronRight, ArrowUp, ArrowDown } from 'lucide-react';
+import { IncomeBarChart } from './IncomeBarChart';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import { DashboardData } from '@/features/dashboard/types';
+import { formatYear } from '@/utils/dateTime';
+import { cn } from '@/lib/utils';
 
 interface IncomeReportProps {
   data: DashboardData;
@@ -28,18 +28,15 @@ const IncomeReport: React.FC<IncomeReportProps> = ({ data }) => {
       <div className="flex flex-col lg:flex-row gap-2 justify-between md:items-end">
         <div className="flex flex-col gap-1 flex-1">
           <p className="text-default-secondary"> Total Incomes </p>
-          <p className="text-brand font-bold">
-            {" "}
-            $ {CurrencyFormat(data?.totalIncome ?? 0)}{" "}
-          </p>
+          <p className="text-brand font-bold"> $ {CurrencyFormat(data?.totalIncome ?? 0)} </p>
           <div className="flex flex-row gap-2">
             <div
               className={cn(
-                "rounded-2xl px-2 py-1 text-white text-sm font-bold flex flex-row items-center",
-                data?.trend === "up" ? "bg-success" : "bg-error"
+                'rounded-2xl px-2 py-1 text-white text-sm font-bold flex flex-row items-center',
+                data?.trend === 'up' ? 'bg-success' : 'bg-error',
               )}
             >
-              {data?.trend === "up" ? (
+              {data?.trend === 'up' ? (
                 <ArrowUp size={16} className="mr-1" />
               ) : (
                 <ArrowDown size={16} className="mr-1" />
@@ -47,9 +44,8 @@ const IncomeReport: React.FC<IncomeReportProps> = ({ data }) => {
               {data?.percentage}%
             </div>
             <p className="flex">
-              {" "}
-              Compared to{" "}
-              {formatYear(dayjs().subtract(1, "month").toISOString())}{" "}
+              {' '}
+              Compared to {formatYear(dayjs().subtract(1, 'month').toISOString())}{' '}
             </p>
           </div>
         </div>

@@ -3,23 +3,23 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { Flex } from "@radix-ui/themes";
-import { ChevronDown } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
+import { Flex } from '@radix-ui/themes';
+import { ChevronDown } from 'lucide-react';
 
 const MultiSelectInput = ({
   value,
   placeholder,
   items = [
-    { name: "QR", value: "PAY_BY_QRCODE" },
-    { name: "PWA", value: "PWAAPP" },
-    { name: "PIN", value: "PIN" },
-    { name: "NOTI", value: "NOTI" },
-    { name: "WEB", value: "WEB" },
-    { name: "UPI", value: "upi" },
-    { name: "UABPAY", value: "uabpay" },
-    { name: "MMQR", value: "mmqr" },
+    { name: 'QR', value: 'PAY_BY_QRCODE' },
+    { name: 'PWA', value: 'PWAAPP' },
+    { name: 'PIN', value: 'PIN' },
+    { name: 'NOTI', value: 'NOTI' },
+    { name: 'WEB', value: 'WEB' },
+    { name: 'UPI', value: 'upi' },
+    { name: 'UABPAY', value: 'uabpay' },
+    { name: 'MMQR', value: 'mmqr' },
   ],
   onChange,
   disabled = false,
@@ -46,19 +46,17 @@ const MultiSelectInput = ({
       <DropdownMenu>
         <DropdownMenuTrigger
           className={cn(
-            value.length ? "" : "text-gray-400",
-            disabled ? "bg-gray-100 cursor-not-allowed" : "",
-            "border w-full rounded-xl h-12 text-left px-4 text-sm peer "
+            value.length ? '' : 'text-gray-400',
+            disabled ? 'bg-gray-100 cursor-not-allowed' : '',
+            'border w-full rounded-xl h-12 text-left px-4 text-sm peer ',
           )}
           disabled={disabled}
         >
-          <Flex align={"center"} justify={"between"}>
+          <Flex align={'center'} justify={'between'}>
             <p>
-              {" "}
+              {' '}
               {value.length > 0
-                ? value
-                    .map((v) => items.find((i) => i.value === v)?.name || v)
-                    .join(", ")
+                ? value.map((v) => items.find((i) => i.value === v)?.name || v).join(', ')
                 : placeholder}
             </p>
             <ChevronDown className="w-4 h-4" />

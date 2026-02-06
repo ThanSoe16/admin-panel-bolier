@@ -1,5 +1,5 @@
-import { oneSiteUserSchema, templateSchema } from "@/features/base/types";
-import { z } from "zod";
+import { oneSiteUserSchema, templateSchema } from '@/features/base/types';
+import { z } from 'zod';
 
 export const templateCategorySchema = z.object({
   templateCategoryId: z.string(),

@@ -1,14 +1,11 @@
-import {
-  matchFirstStoredPermission,
-  matchRouteToPermission,
-} from "@/utils/routeMatcher";
-import { NextRequest, NextResponse } from "next/server";
-import { routePermissionMap } from "./data/route-permissions";
+import { matchFirstStoredPermission, matchRouteToPermission } from '@/utils/routeMatcher';
+import { NextRequest, NextResponse } from 'next/server';
+import { routePermissionMap } from './data/route-permissions';
 
 function getPermissionsFromCookies(req: NextRequest) {
-  const raw = req.cookies.get("permissions")?.value;
+  const raw = req.cookies.get('permissions')?.value;
   try {
-    return JSON.parse(raw || "{}");
+    return JSON.parse(raw || '{}');
   } catch {
     return {};
   }
@@ -21,12 +18,12 @@ export function middleware(req: NextRequest) {
   const match = matchRouteToPermission(pathname, routePermissionMap);
   if (!match) return NextResponse.next(); // no permission rule = allow
 
-  const token = req.cookies.get("token")?.value;
+  const token = req.cookies.get('token')?.value;
 
   // 🚫 If no token, redirect to /login
   if (!token) {
     const loginUrl = req.nextUrl.clone();
-    loginUrl.pathname = "/login";
+    loginUrl.pathname = '/login';
     return NextResponse.redirect(loginUrl);
   }
 
@@ -38,7 +35,7 @@ export function middleware(req: NextRequest) {
   if (!allowed) {
     const firstMatch = matchFirstStoredPermission(routePermissionMap);
     const url = req.nextUrl.clone();
-    url.pathname = firstMatch?.path || "/forbidden";
+    url.pathname = firstMatch?.path || '/forbidden';
     return NextResponse.redirect(url);
   }
 
@@ -48,6 +45,6 @@ export function middleware(req: NextRequest) {
 // ✅ Exclude all static/public assets and login route
 export const config = {
   matcher: [
-    "/((?!api|_next|static|favicon.ico|login|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|js|css)).*)",
+    '/((?!api|_next|static|favicon.ico|login|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|txt|xml|json|js|css)).*)',
   ],
 };

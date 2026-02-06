@@ -1,9 +1,9 @@
-import CryptoJS from "crypto-js";
+import CryptoJS from 'crypto-js';
 
 export const passwordDecrypt = (
   encryptedPassword: string,
   ivBase64: string,
-  keyBase64: string
+  keyBase64: string,
 ): string => {
   const key = CryptoJS.enc.Base64.parse(keyBase64);
   const iv = CryptoJS.enc.Base64.parse(ivBase64);

@@ -1,49 +1,49 @@
-"use client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+'use client';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-import "react-quill-new/dist/quill.snow.css";
-import "react-quill-new/dist/quill.core.css";
+import 'react-quill-new/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.core.css';
 // import 'quill-emoji/dist/quill-emoji.css';
-import { Quill as QuillType } from "react-quill-new";
-import { toast } from "sonner";
-import { useFileUpload } from "@/features/base/services/mutations";
-import "./text-editor.css";
-import "./TextEditor.css";
-import PhoneDialog from "./PhoneDialog";
-import EmailDialog from "./EmailDialog";
-import SEOLinkDialog from "./SEOLinkDialog";
-import { SEOPreviewData } from "@/features/base/types";
-import { emailSVGString, phoneSVGString } from "@/utils/textEditor";
-import { cleanAndRenameFile } from "@/utils/cleanAndRenameFile";
+import { Quill as QuillType } from 'react-quill-new';
+import { toast } from 'sonner';
+import { useFileUpload } from '@/features/base/services/mutations';
+import './text-editor.css';
+import './TextEditor.css';
+import PhoneDialog from './PhoneDialog';
+import EmailDialog from './EmailDialog';
+import SEOLinkDialog from './SEOLinkDialog';
+import { SEOPreviewData } from '@/features/base/types';
+import { emailSVGString, phoneSVGString } from '@/utils/textEditor';
+import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
 
 const Quill = dynamic(
   async () => {
-    const { default: RQ } = await import("react-quill-new");
-    if (typeof window !== "undefined") {
-      const { ImageResize } = await import("quill-image-resize-module-ts");
-      const CustomVideoBlot = (await import("./CustomVideoBlot")).default;
-      const SEOPreviewBlot = (await import("./SEOPreviewBlot")).default;
-      const CustomLinkBlot = (await import("./CustomLInkBlot")).default;
+    const { default: RQ } = await import('react-quill-new');
+    if (typeof window !== 'undefined') {
+      const { ImageResize } = await import('quill-image-resize-module-ts');
+      const CustomVideoBlot = (await import('./CustomVideoBlot')).default;
+      const SEOPreviewBlot = (await import('./SEOPreviewBlot')).default;
+      const CustomLinkBlot = (await import('./CustomLInkBlot')).default;
 
-      RQ.Quill.register("modules/imageResize", ImageResize);
+      RQ.Quill.register('modules/imageResize', ImageResize);
       RQ.Quill.register(CustomVideoBlot);
       RQ.Quill.register(SEOPreviewBlot);
 
       RQ.Quill.register(CustomLinkBlot);
 
-      const icons: any = RQ.Quill.import("ui/icons");
-      icons["phone"] = phoneSVGString;
-      icons["email"] = emailSVGString;
+      const icons: any = RQ.Quill.import('ui/icons');
+      icons['phone'] = phoneSVGString;
+      icons['email'] = emailSVGString;
     }
 
     const QuillComponent = ({ forwardedRef, ...props }: any) => (
       <RQ ref={forwardedRef} {...props} />
     );
-    QuillComponent.displayName = "QuillComponent";
+    QuillComponent.displayName = 'QuillComponent';
     return QuillComponent;
   },
-  { ssr: false }
+  { ssr: false },
 );
 
 interface TextEditorProps {
@@ -57,25 +57,25 @@ interface TextEditorProps {
 
 const toolbarOptions = {
   container: [
-    ["bold", "italic", "underline"],
-    ["blockquote", "code-block"],
-    ["link", "phone", "email", "image"],
+    ['bold', 'italic', 'underline'],
+    ['blockquote', 'code-block'],
+    ['link', 'phone', 'email', 'image'],
     [{ header: 1 }, { header: 2 }, { header: 3 }],
-    [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-    [{ script: "sub" }, { script: "super" }],
-    [{ indent: "-1" }, { indent: "+1" }],
+    [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+    [{ script: 'sub' }, { script: 'super' }],
+    [{ indent: '-1' }, { indent: '+1' }],
     // [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    [{ align: "center" }, { align: "right" }, { align: "justify" }],
-    ["video"],
-    ["size"],
+    [{ align: 'center' }, { align: 'right' }, { align: 'justify' }],
+    ['video'],
+    ['size'],
   ],
 };
 
-type DialogTypes = "" | "phone" | "email" | "seo-preview"; //empty string for close state
+type DialogTypes = '' | 'phone' | 'email' | 'seo-preview'; //empty string for close state
 
 export const TextEditor: React.FC<TextEditorProps> = ({
   value,
-  height = "125px",
+  height = '125px',
   setValue,
   error,
   setImageId,
@@ -83,14 +83,14 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 }) => {
   const quillRef = useRef<any>(null);
   const [isQuillReady, setIsQuillReady] = useState(false);
-  const [activeDialogType, setActiveDialogType] = useState<DialogTypes>("");
+  const [activeDialogType, setActiveDialogType] = useState<DialogTypes>('');
 
   const { mutateAsync: uploadFile } = useFileUpload();
 
   const insertSEOPreview = (seoData: SEOPreviewData) => {
     const quill = quillRef.current.getEditor();
     const range = quill.getSelection(true);
-    quill.insertEmbed(range.index, "seo-preview", seoData, "user");
+    quill.insertEmbed(range.index, 'seo-preview', seoData, 'user');
     quill.setSelection(range.index + 1);
   };
 
@@ -98,10 +98,10 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     const quill = quillRef.current.getEditor();
     const range = quill.getSelection(true);
     if (range.length === 0) {
-      quill.insertText(range.index, url, "link", url);
+      quill.insertText(range.index, url, 'link', url);
       quill.setSelection(range.index + url.length);
     } else {
-      quill.format("link", url);
+      quill.format('link', url);
     }
   };
 
@@ -111,15 +111,15 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
     if (!editor || !range) return;
 
-    const href = `tel:${phone.replace(/\s+/g, "")}`;
+    const href = `tel:${phone.replace(/\s+/g, '')}`;
 
     if (range.length === 0) {
-      editor.insertText(range.index, phone, "link", href);
+      editor.insertText(range.index, phone, 'link', href);
       editor.setSelection(range.index + phone.length);
     } else {
-      editor.format("link", href);
+      editor.format('link', href);
     }
-    setActiveDialogType("");
+    setActiveDialogType('');
   };
 
   const emailHandler = (email: string) => {
@@ -131,21 +131,21 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     const href = `mailto:${email}`;
 
     if (range.length === 0) {
-      editor.insertText(range.index, email, "link", href);
+      editor.insertText(range.index, email, 'link', href);
       editor.setSelection(range.index + email.length);
     } else {
-      editor.format("link", href);
+      editor.format('link', href);
     }
 
-    setActiveDialogType("");
+    setActiveDialogType('');
   };
 
   const handleSingleUpload = () => {
-    const input = document.createElement("input");
+    const input = document.createElement('input');
     try {
       // toast.success("Image upload started");
-      input.setAttribute("type", "file");
-      input.setAttribute("accept", "image/*");
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
       input.click();
 
       document.body.appendChild(input);
@@ -158,7 +158,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         input?.remove();
 
         if (!file) {
-          toast.error("Failed to upload the image");
+          toast.error('Failed to upload the image');
           return;
         }
         file = cleanAndRenameFile(file);
@@ -166,11 +166,11 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
         const response = await uploadFile({ file });
         if (response?.meta?.success) {
-          toast.success("Image uploaded successfully.");
+          toast.success('Image uploaded successfully.');
           const editor = quillRef.current.getEditor();
           const range = editor.getSelection();
           if (range && response?.body?.data?.url) {
-            editor.insertEmbed(range.index, "image", response?.body?.data?.url);
+            editor.insertEmbed(range.index, 'image', response?.body?.data?.url);
             const newPosition = editor.getLength();
             editor.setSelection(newPosition);
           }
@@ -179,8 +179,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         }
       };
     } catch (error: any) {
-      const errorString =
-        typeof error === "string" ? error : JSON.stringify(error);
+      const errorString = typeof error === 'string' ? error : JSON.stringify(error);
       toast.error(`${errorString}`);
     } finally {
       // toast.success("input will be removed");
@@ -197,8 +196,8 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
       if (files?.length) {
         const file = files[0];
-        if (!file.type.startsWith("image/")) {
-          toast.error("Only image files are allowed");
+        if (!file.type.startsWith('image/')) {
+          toast.error('Only image files are allowed');
           return;
         }
 
@@ -210,21 +209,21 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           { file },
           {
             onSuccess: (res) => {
-              toast.success("Image uploaded successfully.");
+              toast.success('Image uploaded successfully.');
 
               // Insert the S3 image at the cursor position or end of document
-              editor.insertEmbed(range.index, "image", res?.body?.data?.url);
+              editor.insertEmbed(range.index, 'image', res?.body?.data?.url);
               const newPosition = editor.getLength();
               editor.setSelection(newPosition);
             },
             onError: () => {
-              toast.error("Failed to upload image");
+              toast.error('Failed to upload image');
             },
-          }
+          },
         );
       }
     },
-    [uploadFile]
+    [uploadFile],
   );
 
   const isBase64Image = useCallback((url: string): boolean => {
@@ -236,20 +235,20 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       try {
         const res = await uploadFile({ file });
         if (res?.body?.data?.url && !isBase64Image(res?.body?.data?.url)) {
-          editor.insertEmbed(range.index, "image", res?.body?.data?.url);
+          editor.insertEmbed(range.index, 'image', res?.body?.data?.url);
           setImageId?.(res?.body?.data?.id);
           const newPosition = editor.getLength();
           editor.setSelection(newPosition);
-          toast.success("Image uploaded successfully.");
+          toast.success('Image uploaded successfully.');
         } else {
-          toast.error("Failed to upload image.");
+          toast.error('Failed to upload image.');
         }
       } catch (error) {
         console.error(error);
-        toast.error("Failed to upload image.");
+        toast.error('Failed to upload image.');
       }
     },
-    [uploadFile]
+    [uploadFile],
   );
 
   const deleteBase64Images = useCallback(
@@ -261,7 +260,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         let currentPosition = 0;
         contents.ops.forEach((op) => {
           if (op.insert) {
-            if (typeof op.insert === "string") {
+            if (typeof op.insert === 'string') {
               currentPosition += op.insert.length;
             } else if ((op.insert as { image: string }).image) {
               if (isBase64Image((op.insert as { image: string }).image)) {
@@ -284,7 +283,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         // console.error("error on deleting base64 images", error);
       }
     },
-    [isBase64Image]
+    [isBase64Image],
   );
 
   useEffect(() => {
@@ -303,10 +302,10 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
         const filesToUpload: { file: File; range: { index: number } }[] = [];
         for (let i = 0; i < items.length; i++) {
-          if (items[i].type.startsWith("image/")) {
+          if (items[i].type.startsWith('image/')) {
             const file = items[i].getAsFile();
             if (!file) {
-              toast.error("Failed to process the pasted image.");
+              toast.error('Failed to process the pasted image.');
               return;
             }
 
@@ -324,26 +323,22 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         }
 
         // Check for pasted base64 images in HTML content
-        const pastedHtml = clipboardData.getData("text/html");
+        const pastedHtml = clipboardData.getData('text/html');
         if (pastedHtml && /<img[^>]+src="data:image\//i.test(pastedHtml)) {
-          const base64Data = pastedHtml.match(
-            /src="(data:image\/[^;]+;base64[^"]+)"/i
-          )?.[1];
+          const base64Data = pastedHtml.match(/src="(data:image\/[^;]+;base64[^"]+)"/i)?.[1];
           if (!base64Data) {
-            toast.error("Failed to process the pasted image.");
+            toast.error('Failed to process the pasted image.');
             return;
           }
 
-          const byteString = atob(base64Data.split(",")[1]);
-          const mimeString = base64Data.match(
-            /^data:(image\/[^;]+);base64,/i
-          )?.[1];
+          const byteString = atob(base64Data.split(',')[1]);
+          const mimeString = base64Data.match(/^data:(image\/[^;]+);base64,/i)?.[1];
           const arrayBuffer = new ArrayBuffer(byteString.length);
           const uint8Array = new Uint8Array(arrayBuffer);
           for (let i = 0; i < byteString.length; i++) {
             uint8Array[i] = byteString.charCodeAt(i);
           }
-          const file = new File([arrayBuffer], "pasted-image", {
+          const file = new File([arrayBuffer], 'pasted-image', {
             type: mimeString,
           });
 
@@ -356,10 +351,10 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         deleteBase64Images(editor);
       };
 
-      editorContainer.addEventListener("paste", handlePaste);
+      editorContainer.addEventListener('paste', handlePaste);
 
       return () => {
-        editorContainer.removeEventListener("paste", handlePaste);
+        editorContainer.removeEventListener('paste', handlePaste);
       };
     }
   }, [isQuillReady, deleteBase64Images, uploadImageToS3]);
@@ -383,7 +378,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
       // Handle backspace/delete key for video removal
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Backspace" || e.key === "Delete") {
+        if (e.key === 'Backspace' || e.key === 'Delete') {
           const selection = editor.getSelection();
           if (!selection) return;
 
@@ -395,7 +390,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           for (let i = 0; i < delta.ops.length; i++) {
             const op = delta.ops[i];
             if (op.insert) {
-              if (typeof op.insert === "string") {
+              if (typeof op.insert === 'string') {
                 position += op.insert.length;
               } else if (op.insert.video) {
                 videoPositions.push(position);
@@ -407,7 +402,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           }
 
           // Check for backspace - remove video that ends right before cursor
-          if (e.key === "Backspace") {
+          if (e.key === 'Backspace') {
             for (const videoPos of videoPositions) {
               if (selection.index === videoPos + 1) {
                 e.preventDefault();
@@ -418,7 +413,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           }
 
           // Check for delete - remove video that starts at cursor position
-          if (e.key === "Delete") {
+          if (e.key === 'Delete') {
             for (const videoPos of videoPositions) {
               if (selection.index === videoPos) {
                 e.preventDefault();
@@ -436,15 +431,15 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         e.stopPropagation();
       };
 
-      editorContainer.addEventListener("keydown", handleKeyDown);
-      editorContainer.addEventListener("dragover", preventDefaultDrop);
+      editorContainer.addEventListener('keydown', handleKeyDown);
+      editorContainer.addEventListener('dragover', preventDefaultDrop);
       // Use drop handler only through our custom function
-      editorContainer.addEventListener("drop", handleDrop, { capture: true });
+      editorContainer.addEventListener('drop', handleDrop, { capture: true });
 
       return () => {
-        editorContainer.removeEventListener("keydown", handleKeyDown);
-        editorContainer.removeEventListener("dragover", preventDefaultDrop);
-        editorContainer.removeEventListener("drop", handleDrop, {
+        editorContainer.removeEventListener('keydown', handleKeyDown);
+        editorContainer.removeEventListener('dragover', preventDefaultDrop);
+        editorContainer.removeEventListener('drop', handleDrop, {
           capture: true,
         });
       };
@@ -461,13 +456,12 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     if (!delta?.ops?.length) return;
 
     const lastOp = delta.ops[delta.ops.length - 1];
-    const endsWithNewline =
-      typeof lastOp.insert === "string" && /\n$/.test(lastOp.insert);
+    const endsWithNewline = typeof lastOp.insert === 'string' && /\n$/.test(lastOp.insert);
 
     if (!endsWithNewline) {
       // Position after the current last character
       const length = editor.getLength();
-      editor.insertText(length, "\n");
+      editor.insertText(length, '\n');
     }
   }, [isQuillReady, value]);
 
@@ -475,31 +469,31 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     const editor = quillRef.current?.getEditor();
     const range = editor?.getSelection();
 
-    const url = prompt("Enter video URL:");
+    const url = prompt('Enter video URL:');
     if (!url || !range) return;
 
     let finalUrl = url;
 
     // Detect short TikTok link and resolve redirect
-    if (url.includes("vt.tiktok.com")) {
+    if (url.includes('vt.tiktok.com')) {
       try {
         const response = await fetch(url, {
-          method: "HEAD",
-          redirect: "follow",
+          method: 'HEAD',
+          redirect: 'follow',
         });
         finalUrl = response.url;
       } catch (error) {
-        alert("Failed to resolve TikTok short URL.");
+        alert('Failed to resolve TikTok short URL.');
         return;
       }
     }
 
-    let embedUrl = "";
+    let embedUrl = '';
 
-    const isTikTok = finalUrl.includes("tiktok.com");
-    const isFacebook = finalUrl.includes("www.facebook.com");
-    const isYouTubeEmbed = finalUrl.includes("embed");
-    const isYouTubeWatch = finalUrl.includes("watch");
+    const isTikTok = finalUrl.includes('tiktok.com');
+    const isFacebook = finalUrl.includes('www.facebook.com');
+    const isYouTubeEmbed = finalUrl.includes('embed');
+    const isYouTubeWatch = finalUrl.includes('watch');
     const isYouTubeShort = /youtu\.be\//.test(finalUrl);
 
     if (isTikTok) {
@@ -508,7 +502,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       if (videoId) {
         embedUrl = `https://www.tiktok.com/embed/${videoId}`;
       } else {
-        alert("Invalid TikTok URL format.");
+        alert('Invalid TikTok URL format.');
         return;
       }
     } else if (isFacebook) {
@@ -520,7 +514,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       const videoId = match ? match[1] : null;
       if (videoId) {
         embedUrl = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
-          finalUrl
+          finalUrl,
         )}&show_text=0&width=560`;
       }
     } else if (isYouTubeEmbed) {
@@ -538,14 +532,12 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         embedUrl = `https://www.youtube.com/embed/${videoId}`;
       }
     } else {
-      const ulrToInsert = finalUrl?.includes("://")
-        ? finalUrl
-        : `https://${finalUrl}`;
+      const ulrToInsert = finalUrl?.includes('://') ? finalUrl : `https://${finalUrl}`;
       insertLink(ulrToInsert);
     }
 
     if (embedUrl) {
-      editor.insertEmbed(range.index, "video", embedUrl);
+      editor.insertEmbed(range.index, 'video', embedUrl);
       const newPosition = editor.getLength();
       editor.setSelection(newPosition);
     }
@@ -558,16 +550,16 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         handlers: {
           image: () => handleSingleUpload(),
           video: videoHandler,
-          phone: () => setActiveDialogType("phone"),
-          email: () => setActiveDialogType("email"),
-          link: () => setActiveDialogType("seo-preview"),
+          phone: () => setActiveDialogType('phone'),
+          email: () => setActiveDialogType('email'),
+          link: () => setActiveDialogType('seo-preview'),
         },
       },
       imageResize: {
-        modules: ["Resize", "DisplaySize"],
+        modules: ['Resize', 'DisplaySize'],
       },
     }),
-    []
+    [],
   );
 
   return (
@@ -579,29 +571,29 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         onChange={(value: any) => setValue(value)}
         modules={modules}
         height={height}
-        placeholder={value ? "" : "Write something..."}
+        placeholder={value ? '' : 'Write something...'}
       />
 
-      {activeDialogType === "phone" && (
+      {activeDialogType === 'phone' && (
         <PhoneDialog
-          open={activeDialogType === "phone"}
-          handleClose={() => setActiveDialogType("")}
+          open={activeDialogType === 'phone'}
+          handleClose={() => setActiveDialogType('')}
           handleOkay={phoneHandler}
         />
       )}
 
-      {activeDialogType === "email" && (
+      {activeDialogType === 'email' && (
         <EmailDialog
-          open={activeDialogType === "email"}
-          handleClose={() => setActiveDialogType("")}
+          open={activeDialogType === 'email'}
+          handleClose={() => setActiveDialogType('')}
           handleOkay={emailHandler}
         />
       )}
 
-      {activeDialogType === "seo-preview" && (
+      {activeDialogType === 'seo-preview' && (
         <SEOLinkDialog
-          isOpen={activeDialogType === "seo-preview"}
-          onClose={() => setActiveDialogType("")}
+          isOpen={activeDialogType === 'seo-preview'}
+          onClose={() => setActiveDialogType('')}
           onInsert={insertSEOPreview}
           insertLink={insertLink}
           useCustomPreview={useCustomPreview}

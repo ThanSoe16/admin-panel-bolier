@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useDeleteTutorial } from "@/features/settings/tutorials/services/mutations";
-import { TutorialData } from "@/features/settings/tutorials/types";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { useDeleteTutorial } from '@/features/settings/tutorials/services/mutations';
+import { TutorialData } from '@/features/settings/tutorials/types';
 
 interface DeleteModalProps {
   open: boolean;
@@ -11,11 +11,7 @@ interface DeleteModalProps {
   tutorial: TutorialData | null;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({
-  open,
-  handleClose,
-  tutorial,
-}) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({ open, handleClose, tutorial }) => {
   const deleteTutorial = useDeleteTutorial();
 
   const handleDelete = async () => {
@@ -24,7 +20,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       await deleteTutorial.mutateAsync({ id: tutorial.id });
       handleClose();
     } catch (error) {
-      console.error("Error deleting tutorial:", error);
+      console.error('Error deleting tutorial:', error);
     }
   };
 
@@ -37,12 +33,8 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
           <Button variant="outline" onClick={handleClose}>
             Cancel
           </Button>
-          <Button 
-            variant="destructive" 
-            onClick={handleDelete}
-            disabled={deleteTutorial.isPending}
-          >
-            {deleteTutorial.isPending ? "Deleting..." : "Delete"}
+          <Button variant="destructive" onClick={handleDelete} disabled={deleteTutorial.isPending}>
+            {deleteTutorial.isPending ? 'Deleting...' : 'Delete'}
           </Button>
         </div>
       </DialogContent>
@@ -50,4 +42,4 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   );
 };
 
-export default DeleteModal; 
+export default DeleteModal;

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { useState } from 'react';
 
 const NumberChangeDialog = ({
   open,
@@ -9,8 +9,8 @@ const NumberChangeDialog = ({
   handleClose,
   onSubmit,
   maxAccount = 1,
-  title = "Edit Max. Acc Setting",
-  description = "Please define the maximum number of receiving account per blog owner in the following.",
+  title = 'Edit Max. Acc Setting',
+  description = 'Please define the maximum number of receiving account per blog owner in the following.',
 }: {
   open: boolean;
   isLoading: boolean;
@@ -29,7 +29,7 @@ const NumberChangeDialog = ({
         <Input
           value={number}
           onChange={(e) => {
-            const numberOnly = e.target.value.replace(/[^0-9]/g, "");
+            const numberOnly = e.target.value.replace(/[^0-9]/g, '');
             setNumber(parseInt(numberOnly));
           }}
         />
@@ -39,7 +39,7 @@ const NumberChangeDialog = ({
             className="text-text-primary min-w-[110px]"
             type="button"
             onClick={() => handleClose()}
-            size={"lg"}
+            size={'lg'}
           >
             Cancel
           </Button>
@@ -48,7 +48,7 @@ const NumberChangeDialog = ({
             loading={isLoading}
             addDoneIcon
             disabled={number == 0}
-            size={"lg"}
+            size={'lg'}
             onClick={onSubmit}
           >
             Update

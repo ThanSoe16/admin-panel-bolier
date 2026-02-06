@@ -1,20 +1,14 @@
-"use client";
-import React from "react";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { TextEditor } from "@/components/shared/text-editor";
-import { Button } from "@/components/ui/button";
+'use client';
+import React from 'react';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TextEditor } from '@/components/shared/text-editor';
+import { Button } from '@/components/ui/button';
 
 const textEditorSchema = z.object({
-  text: z.string().min(1, { message: "This field is required" }),
+  text: z.string().min(1, { message: 'This field is required' }),
 });
 
 type TextEditorType = z.infer<typeof textEditorSchema>;

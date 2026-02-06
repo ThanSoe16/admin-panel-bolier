@@ -1,14 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 
 interface EmailDialogProps {
   open: boolean;
@@ -16,24 +11,20 @@ interface EmailDialogProps {
   handleOkay: (email: string) => void;
 }
 
-const EmailDialog: React.FC<EmailDialogProps> = ({
-  open,
-  handleClose,
-  handleOkay,
-}) => {
-  const [email, setEmail] = useState("");
+const EmailDialog: React.FC<EmailDialogProps> = ({ open, handleClose, handleOkay }) => {
+  const [email, setEmail] = useState('');
 
   const handleClick = () => {
     try {
       if (!email) {
-        toast.error("Please enter email");
+        toast.error('Please enter email');
         return;
       }
 
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       if (!isValidEmail) {
-        toast.error("Invalid Email");
+        toast.error('Invalid Email');
         return;
       }
 

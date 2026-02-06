@@ -1,6 +1,6 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Flex } from "@radix-ui/themes";
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Flex } from '@radix-ui/themes';
 
 const SubPermissionItem = ({
   item,
@@ -9,17 +9,14 @@ const SubPermissionItem = ({
   mode,
 }: {
   item: any;
-  value: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE">;
-  onChange: (value: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE">) => void;
-  mode: "create" | "update" | "view";
+  value: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'>;
+  onChange: (value: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'>) => void;
+  mode: 'create' | 'update' | 'view';
 }) => {
-  const allPermissions: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE"> =
-    item.permissions;
+  const allPermissions: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'> = item.permissions;
   const isAllSelected =
     allPermissions.length > 0 &&
-    allPermissions.every((perm: "VIEW" | "EDIT" | "CREATE" | "DELETE") =>
-      value.includes(perm)
-    );
+    allPermissions.every((perm: 'VIEW' | 'EDIT' | 'CREATE' | 'DELETE') => value.includes(perm));
 
   const handleSelectAll = () => {
     if (isAllSelected) {
@@ -31,18 +28,18 @@ const SubPermissionItem = ({
 
   return (
     <div>
-      <Flex className="p-4" wrap={{ initial: "wrap", md: "nowrap" }}>
+      <Flex className="p-4" wrap={{ initial: 'wrap', md: 'nowrap' }}>
         <div className="w-full md:w-[400px] truncate">{item.title}</div>
         <Flex className="w-full">
           <Flex
             className="w-full gap-4 md:gap-20 pt-4 md:pt-0"
-            wrap={{ initial: "wrap", md: "nowrap" }}
+            wrap={{ initial: 'wrap', md: 'nowrap' }}
           >
             <div className="flex items-center space-x-2">
               <Checkbox
                 checked={isAllSelected}
                 onCheckedChange={handleSelectAll}
-                disabled={mode === "view"}
+                disabled={mode === 'view'}
               />
               <Label htmlFor="all">All</Label>
             </div>
@@ -65,7 +62,7 @@ const SubPermissionItem = ({
                       checked={isChecked}
                       onCheckedChange={handleChange}
                       id={index}
-                      disabled={mode === "view"}
+                      disabled={mode === 'view'}
                     />
                     <Label htmlFor={index}>{permission}</Label>
                   </div>

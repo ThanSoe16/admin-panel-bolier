@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import OTPSettings from "@/components/pages/settings/otp-settings";
+import { NextPage } from 'next';
+import OTPSettings from '@/components/pages/settings/otp-settings';
 
 const OtpSettingsPage: NextPage = () => {
   return <OTPSettings />;

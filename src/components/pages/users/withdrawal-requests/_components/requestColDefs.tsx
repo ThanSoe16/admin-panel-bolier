@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { formatDate } from "@/utils/dateTime";
-import { WithdrawalRequestData } from "@/features/withdrawal/types";
-import { CurrencyFormat, MMKCurrencyFormat } from "@/utils/currencyFormat";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import Link from "next/link";
-import { Flex } from "@radix-ui/themes";
-import ProfileAvatar from "@/components/shared/base/ProfileAvatar";
+'use client';
+import React from 'react';
+import { ColumnDef } from '@tanstack/react-table';
+import { formatDate } from '@/utils/dateTime';
+import { WithdrawalRequestData } from '@/features/withdrawal/types';
+import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import Link from 'next/link';
+import { Flex } from '@radix-ui/themes';
+import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
 
 const Actions = (props: { target: WithdrawalRequestData }) => {
   return (
@@ -21,41 +21,33 @@ const Actions = (props: { target: WithdrawalRequestData }) => {
 
 export const requestColDefs: ColumnDef<WithdrawalRequestData>[] = [
   {
-    accessorKey: "username",
-    header: "Username & Withdrawal ID",
+    accessorKey: 'username',
+    header: 'Username & Withdrawal ID',
     size: 200,
     cell: ({ row }) => (
       <div>
         <p>{row.original.OneSiteUser.username}</p>
-        <p className="text-sm text-muted-foreground">
-          {row.original.transactionId}
-        </p>
+        <p className="text-sm text-muted-foreground">{row.original.transactionId}</p>
       </div>
     ),
   },
   {
-    accessorKey: "requestedDate",
-    header: "Requested On",
+    accessorKey: 'requestedDate',
+    header: 'Requested On',
     size: 150,
     cell: ({ row }) => (
-      <div>
-        {row.original.requestedDate
-          ? formatDate(row.original.requestedDate)
-          : "-"}
-      </div>
+      <div>{row.original.requestedDate ? formatDate(row.original.requestedDate) : '-'}</div>
     ),
   },
   {
-    accessorKey: "withdrawalAmount",
-    header: "Withdrawal Amt.",
+    accessorKey: 'withdrawalAmount',
+    header: 'Withdrawal Amt.',
     size: 200,
-    cell: ({ row }) => (
-      <span>{MMKCurrencyFormat(row.original.paidAmount)} MMK</span>
-    ),
+    cell: ({ row }) => <span>{MMKCurrencyFormat(row.original.paidAmount)} MMK</span>,
   },
   {
-    accessorKey: "recipientAccount",
-    header: "Recipient Acc.",
+    accessorKey: 'recipientAccount',
+    header: 'Recipient Acc.',
     size: 200,
     cell: ({ row }) => (
       <div>
@@ -64,33 +56,23 @@ export const requestColDefs: ColumnDef<WithdrawalRequestData>[] = [
             {row.original.OnesiteUserReceivingAccount.accountName} (
             {row.original.OnesiteUserReceivingAccount.accountNumber})
           </p>
-          <Flex align={"center"} className="gap-1">
+          <Flex align={'center'} className="gap-1">
             <ProfileAvatar
-              name={
-                row.original.OnesiteUserReceivingAccount.accountName.charAt(
-                  0
-                ) || ""
-              }
+              name={row.original.OnesiteUserReceivingAccount.accountName.charAt(0) || ''}
               photo={
-                row.original.OnesiteUserReceivingAccount
-                  .AcceptedReceivingAccount?.File?.url || ""
+                row.original.OnesiteUserReceivingAccount.AcceptedReceivingAccount?.File?.url || ''
               }
               className="w-7 h-7"
             />
-            <p>
-              {
-                row.original.OnesiteUserReceivingAccount
-                  .AcceptedReceivingAccount.name
-              }
-            </p>
+            <p>{row.original.OnesiteUserReceivingAccount.AcceptedReceivingAccount.name}</p>
           </Flex>
         </div>
       </div>
     ),
   },
   {
-    id: "actions",
-    header: "Actions",
+    id: 'actions',
+    header: 'Actions',
     cell: ({ row }) => <Actions target={row.original} />,
   },
 ];

@@ -1,21 +1,17 @@
-import { useUpdateRole } from "@/features/admins/services/mutations";
-import {
-  RoleData,
-  UpdateRoleRequest,
-  updateRoleSchema,
-} from "@/features/admins/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import RoleForm from "./RoleForm";
-import { Form } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
+import { useUpdateRole } from '@/features/admins/services/mutations';
+import { RoleData, UpdateRoleRequest, updateRoleSchema } from '@/features/admins/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import RoleForm from './RoleForm';
+import { Form } from '@/components/ui/form';
+import { useRouter } from 'next/navigation';
 
 const UpdateRoleForm = ({
   data,
-  mode = "update",
+  mode = 'update',
 }: {
   data: RoleData;
-  mode?: "update" | "view";
+  mode?: 'update' | 'view';
 }) => {
   const router = useRouter();
   const updateRole = useUpdateRole();

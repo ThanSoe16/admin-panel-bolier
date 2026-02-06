@@ -1,7 +1,7 @@
-import React from "react";
-import { Text } from "@radix-ui/themes";
-import { cn } from "@/lib/utils";
-import { Dot } from "lucide-react";
+import React from 'react';
+import { Text } from '@radix-ui/themes';
+import { cn } from '@/lib/utils';
+import { Dot } from 'lucide-react';
 
 interface StatusProps {
   showGreenDot: boolean;
@@ -13,14 +13,11 @@ const Status: React.FC<StatusProps> = ({ showGreenDot, status }) => {
     <div className="flex flex-row items-center">
       <Dot
         className={cn(
-          "w-10 h-10 -ml-[12px] md:w-10 md:h-10 md:-ml-[16px]",
-          showGreenDot ? "text-green-500" : "text-red-500"
+          'w-10 h-10 -ml-[12px] md:w-10 md:h-10 md:-ml-[16px]',
+          showGreenDot ? 'text-green-500' : 'text-red-500',
         )}
       />
-      <Text className="text-text-primary text-base -ml-1 capitalize">
-        {" "}
-        {status}{" "}
-      </Text>
+      <Text className="text-text-primary text-base -ml-1 capitalize"> {status} </Text>
     </div>
   );
 };

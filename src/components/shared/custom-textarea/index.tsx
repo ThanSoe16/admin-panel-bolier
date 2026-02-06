@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import { Textarea as TextArea } from "@/components/ui/textarea";
+'use client';
+import React from 'react';
+import { Textarea as TextArea } from '@/components/ui/textarea';
 
-interface CustomTextAreaProps extends React.ComponentProps<"textarea"> {
+interface CustomTextAreaProps extends React.ComponentProps<'textarea'> {
   textLimit?: number;
   showCount?: boolean;
 }
@@ -20,7 +20,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
             {...props}
             className="pr-[100px] border "
             style={{
-              paddingRight: "80px",
+              paddingRight: '80px',
             }}
             onChange={(e) => {
               if (e.target.value.length > textLimit) {

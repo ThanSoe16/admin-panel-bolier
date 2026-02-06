@@ -1,30 +1,30 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import Tabs from "@/components/shared/tabs";
-import TextEditorCard from "@/components/shared/text-editor-card";
-import { useRouter } from "next/navigation";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { parseAsString, useQueryState } from "nuqs";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import Tabs from '@/components/shared/tabs';
+import TextEditorCard from '@/components/shared/text-editor-card';
+import { useRouter } from 'next/navigation';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { parseAsString, useQueryState } from 'nuqs';
 import {
   useGetPaymentPolicy,
   useGetPrivacyPolicy,
   useGetRecoveryPolicy,
   useGetRefundPolicy,
-} from "@/features/settings/policies/services/queries";
-import { Loading } from "@/components/shared/loading";
-import { Grid } from "@radix-ui/themes";
-import ErrorContainer from "@/components/shared/base/ErrorContainer";
-import { formatDate } from "@/utils/dateTime";
+} from '@/features/settings/policies/services/queries';
+import { Loading } from '@/components/shared/loading';
+import { Grid } from '@radix-ui/themes';
+import ErrorContainer from '@/components/shared/base/ErrorContainer';
+import { formatDate } from '@/utils/dateTime';
 
 const tabList = [
   {
     tab: `privacy`,
-    label: "Privacy Policy",
+    label: 'Privacy Policy',
   },
   {
     tab: `payment`,
-    label: "Payment Policy",
+    label: 'Payment Policy',
   },
   // {
   //   tab: `refund`,
@@ -32,7 +32,7 @@ const tabList = [
   // },
   {
     tab: `recovery`,
-    label: "Blog Recovery Policy",
+    label: 'Blog Recovery Policy',
   },
 ];
 
@@ -40,8 +40,8 @@ const Policies = () => {
   const router = useRouter();
   const { query } = usePagination();
   const [tab] = useQueryState(
-    "tab",
-    parseAsString.withDefault("payment").withOptions({ clearOnDefault: true })
+    'tab',
+    parseAsString.withDefault('payment').withOptions({ clearOnDefault: true }),
   );
 
   const paymentPolicy = useGetPaymentPolicy(query);
@@ -55,13 +55,13 @@ const Policies = () => {
       <div>
         <Tabs tabList={tabList} className="mb-4" />
         <div className="grid grid-cols-1  gap-4">
-          {tab === "privacy" &&
+          {tab === 'privacy' &&
             (privacyPolicy.error ? (
               <ErrorContainer />
             ) : privacyPolicy.isLoading ? (
               <Loading />
             ) : (
-              <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+              <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
                 {privacyPolicy?.data?.body?.data?.map((item) => (
                   <TextEditorCard
                     key={item.id}
@@ -72,20 +72,20 @@ const Policies = () => {
                     description={item?.description}
                     onEdit={() =>
                       router.push(
-                        `/settings/policies/update?language=${item?.Language?.key}&tab=privacy`
+                        `/settings/policies/update?language=${item?.Language?.key}&tab=privacy`,
                       )
                     }
                   />
                 ))}
               </Grid>
             ))}
-          {tab === "recovery" &&
+          {tab === 'recovery' &&
             (recoveryPolicy.error ? (
               <ErrorContainer />
             ) : recoveryPolicy.isLoading ? (
               <Loading />
             ) : (
-              <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+              <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
                 {recoveryPolicy?.data?.body?.data?.map((item) => (
                   <TextEditorCard
                     key={item.id}
@@ -96,7 +96,7 @@ const Policies = () => {
                     description={item?.description}
                     onEdit={() =>
                       router.push(
-                        `/settings/policies/update?language=${item?.Language?.key}&tab=recovery`
+                        `/settings/policies/update?language=${item?.Language?.key}&tab=recovery`,
                       )
                     }
                   />
@@ -104,13 +104,13 @@ const Policies = () => {
               </Grid>
             ))}
 
-          {tab === "payment" &&
+          {tab === 'payment' &&
             (paymentPolicy.error ? (
               <ErrorContainer />
             ) : paymentPolicy.isLoading ? (
               <Loading />
             ) : (
-              <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+              <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
                 {paymentPolicy?.data?.body?.data?.map((item) => (
                   <TextEditorCard
                     key={item.id}
@@ -121,7 +121,7 @@ const Policies = () => {
                     description={item?.description}
                     onEdit={() =>
                       router.push(
-                        `/settings/policies/update?language=${item?.Language?.key}&tab=payment`
+                        `/settings/policies/update?language=${item?.Language?.key}&tab=payment`,
                       )
                     }
                   />
@@ -129,14 +129,14 @@ const Policies = () => {
               </Grid>
             ))}
 
-          {tab === "refund" &&
+          {tab === 'refund' &&
             (refundPolicy.error ? (
               <ErrorContainer />
             ) : refundPolicy.isLoading ? (
               <Loading />
             ) : (
               refundPolicy.data?.body?.data && (
-                <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+                <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
                   {refundPolicy?.data?.body?.data?.map((item) => (
                     <TextEditorCard
                       key={item.id}
@@ -147,7 +147,7 @@ const Policies = () => {
                       description={item?.description}
                       onEdit={() =>
                         router.push(
-                          `/settings/policies/update?language=${item?.Language?.key}&tab=refund`
+                          `/settings/policies/update?language=${item?.Language?.key}&tab=refund`,
                         )
                       }
                     />

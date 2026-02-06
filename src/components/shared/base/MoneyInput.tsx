@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { cn } from "@/lib/utils";
-import CurrencyInput from "react-currency-input-field";
+import { cn } from '@/lib/utils';
+import CurrencyInput from 'react-currency-input-field';
 
 interface CurrencyInputProps {
   className?: string;
@@ -27,7 +27,7 @@ const MoneyInput = ({
   preFix,
   autoFocus,
   ref,
-  placeholder = "Enter",
+  placeholder = 'Enter',
   error,
 }: CurrencyInputProps) => {
   return (
@@ -35,11 +35,11 @@ const MoneyInput = ({
       <CurrencyInput
         ref={ref}
         className={cn(
-          disabled || disabled ? "bg-gray-100 cursor-not-allowed" : " ",
-          error ? "border-error" : "border-border",
-          "peer flex h-12 w-full rounded-xl border px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-base file:font-medium placeholder:text-gray-400 placeholder:text-sm focus:placeholder-white focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50",
-          preFix && "pl-[40px]",
-          className
+          disabled || disabled ? 'bg-gray-100 cursor-not-allowed' : ' ',
+          error ? 'border-error' : 'border-border',
+          'peer flex h-12 w-full rounded-xl border px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-base file:font-medium placeholder:text-gray-400 placeholder:text-sm focus:placeholder-white focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50',
+          preFix && 'pl-[40px]',
+          className,
         )}
         min={0}
         maxLength={maxLength}
@@ -51,14 +51,14 @@ const MoneyInput = ({
         allowDecimals
         allowNegativeValue={false}
         onValueChange={(value) => {
-          if (value === undefined || value === "") {
-            setValue("0");
+          if (value === undefined || value === '') {
+            setValue('0');
           } else {
             setValue(value);
           }
         }}
       />
-      {value && value != "0" && (
+      {value && value != '0' && (
         <label
           htmlFor="name"
           className="absolute left-3 -top-[8px] bg-white text-default-secondary flex text-xs transition-all peer-focus:text-muted-foreground"
@@ -73,19 +73,13 @@ const MoneyInput = ({
         {placeholder}
       </label>
 
-      {preFix && (
-        <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-          {preFix}
-        </div>
-      )}
+      {preFix && <div className="absolute left-3 top-1/2 transform -translate-y-1/2">{preFix}</div>}
       {postfix && (
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-          {postfix}
-        </div>
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">{postfix}</div>
       )}
     </div>
   );
 };
-MoneyInput.displayName = "MoneyInput";
+MoneyInput.displayName = 'MoneyInput';
 
 export { MoneyInput };

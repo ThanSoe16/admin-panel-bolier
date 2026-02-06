@@ -1,6 +1,6 @@
-import { toast } from "sonner";
-import tutorialsApiService from "./api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from 'sonner';
+import tutorialsApiService from './api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useCreateTutorial = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useCreateTutorial = () => {
 
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["tutorials"] });
+        await queryClient.invalidateQueries({ queryKey: ['tutorials'] });
       }
     },
   });
@@ -28,7 +28,7 @@ export const useUpdateTutorial = () => {
 
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["tutorials"] });
+        await queryClient.invalidateQueries({ queryKey: ['tutorials'] });
       }
     },
   });
@@ -44,7 +44,7 @@ export const useDeleteTutorial = () => {
 
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["tutorials"] });
+        await queryClient.invalidateQueries({ queryKey: ['tutorials'] });
       }
     },
   });

@@ -1,8 +1,8 @@
-"use client";
-import { Loading } from "@/components/shared/loading";
-import { useGetRoleDetail } from "@/features/admins/services/queries";
-import UpdateRoleForm from "../components/UpdateRoleForm";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
+'use client';
+import { Loading } from '@/components/shared/loading';
+import { useGetRoleDetail } from '@/features/admins/services/queries';
+import UpdateRoleForm from '../components/UpdateRoleForm';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
 
 const UpdateRole = ({ id }: { id: string }) => {
   const roleDetail = useGetRoleDetail(id);
@@ -10,8 +10,8 @@ const UpdateRole = ({ id }: { id: string }) => {
     <div>
       <PageBreadcrumb
         links={[
-          { label: "Role & Permissions", href: "/admins.roles" },
-          { label: "Edit Role", href: "#" },
+          { label: 'Role & Permissions', href: '/admins.roles' },
+          { label: 'Edit Role', href: '#' },
         ]}
         enableBack
       />

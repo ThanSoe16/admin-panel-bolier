@@ -1,13 +1,10 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import {
-  SocialLinkIconsType,
-  SocialLinksType,
-} from "@/features/settings/socials/types";
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { X } from "lucide-react";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { SocialLinkIconsType, SocialLinksType } from '@/features/settings/socials/types';
+import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { X } from 'lucide-react';
 
 type SelectedSocialIconsType = {
   id: string;
@@ -52,9 +49,9 @@ export const SelectIconsDialog: React.FC<SelectIconsDialogProps> = ({
               <div
                 key={link.id}
                 className={cn(
-                  "flex flex-col items-center justify-center cursor-pointer",
+                  'flex flex-col items-center justify-center cursor-pointer',
                   selectedLinks?.some((item) => item.fileId === link.id) &&
-                    "opacity-30 cursor-not-allowed",
+                    'opacity-30 cursor-not-allowed',
                 )}
                 onClick={() =>
                   !selectedLinks.some((item) => item.fileId === link.id) &&

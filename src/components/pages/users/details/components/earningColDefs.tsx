@@ -1,17 +1,17 @@
-"use client";
-import React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { formatDate } from "@/utils/dateTime";
-import { CurrencyFormat, MMKCurrencyFormat } from "@/utils/currencyFormat";
-import { UserEarningHistoryData } from "@/features/users/types";
-import { Flex } from "@radix-ui/themes";
-import { ArrowLeftRight } from "lucide-react";
-import ProfileAvatar from "@/components/shared/base/ProfileAvatar";
+'use client';
+import React from 'react';
+import { ColumnDef } from '@tanstack/react-table';
+import { formatDate } from '@/utils/dateTime';
+import { CurrencyFormat, MMKCurrencyFormat } from '@/utils/currencyFormat';
+import { UserEarningHistoryData } from '@/features/users/types';
+import { Flex } from '@radix-ui/themes';
+import { ArrowLeftRight } from 'lucide-react';
+import ProfileAvatar from '@/components/shared/base/ProfileAvatar';
 
 export const earningColDefs: ColumnDef<UserEarningHistoryData>[] = [
   {
-    accessorKey: "subscriberName",
-    header: "Subscriber Info",
+    accessorKey: 'subscriberName',
+    header: 'Subscriber Info',
     size: 200,
     cell: ({ row }) => (
       <div>
@@ -21,43 +21,34 @@ export const earningColDefs: ColumnDef<UserEarningHistoryData>[] = [
     ),
   },
   {
-    accessorKey: "subscribedAt",
-    header: "Subscribed on",
+    accessorKey: 'subscribedAt',
+    header: 'Subscribed on',
     size: 200,
     cell: ({ row }) => (
       <div>
-        <p>
-          {row.original.subscribedAt
-            ? formatDate(row.original.subscribedAt)
-            : "-"}
-        </p>
+        <p>{row.original.subscribedAt ? formatDate(row.original.subscribedAt) : '-'}</p>
       </div>
     ),
   },
   {
-    accessorKey: "totalEarned",
-    header: "Total Earned",
+    accessorKey: 'totalEarned',
+    header: 'Total Earned',
     size: 200,
     cell: ({ row }) => (
       <div>
-        <Flex align={"center"} className="gap-2">
+        <Flex align={'center'} className="gap-2">
           <p>$ {CurrencyFormat(row.original.totalEarned)}</p>
           <ArrowLeftRight size={14} className="text-primary" />
-          <p>
-            {MMKCurrencyFormat(
-              row.original.totalEarned * row.original.exchangeRate
-            )}{" "}
-            MMK
-          </p>
+          <p>{MMKCurrencyFormat(row.original.totalEarned * row.original.exchangeRate)} MMK</p>
         </Flex>
-        <Flex align={"center"} className="gap-1">
+        <Flex align={'center'} className="gap-1">
           <p className="text-xs text-muted-foreground ">Paid with </p>
           {/* <span className="capitalize">
             {row.original.paidWith.toLocaleLowerCase()}
           </span> */}
           <ProfileAvatar
-            name={row.original.paidWith.charAt(0) || ""}
-            photo={row.original.paymentMethodFile?.url || ""}
+            name={row.original.paidWith.charAt(0) || ''}
+            photo={row.original.paymentMethodFile?.url || ''}
             className="w-7 h-7"
           />
         </Flex>
@@ -65,8 +56,8 @@ export const earningColDefs: ColumnDef<UserEarningHistoryData>[] = [
     ),
   },
   {
-    accessorKey: "trxFee",
-    header: "Transaction Fee",
+    accessorKey: 'trxFee',
+    header: 'Transaction Fee',
     size: 200,
     cell: ({ row }) => (
       <div>
@@ -75,14 +66,12 @@ export const earningColDefs: ColumnDef<UserEarningHistoryData>[] = [
     ),
   },
   {
-    accessorKey: "netEarned",
-    header: "Net. Earned",
+    accessorKey: 'netEarned',
+    header: 'Net. Earned',
     size: 200,
     cell: ({ row }) => (
       <div>
-        <p className="text-success font-medium">
-          $ {CurrencyFormat(row.original.netEarned)}
-        </p>
+        <p className="text-success font-medium">$ {CurrencyFormat(row.original.netEarned)}</p>
       </div>
     ),
   },

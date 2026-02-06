@@ -1,15 +1,15 @@
-"use client";
-import { getAllPaths, Menu } from "@/data/menu";
-import { getPermissionsFromCookies } from "@/utils/getPermissionsFromCookies";
-import { usePathname } from "next/navigation";
+'use client';
+import { getAllPaths, Menu } from '@/data/menu';
+import { getPermissionsFromCookies } from '@/utils/getPermissionsFromCookies';
+import { usePathname } from 'next/navigation';
 
 export const useNavigation = () => {
   const pathname = usePathname();
   const permissions = getPermissionsFromCookies(); // ✅ Now available
 
-  console.log("permissions", permissions);
+  console.log('permissions', permissions);
 
-  const paths = getAllPaths(pathname || "")
+  const paths = getAllPaths(pathname || '')
     .map((menu) => {
       if (!menu.subPaths) {
         if (!menu.permission || permissions.includes(menu.permission)) {
@@ -19,7 +19,7 @@ export const useNavigation = () => {
       }
 
       const filteredSubMenu = menu.subPaths?.filter((sub) =>
-        permissions.includes(sub.permission || ""),
+        permissions.includes(sub.permission || ''),
       );
 
       if (filteredSubMenu && filteredSubMenu.length > 0) {

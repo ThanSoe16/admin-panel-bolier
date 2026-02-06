@@ -1,17 +1,14 @@
-"use client"
+'use client';
 
-import { Pie, PieChart, LabelList } from "recharts"
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
+import { Pie, PieChart, LabelList } from 'recharts';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { pieChartColors } from "./data";
+} from '@/components/ui/chart';
+import { pieChartColors } from './data';
 
 interface PieChartData {
   templateName: string;
@@ -25,16 +22,16 @@ interface PieChartProps {
 export function PopularPieChart(props: PieChartProps) {
   const chartData = props?.data?.map((item, index) => ({
     ...item,
-    fill: pieChartColors[index] // Cycle through colors
-  }))
-  
+    fill: pieChartColors[index], // Cycle through colors
+  }));
+
   const chartConfig = props?.data?.reduce((acc, item, index) => {
     acc[item.templateName] = {
       label: item.templateName,
-      color: pieChartColors[index] // Cycle through colors
-    }
-    return acc
-  }, {} as ChartConfig)
+      color: pieChartColors[index], // Cycle through colors
+    };
+    return acc;
+  }, {} as ChartConfig);
 
   return (
     <Card className="flex flex-col border-none shadow-none">
@@ -44,15 +41,8 @@ export function PopularPieChart(props: PieChartProps) {
           className="mx-auto aspect-square max-h-[250px] [&_.recharts-text]:fill-background"
         >
           <PieChart>
-            <ChartTooltip
-              content={<ChartTooltipContent nameKey="templateName" />}
-            />
-            <Pie 
-              data={chartData} 
-              dataKey="totalBlog"
-              stroke="white"
-              strokeWidth={2}
-            >
+            <ChartTooltip content={<ChartTooltipContent nameKey="templateName" />} />
+            <Pie data={chartData} dataKey="totalBlog" stroke="white" strokeWidth={2}>
               <LabelList
                 dataKey="totalBlog"
                 className="fill-background"
@@ -65,5 +55,5 @@ export function PopularPieChart(props: PieChartProps) {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

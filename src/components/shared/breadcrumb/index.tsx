@@ -1,14 +1,14 @@
-"use client";
-import { Flex, Text } from "@radix-ui/themes";
+'use client';
+import { Flex, Text } from '@radix-ui/themes';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { useRouter } from "next/navigation";
-import BackBtn from "../back-btn/BackBtn";
+} from '@/components/ui/breadcrumb';
+import { useRouter } from 'next/navigation';
+import BackBtn from '../back-btn/BackBtn';
 
 export interface BreadcrumbLink {
   href: string;
@@ -31,7 +31,7 @@ export function PageBreadcrumb(props: PageBreadcrumbProps) {
           return (
             <Flex
               key={index}
-              direction={"row"}
+              direction={'row'}
               align="center"
               className="text-[16px] flex !flex-row font-bold"
               gap="0"
@@ -39,18 +39,18 @@ export function PageBreadcrumb(props: PageBreadcrumbProps) {
               <BreadcrumbItem
                 className="flex"
                 onClick={() => {
-                  if (link.href === "-1") {
+                  if (link.href === '-1') {
                     router.back();
                   }
                 }}
               >
-                {link.href === "-1" ? (
+                {link.href === '-1' ? (
                   <Text
                     className={`cursor-pointer hover:text-text-primary
                       ${
                         index !== links.length - 1
-                          ? "text-default"
-                          : "text-secondary cursor-not-allowed"
+                          ? 'text-default'
+                          : 'text-secondary cursor-not-allowed'
                       }
                     `}
                   >
@@ -61,20 +61,14 @@ export function PageBreadcrumb(props: PageBreadcrumbProps) {
                     onClick={() => {
                       router.replace(link.href);
                     }}
-                    className={
-                      index == links.length - 1
-                        ? "text-default"
-                        : "text-text-secondary "
-                    }
+                    className={index == links.length - 1 ? 'text-default' : 'text-text-secondary '}
                   >
-                    {" "}
-                    {link.label}{" "}
+                    {' '}
+                    {link.label}{' '}
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
-              {index < links.length - 1 && (
-                <BreadcrumbSeparator className="p-0 ml-2" />
-              )}
+              {index < links.length - 1 && <BreadcrumbSeparator className="p-0 ml-2" />}
             </Flex>
           );
         })}

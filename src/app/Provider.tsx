@@ -1,12 +1,12 @@
-"use client";
-import { PropsWithChildren, useState } from "react";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
+'use client';
+import { PropsWithChildren, useState } from 'react';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
-import { Toaster } from "sonner";
-import { Theme } from "@radix-ui/themes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+import { Toaster } from 'sonner';
+import { Theme } from '@radix-ui/themes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 
@@ -21,7 +21,7 @@ export default function Providers({ children }: PropsWithChildren) {
             staleTime: 60 * 1000,
           },
         },
-      })
+      }),
   );
 
   return (

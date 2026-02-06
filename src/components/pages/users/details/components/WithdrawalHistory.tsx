@@ -1,7 +1,7 @@
-import { DataTable } from "@/components/shared/data-table";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetUserWithdrawHistory } from "@/features/users/services/queries";
-import { historyColDefs } from "./withdrawColDefs";
+import { DataTable } from '@/components/shared/data-table';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetUserWithdrawHistory } from '@/features/users/services/queries';
+import { historyColDefs } from './withdrawColDefs';
 
 const WithdrawalHistory = ({ id }: { id: string }) => {
   const { query } = usePagination();

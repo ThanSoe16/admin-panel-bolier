@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { landingLanguageSchema } from "@/features/landing-languages/types";
+import { z } from 'zod';
+import { landingLanguageSchema } from '@/features/landing-languages/types';
 
 export const termsConditionsSchema = z.object({
   id: z.string(),
@@ -22,14 +22,10 @@ export type TermsConditionsFilter = z.infer<typeof termsConditionsFilterSchema>;
 
 export const updateTermsConditionsSchema = z.object({
   id: z.string(),
-  description: z
-    .string()
-    .min(3, { message: "Description must be at least 3 characters" }),
+  description: z.string().min(3, { message: 'Description must be at least 3 characters' }),
   languageId: z.string(),
 });
-export type UpdateTermsConditionsRequest = z.infer<
-  typeof updateTermsConditionsSchema
->;
+export type UpdateTermsConditionsRequest = z.infer<typeof updateTermsConditionsSchema>;
 
 export const earningWithdrawalTNC = z.object({
   id: z.string(),

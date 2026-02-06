@@ -1,10 +1,6 @@
-import { objectToQueryString } from "@/utils/objectToQueryString";
-import appAxios from "@/lib/appAxios";
-import {
-  APIResponse,
-  APISResponse,
-  PaginationFilter,
-} from "@/features/base/types";
+import { objectToQueryString } from '@/utils/objectToQueryString';
+import appAxios from '@/lib/appAxios';
+import { APIResponse, APISResponse, PaginationFilter } from '@/features/base/types';
 import {
   ApproveWithdrawalRequestRequest,
   RejectWithdrawalRequestRequest,
@@ -13,54 +9,56 @@ import {
   WithdrawalRequestData,
   WithdrawalRequestDetailData,
   WithdrawalSettingData,
-} from "../types";
+} from '../types';
 
 const withdrawalApiService = {
   getWithdrawalHistory: async (filter: PaginationFilter) => {
     const params = objectToQueryString(filter);
     const response = await appAxios.get<APIResponse<WithdrawalRequestData[]>>(
-      `/admin-withdraw/get-withdraw-history-list?${params}`
+      `/admin-withdraw/get-withdraw-history-list?${params}`,
     );
     return response.data;
   },
   getWithdrawalHistoryById: async (id: string) => {
-    const response = await appAxios.get<
-      APISResponse<WithdrawalRequestDetailData>
-    >(`/admin-withdraw/get-withdraw-history-detail/${id}`);
+    const response = await appAxios.get<APISResponse<WithdrawalRequestDetailData>>(
+      `/admin-withdraw/get-withdraw-history-detail/${id}`,
+    );
     return response.data;
   },
   getWithdrawalRequests: async (filter: PaginationFilter) => {
     const params = objectToQueryString(filter);
     const response = await appAxios.get<APIResponse<WithdrawalRequestData[]>>(
-      `/admin-withdraw/get-withdraw-request-list?${params}`
+      `/admin-withdraw/get-withdraw-request-list?${params}`,
     );
     return response.data;
   },
   getWithdrawalRequestById: async (id: string) => {
-    const response = await appAxios.get<
-      APISResponse<WithdrawalRequestDetailData>
-    >(`/admin-withdraw/get-withdraw-request-detail/${id}`);
+    const response = await appAxios.get<APISResponse<WithdrawalRequestDetailData>>(
+      `/admin-withdraw/get-withdraw-request-detail/${id}`,
+    );
     return response.data;
   },
   approveWithdrawalRequest: async (data: ApproveWithdrawalRequestRequest) => {
-    const response = await appAxios.patch<
-      APISResponse<WithdrawalRequestDetailData>
-    >(`/admin-withdraw/approve-onesite-user-withdraw-request/${data.id}`, {
-      paymentProofId: data.paymentProofId,
-    });
+    const response = await appAxios.patch<APISResponse<WithdrawalRequestDetailData>>(
+      `/admin-withdraw/approve-onesite-user-withdraw-request/${data.id}`,
+      {
+        paymentProofId: data.paymentProofId,
+      },
+    );
     return response.data;
   },
   rejectWithdrawalRequest: async (data: RejectWithdrawalRequestRequest) => {
-    const response = await appAxios.patch<
-      APISResponse<WithdrawalRequestDetailData>
-    >(`/admin-withdraw/reject-onesite-user-withdraw-request/${data.id}`, {
-      reason: data.reason,
-    });
+    const response = await appAxios.patch<APISResponse<WithdrawalRequestDetailData>>(
+      `/admin-withdraw/reject-onesite-user-withdraw-request/${data.id}`,
+      {
+        reason: data.reason,
+      },
+    );
     return response.data;
   },
   getWithdrawalSetting: async () => {
     const response = await appAxios.get<APIResponse<WithdrawalSettingData>>(
-      `/membership-admin/get-withdraw-settings`
+      `/membership-admin/get-withdraw-settings`,
     );
     return response.data;
   },
@@ -72,7 +70,7 @@ const withdrawalApiService = {
     };
     const response = await appAxios.patch<APIResponse<WithdrawalRequestData>>(
       `/membership-admin/update-withdraw-setting`,
-      updatedData
+      updatedData,
     );
     return response.data;
   },

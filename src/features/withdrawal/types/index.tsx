@@ -1,6 +1,6 @@
-import { fileUploadResponseSchema } from "@/features/base/types";
-import { userReceivingAccountSchema, userSchema } from "@/features/users/types";
-import { z } from "zod";
+import { fileUploadResponseSchema } from '@/features/base/types';
+import { userReceivingAccountSchema, userSchema } from '@/features/users/types';
+import { z } from 'zod';
 
 export const withdrawalHistorySchema = z.object({
   id: z.string(),
@@ -13,7 +13,7 @@ export const withdrawalHistorySchema = z.object({
     accountNumber: z.string(),
     accountMethodName: z.string(),
   }),
-  status: z.enum(["Accepted", "Rejected"]),
+  status: z.enum(['Accepted', 'Rejected']),
 });
 
 export type WithdrawalHistoryData = z.infer<typeof withdrawalHistorySchema>;
@@ -42,7 +42,7 @@ export const withdrawalRequestSchema = z.object({
     }),
   }),
 
-  OnesiteWithdrawStatus: z.enum(["REQUESTED", "REJECTED", "SUCCESSFUL"]),
+  OnesiteWithdrawStatus: z.enum(['REQUESTED', 'REJECTED', 'SUCCESSFUL']),
 });
 
 export type WithdrawalRequestData = z.infer<typeof withdrawalRequestSchema>;
@@ -57,7 +57,7 @@ export const withdrawalRequestDetailSchema = z.object({
   exchangeFee: z.number(),
   withdrawFee: z.number(),
   totalWithdrawFee: z.number(),
-  withdrawFeeType: z.enum(["PERCENTAGE", "FIX_AMOUNT"]),
+  withdrawFeeType: z.enum(['PERCENTAGE', 'FIX_AMOUNT']),
   transactionFee: z.number(),
   rejectReason: z.null(),
   onesiteUserReceivingAccountId: z.string(),
@@ -69,30 +69,24 @@ export const withdrawalRequestDetailSchema = z.object({
   PaymentProof: fileUploadResponseSchema,
   OneSiteUser: userSchema,
   OnesiteUserReceivingAccount: userReceivingAccountSchema,
-  OnesiteWithdrawStatus: z.enum(["REQUESTED", "REJECTED", "SUCCESSFUL"]),
+  OnesiteWithdrawStatus: z.enum(['REQUESTED', 'REJECTED', 'SUCCESSFUL']),
 });
 
-export type WithdrawalRequestDetailData = z.infer<
-  typeof withdrawalRequestDetailSchema
->;
+export type WithdrawalRequestDetailData = z.infer<typeof withdrawalRequestDetailSchema>;
 
 export const approveWithdrawalRequestSchema = z.object({
   id: z.string(),
   paymentProofId: z.string(),
 });
 
-export type ApproveWithdrawalRequestRequest = z.infer<
-  typeof approveWithdrawalRequestSchema
->;
+export type ApproveWithdrawalRequestRequest = z.infer<typeof approveWithdrawalRequestSchema>;
 
 export const rejectWithdrawalRequestSchema = z.object({
   id: z.string(),
   reason: z.string(),
 });
 
-export type RejectWithdrawalRequestRequest = z.infer<
-  typeof rejectWithdrawalRequestSchema
->;
+export type RejectWithdrawalRequestRequest = z.infer<typeof rejectWithdrawalRequestSchema>;
 
 export const withdrawalSettingSchema = z.object({
   id: z.string(),
@@ -111,6 +105,4 @@ export const updateWithdrawalSettingSchema = z.object({
   dailyTransactionLimit: z.string(),
 });
 
-export type UpdateWithdrawalSettingRequest = z.infer<
-  typeof updateWithdrawalSettingSchema
->;
+export type UpdateWithdrawalSettingRequest = z.infer<typeof updateWithdrawalSettingSchema>;

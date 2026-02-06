@@ -1,11 +1,8 @@
-
-import { NextPage } from "next";
-import SocialLinks from "@/components/pages/settings/social-links";
+import { NextPage } from 'next';
+import SocialLinks from '@/components/pages/settings/social-links';
 
 const SocialLinksPage: NextPage = () => {
-  return (
-    <SocialLinks />
-  )
-}
+  return <SocialLinks />;
+};
 
 export default SocialLinksPage;

@@ -1,17 +1,17 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
-import { Loading } from "@/components/shared/loading";
-import { LandingLanguage } from "@/features/landing-languages/types";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form } from '@/components/ui/form';
+import { Loading } from '@/components/shared/loading';
+import { LandingLanguage } from '@/features/landing-languages/types';
 import {
   CreateSubCategoryRequest,
   createSubCategorySchema,
-} from "@/features/settings/sub-category/types";
-import { useCreateSubCategory } from "@/features/settings/sub-category/services/mutations";
-import SubCategoryForm from "./SubCategoryForm";
+} from '@/features/settings/sub-category/types';
+import { useCreateSubCategory } from '@/features/settings/sub-category/services/mutations';
+import SubCategoryForm from './SubCategoryForm';
 
 interface CreateModalProps {
   open: boolean;
@@ -20,20 +20,15 @@ interface CreateModalProps {
   isLoading?: boolean;
 }
 
-const CreateModal: React.FC<CreateModalProps> = ({
-  open,
-  handleClose,
-  languages,
-  isLoading,
-}) => {
+const CreateModal: React.FC<CreateModalProps> = ({ open, handleClose, languages, isLoading }) => {
   const createSubCategory = useCreateSubCategory();
   const defaultValues: CreateSubCategoryRequest = {
-    templateCategoryId: "",
+    templateCategoryId: '',
     items:
       languages?.map((language) => {
         return {
-          langId: language?.id ?? "",
-          name: "",
+          langId: language?.id ?? '',
+          name: '',
         };
       }) ?? [],
   };
@@ -58,10 +53,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
           <Loading />
         ) : (
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(submit)}
-              className="flex flex-col "
-            >
+            <form onSubmit={form.handleSubmit(submit)} className="flex flex-col ">
               <SubCategoryForm
                 form={form}
                 languages={languages}

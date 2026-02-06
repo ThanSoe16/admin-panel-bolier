@@ -1,4 +1,4 @@
-import DomainDetails from "@/components/pages/users/details/domain-detail";
+import DomainDetails from '@/components/pages/users/details/domain-detail';
 
 interface Props {
   params: Promise<{ domainId: string; id: string }>;

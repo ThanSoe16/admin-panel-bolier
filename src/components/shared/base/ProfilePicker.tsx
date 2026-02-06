@@ -1,10 +1,10 @@
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { Box, Flex } from "@radix-ui/themes";
-import { Loading } from "../loading";
-import { useFileUpload } from "@/features/base/services/mutations";
-import { Camera } from "lucide-react";
-import { cleanAndRenameFile } from "@/utils/cleanAndRenameFile";
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { Box, Flex } from '@radix-ui/themes';
+import { Loading } from '../loading';
+import { useFileUpload } from '@/features/base/services/mutations';
+import { Camera } from 'lucide-react';
+import { cleanAndRenameFile } from '@/utils/cleanAndRenameFile';
 
 const ProfilePicker = ({
   imageURL,
@@ -16,7 +16,7 @@ const ProfilePicker = ({
   width,
   height,
   limitations,
-  id = "file-picker",
+  id = 'file-picker',
 }: {
   imageURL: string;
   setImageURL: React.Dispatch<React.SetStateAction<string>>;
@@ -37,21 +37,21 @@ const ProfilePicker = ({
     file = cleanAndRenameFile(file);
     const allowedFormats = type;
     if (allowedFormats && !allowedFormats.includes(file.type)) {
-      alert("Only .jpg, .jpeg, and .png files are supported.");
+      alert('Only .jpg, .jpeg, and .png files are supported.');
       return;
     }
 
     const maxSize = maxFileInKb ? maxFileInKb * 1024 : 0;
     if (maxSize && file.size > maxSize) {
-      alert("File size must be less than 500 KB.");
+      alert('File size must be less than 500 KB.');
       return;
     }
     if (width && height) {
-      const img = document.createElement("img");
+      const img = document.createElement('img');
       const objectURL = URL.createObjectURL(file);
       img.onload = () => {
         if (img.width !== 500 || img.height !== 500) {
-          alert("Image dimensions must be exactly 500 x 500 px.");
+          alert('Image dimensions must be exactly 500 x 500 px.');
           URL.revokeObjectURL(objectURL);
           return;
         }
@@ -61,8 +61,8 @@ const ProfilePicker = ({
       img.src = objectURL;
     }
     photoUpload.mutateAsync({ file: file }).then((res) => {
-      setImageURL(res?.body?.data?.url ?? "");
-      setImageID(res?.body?.data?.id ?? "");
+      setImageURL(res?.body?.data?.url ?? '');
+      setImageID(res?.body?.data?.id ?? '');
     });
   };
 
@@ -73,21 +73,19 @@ const ProfilePicker = ({
         accept="image/*"
         className="hidden"
         onChange={handleFileChange}
-        id={id ?? "file-picker"}
+        id={id ?? 'file-picker'}
       />
 
       <Flex className="space-x-4  " align="center">
         <Box
           // className="bg-red-500"
           className={cn(
-            className
-              ? className
-              : "w-[150px] h-[150px] relative overflow-hidden",
-            !imageURL ? " bg-blueLight-lightActive" : "",
-            "border rounded-full text-text-secondary bg-brand-secondary"
+            className ? className : 'w-[150px] h-[150px] relative overflow-hidden',
+            !imageURL ? ' bg-blueLight-lightActive' : '',
+            'border rounded-full text-text-secondary bg-brand-secondary',
           )}
         >
-          <label htmlFor={id ?? "file-picker"}>
+          <label htmlFor={id ?? 'file-picker'}>
             {photoUpload.isPending ? (
               <div className="pt-8">
                 <Loading />

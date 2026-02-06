@@ -1,9 +1,8 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Eye, EyeOff } from "lucide-react";
+import * as React from 'react';
+import { cn } from '@/lib/utils';
+import { Eye, EyeOff } from 'lucide-react';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   postfix?: React.ReactNode;
   preFix?: React.ReactNode;
   readonly?: boolean;
@@ -11,25 +10,10 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      type,
-      preFix,
-      postfix,
-      disabled,
-      readOnly,
-      error,
-      maxLength,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, type, preFix, postfix, disabled, readOnly, error, maxLength, ...props }, ref) => {
     const [isPasswordVisible, setPasswordVisible] = React.useState(false);
     const [inputLength, setInputLength] = React.useState(
-      props.value?.toString().length ||
-        props.defaultValue?.toString().length ||
-        0
+      props.value?.toString().length || props.defaultValue?.toString().length || 0,
     );
 
     const togglePasswordVisibility = () => {
@@ -46,14 +30,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative flex items-center">
         <input
-          type={isPasswordVisible ? "text" : type}
+          type={isPasswordVisible ? 'text' : type}
           className={cn(
-            readOnly || disabled ? "bg-gray-100 cursor-not-allowed" : " ",
-            error ? "border-error" : "border-border",
-            "peer flex h-12 w-full rounded-xl border px-3 py-1 text-sm md:text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-base file:font-medium placeholder:text-gray-400 placeholder:text-sm focus:placeholder-white focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50",
-            preFix && "pl-[40px]",
-            (postfix || maxLength) && "pr-[70px]",
-            className
+            readOnly || disabled ? 'bg-gray-100 cursor-not-allowed' : ' ',
+            error ? 'border-error' : 'border-border',
+            'peer flex h-12 w-full rounded-xl border px-3 py-1 text-sm md:text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-base file:font-medium placeholder:text-gray-400 placeholder:text-sm focus:placeholder-white focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50',
+            preFix && 'pl-[40px]',
+            (postfix || maxLength) && 'pr-[70px]',
+            className,
           )}
           ref={ref}
           disabled={disabled}
@@ -79,15 +63,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {props.placeholder}
         </label>
 
-        {type === "password" && (
+        {type === 'password' && (
           <button
             type="button"
-            className={cn(
-              "absolute right-3 top-1/2 transform -translate-y-1/2",
-              {
-                "cursor-not-allowed opacity-50": disabled,
-              }
-            )}
+            className={cn('absolute right-3 top-1/2 transform -translate-y-1/2', {
+              'cursor-not-allowed opacity-50': disabled,
+            })}
             onClick={togglePasswordVisibility}
             disabled={disabled}
           >
@@ -100,9 +81,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
 
         {preFix && (
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-            {preFix}
-          </div>
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2">{preFix}</div>
         )}
 
         {/* ✅ postfix area updated */}
@@ -117,9 +96,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export { Input };

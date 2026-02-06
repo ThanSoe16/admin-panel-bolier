@@ -1,18 +1,18 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
-import { Loading } from "@/components/shared/loading";
-import { LandingLanguage } from "@/features/landing-languages/types";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form } from '@/components/ui/form';
+import { Loading } from '@/components/shared/loading';
+import { LandingLanguage } from '@/features/landing-languages/types';
 import {
   SubCategoryData,
   UpdateSubCategoryRequest,
   updateSubCategorySchema,
-} from "@/features/settings/sub-category/types";
-import { useUpdateSubCategory } from "@/features/settings/sub-category/services/mutations";
-import SubCategoryForm from "./SubCategoryForm";
+} from '@/features/settings/sub-category/types';
+import { useUpdateSubCategory } from '@/features/settings/sub-category/services/mutations';
+import SubCategoryForm from './SubCategoryForm';
 
 interface EditModalProps {
   open: boolean;
@@ -31,8 +31,8 @@ const DetailModal: React.FC<EditModalProps> = ({
 }) => {
   const updateSubCategory = useUpdateSubCategory();
   const defaultValues: UpdateSubCategoryRequest = {
-    id: data.id ?? "",
-    templateCategoryId: data.templateCategoryId ?? "",
+    id: data.id ?? '',
+    templateCategoryId: data.templateCategoryId ?? '',
     items: data.TemplateSubCategoryContent.flatMap((item) => {
       return {
         langId: item.languageId,
@@ -61,10 +61,7 @@ const DetailModal: React.FC<EditModalProps> = ({
           <Loading />
         ) : (
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(submit)}
-              className="flex flex-col "
-            >
+            <form onSubmit={form.handleSubmit(submit)} className="flex flex-col ">
               <SubCategoryForm
                 form={form}
                 languages={languages}

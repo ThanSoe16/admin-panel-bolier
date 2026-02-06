@@ -1,15 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import baseApiService from "@/features/base/services/api";
-import formatAnchorTagValue from "@/utils/formatAnchorTagValue";
+'use client';
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import baseApiService from '@/features/base/services/api';
+import formatAnchorTagValue from '@/utils/formatAnchorTagValue';
 
 const SEOLinkDialog = ({
   isOpen,
@@ -24,9 +19,9 @@ const SEOLinkDialog = ({
   insertLink: (url: string) => void;
   useCustomPreview?: boolean;
 }) => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   // const isValidBrowserLink = (url: string): boolean => {
   //   if (!url) return false;
@@ -61,7 +56,7 @@ const SEOLinkDialog = ({
 
   const handleInsert = async () => {
     if (!url) {
-      setError("Please enter a URL");
+      setError('Please enter a URL');
       return;
     }
 
@@ -76,12 +71,7 @@ const SEOLinkDialog = ({
     //   return;
     // }
 
-    if (
-      !(
-        formattedUrl.startsWith("http://") ||
-        formattedUrl.startsWith("https://")
-      )
-    ) {
+    if (!(formattedUrl.startsWith('http://') || formattedUrl.startsWith('https://'))) {
       insertLink(url);
       handleClose();
       return;
@@ -94,7 +84,7 @@ const SEOLinkDialog = ({
     }
 
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const response = await baseApiService.getSeoPreview({
@@ -102,7 +92,7 @@ const SEOLinkDialog = ({
       });
 
       if (!response?.meta?.success) {
-        throw new Error("Failed to fetch URL");
+        throw new Error('Failed to fetch URL');
       }
 
       const data = response?.body?.data;
@@ -120,8 +110,8 @@ const SEOLinkDialog = ({
   };
 
   const handleClose = () => {
-    setUrl("");
-    setError("");
+    setUrl('');
+    setError('');
     setLoading(false);
     onClose();
   };
@@ -151,12 +141,8 @@ const SEOLinkDialog = ({
             <Button onClick={handleClose} type="button" variant="outline">
               Cancel
             </Button>
-            <Button
-              onClick={handleInsert}
-              disabled={loading || !url}
-              className="w-fit"
-            >
-              {loading ? "Loading..." : "Okay"}
+            <Button onClick={handleInsert} disabled={loading || !url} className="w-fit">
+              {loading ? 'Loading...' : 'Okay'}
             </Button>
           </div>
         </div>

@@ -1,14 +1,14 @@
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Form } from "@/components/ui/form";
-import { useUpdateWithdrawalSetting } from "@/features/withdrawal/services/mutations";
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
+import { useUpdateWithdrawalSetting } from '@/features/withdrawal/services/mutations';
 import {
   UpdateWithdrawalSettingRequest,
   updateWithdrawalSettingSchema,
   WithdrawalSettingData,
-} from "@/features/withdrawal/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import WithdrawSettingForm from "./WithdrawSettingForm";
+} from '@/features/withdrawal/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import WithdrawSettingForm from './WithdrawSettingForm';
 
 const WithdrawSetting = ({
   open,
@@ -24,9 +24,9 @@ const WithdrawSetting = ({
   const form = useForm<UpdateWithdrawalSettingRequest>({
     resolver: zodResolver(updateWithdrawalSettingSchema),
     defaultValues: {
-      dailyTransactionLimit: data.dailyTransactionLimit.toString() ?? "1",
-      monthlyWithdrawLimit: data.monthlyWithdrawLimit.toString() ?? "1",
-      monthlyWithdrawDate: data.monthlyWithdrawDate.toString() ?? "1",
+      dailyTransactionLimit: data.dailyTransactionLimit.toString() ?? '1',
+      monthlyWithdrawLimit: data.monthlyWithdrawLimit.toString() ?? '1',
+      monthlyWithdrawDate: data.monthlyWithdrawDate.toString() ?? '1',
     },
   });
 
@@ -45,7 +45,7 @@ const WithdrawSetting = ({
             <WithdrawSettingForm
               form={form}
               handleClose={() => handleClose(false)}
-              mode={"update"}
+              mode={'update'}
               isLoading={updateWithdrawalSetting.isPending}
             />
           </form>

@@ -1,21 +1,21 @@
-"use client";
-import React from "react";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+'use client';
+import React from 'react';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import {
   ContactUSType,
   UpdateContactApiType,
   updateContactUsSchema,
   UpdateContactUSType,
-} from "@/features/settings/contact-us/types";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import CustomTextArea from "@/components/shared/custom-textarea";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useUpdateContactUs } from "@/features/settings/contact-us/services/mutations";
-import Image from "next/image";
-import { toast } from "sonner";
-import { PencilIcon } from "lucide-react";
+} from '@/features/settings/contact-us/types';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import CustomTextArea from '@/components/shared/custom-textarea';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useUpdateContactUs } from '@/features/settings/contact-us/services/mutations';
+import Image from 'next/image';
+import { toast } from 'sonner';
+import { PencilIcon } from 'lucide-react';
 
 interface ContactUSTypeProps {
   data: ContactUSType;
@@ -23,16 +23,12 @@ interface ContactUSTypeProps {
   setIsEditing: (isEditing: boolean) => void;
 }
 
-const ContactUsForm: React.FC<ContactUSTypeProps> = ({
-  data,
-  isEditing,
-  setIsEditing,
-}) => {
+const ContactUsForm: React.FC<ContactUSTypeProps> = ({ data, isEditing, setIsEditing }) => {
   const { mutateAsync, isPending } = useUpdateContactUs();
 
   const defaultValues: UpdateContactUSType = {
     office: data.office,
-    phoneNumbers: data.phoneNumbers.join(", "),
+    phoneNumbers: data.phoneNumbers.join(', '),
     email: data.email,
     operationHours: data.operationHours,
     contents: data.ContactUsContent.map((content) => ({
@@ -53,8 +49,8 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
       const dataToSend: UpdateContactApiType = {
         office: submittedData.office,
         phoneNumbers: submittedData.phoneNumbers
-          .split(",")
-          .map((num) => num.replace(/[^\d+]/g, "").trim()),
+          .split(',')
+          .map((num) => num.replace(/[^\d+]/g, '').trim()),
         email: submittedData.email,
         operationHours: submittedData.operationHours,
         contents: submittedData.contents.map((content) => ({
@@ -77,7 +73,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
         // Reset form with the updated data
         form.reset({
           office: dataToSend.office,
-          phoneNumbers: dataToSend.phoneNumbers.join(", "),
+          phoneNumbers: dataToSend.phoneNumbers.join(', '),
           email: dataToSend.email,
           operationHours: dataToSend.operationHours,
           contents: dataToSend.contents.map((content) => ({
@@ -89,7 +85,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
         });
       } else {
         const errorResponse: any = response;
-        toast.error(errorResponse.error?.data?.message ?? "");
+        toast.error(errorResponse.error?.data?.message ?? '');
       }
     } catch (error) {}
   };
@@ -109,8 +105,8 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
                   className="rounded-full w-5 h-5"
                 />
                 <p className="font-bold text-default text-base">
-                  {" "}
-                  Main Title For {content?.Language.name}{" "}
+                  {' '}
+                  Main Title For {content?.Language.name}{' '}
                 </p>
               </div>
               <FormField
@@ -119,12 +115,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        {...field}
-                        maxLength={60}
-                        placeholder="Title"
-                        disabled={!isEditing}
-                      />
+                      <Input {...field} maxLength={60} placeholder="Title" disabled={!isEditing} />
                     </FormControl>
                   </FormItem>
                 )}
@@ -161,8 +152,8 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
                   className="rounded-full w-5 h-5"
                 />
                 <p className="font-bold text-default text-base">
-                  {" "}
-                  Social List Title For {content?.Language.name}{" "}
+                  {' '}
+                  Social List Title For {content?.Language.name}{' '}
                 </p>
               </div>
               <FormField
@@ -171,12 +162,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        {...field}
-                        maxLength={60}
-                        disabled={!isEditing}
-                        placeholder="Title"
-                      />
+                      <Input {...field} maxLength={60} disabled={!isEditing} placeholder="Title" />
                     </FormControl>
                   </FormItem>
                 )}
@@ -184,10 +170,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
             </div>
           ))}
 
-          <h2 className="pt-6 pb-2 font-bold text-default text-base">
-            {" "}
-            Contact Information{" "}
-          </h2>
+          <h2 className="pt-6 pb-2 font-bold text-default text-base"> Contact Information </h2>
 
           <FormField
             control={form.control}
@@ -195,12 +178,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    {...field}
-                    disabled={!isEditing}
-                    placeholder="Office"
-                    maxLength={255}
-                  />
+                  <Input {...field} disabled={!isEditing} placeholder="Office" maxLength={255} />
                 </FormControl>
               </FormItem>
             )}
@@ -236,11 +214,7 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    {...field}
-                    disabled={!isEditing}
-                    placeholder="Operation Hours"
-                  />
+                  <Input {...field} disabled={!isEditing} placeholder="Operation Hours" />
                 </FormControl>
               </FormItem>
             )}
@@ -261,8 +235,8 @@ const ContactUsForm: React.FC<ContactUSTypeProps> = ({
                   Cancel
                 </Button>
                 <Button loading={isPending} addDoneIcon>
-                  {" "}
-                  Update{" "}
+                  {' '}
+                  Update{' '}
                 </Button>
               </>
             ) : (

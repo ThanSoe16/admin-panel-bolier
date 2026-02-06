@@ -1,24 +1,24 @@
-import { MoneyInput } from "@/components/shared/base/MoneyInput";
-import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
+import { MoneyInput } from '@/components/shared/base/MoneyInput';
+import { Button } from '@/components/ui/button';
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Grid } from "@radix-ui/themes";
+} from '@/components/ui/select';
+import { Grid } from '@radix-ui/themes';
 
 const WithdrawSettingForm = ({
   form,
   handleClose,
-  mode = "create",
+  mode = 'create',
   isLoading = false,
 }: {
   form: any;
   handleClose: () => void;
-  mode: "create" | "update" | "view";
+  mode: 'create' | 'update' | 'view';
   isLoading?: boolean;
 }) => {
   return (
@@ -43,13 +43,7 @@ const WithdrawSettingForm = ({
                   {Array.from({ length: 31 }, (_, i) => i + 1).map((num) => (
                     <SelectItem value={String(num)} key={num}>
                       {num.toString()}
-                      {num == 1
-                        ? "st"
-                        : num == 2
-                        ? "nd"
-                        : num == 3
-                        ? "rd"
-                        : "th"}
+                      {num == 1 ? 'st' : num == 2 ? 'nd' : num == 3 ? 'rd' : 'th'}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -99,7 +93,7 @@ const WithdrawSettingForm = ({
           className="text-text-primary min-w-[110px]"
           type="button"
           onClick={() => handleClose()}
-          size={"lg"}
+          size={'lg'}
         >
           Cancel
         </Button>
@@ -108,9 +102,9 @@ const WithdrawSettingForm = ({
           loading={isLoading}
           addDoneIcon
           // disabled={!form.formState.isValid}
-          size={"lg"}
+          size={'lg'}
         >
-          {mode == "create" ? `Add` : "Update"}
+          {mode == 'create' ? `Add` : 'Update'}
         </Button>
       </div>
     </div>

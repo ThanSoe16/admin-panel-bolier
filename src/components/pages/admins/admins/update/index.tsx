@@ -1,9 +1,9 @@
-"use client";
-import { useGetAdminDetail } from "@/features/admins/services/queries";
-import AdminUpdateForm from "../_components/AdminUpdateForm";
-import { Loading } from "@/components/shared/loading";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import ErrorContainer from "@/components/shared/base/ErrorContainer";
+'use client';
+import { useGetAdminDetail } from '@/features/admins/services/queries';
+import AdminUpdateForm from '../_components/AdminUpdateForm';
+import { Loading } from '@/components/shared/loading';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import ErrorContainer from '@/components/shared/base/ErrorContainer';
 
 const AdminUpdate = ({ id }: { id: string }) => {
   const adminDetail = useGetAdminDetail(id);
@@ -11,8 +11,8 @@ const AdminUpdate = ({ id }: { id: string }) => {
     <div>
       <PageBreadcrumb
         links={[
-          { label: "Admin Lists", href: "/admins/list" },
-          { label: "Edit Admin", href: "#" },
+          { label: 'Admin Lists', href: '/admins/list' },
+          { label: 'Edit Admin', href: '#' },
         ]}
         enableBack
       />
@@ -21,9 +21,7 @@ const AdminUpdate = ({ id }: { id: string }) => {
       ) : adminDetail.error ? (
         <ErrorContainer />
       ) : (
-        adminDetail?.data?.body?.data && (
-          <AdminUpdateForm data={adminDetail?.data?.body?.data} />
-        )
+        adminDetail?.data?.body?.data && <AdminUpdateForm data={adminDetail?.data?.body?.data} />
       )}
     </div>
   );

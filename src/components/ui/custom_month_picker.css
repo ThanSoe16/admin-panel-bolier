@@ -1,15 +1,12 @@
-
-
 /* month picker header */
-.react-datepicker__month-wrapper{
+.react-datepicker__month-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
-
 /* 3month row */
-.react-datepicker__month-text{
+.react-datepicker__month-text {
   padding: 4px 0;
 }

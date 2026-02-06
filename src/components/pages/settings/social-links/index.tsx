@@ -1,57 +1,44 @@
-"use client";
-import React, { useRef } from "react";
-import Image from "next/image";
-import { toast } from "sonner";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { Card, CardContent } from "@/components/ui/card";
-import PageTitle from "@/components/shared/PageTitle";
-import { Loading } from "@/components/shared/loading";
+'use client';
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import { toast } from 'sonner';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Card, CardContent } from '@/components/ui/card';
+import PageTitle from '@/components/shared/PageTitle';
+import { Loading } from '@/components/shared/loading';
 import {
   useGetSocialLinkIcons,
   useGetSocialLinks,
-} from "@/features/settings/socials/services/queries";
-import { SocialLinksType } from "@/features/settings/socials/types";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { SelectIconsDialog } from "./components/SelectIconsDialog";
-import { ChevronDown } from "lucide-react";
-import { ConfirmStatusDialog } from "./components/ConfirmDialog";
+} from '@/features/settings/socials/services/queries';
+import { SocialLinksType } from '@/features/settings/socials/types';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { Input } from '@/components/ui/input';
+import { Switch } from '@/components/ui/switch';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { SelectIconsDialog } from './components/SelectIconsDialog';
+import { ChevronDown } from 'lucide-react';
+import { ConfirmStatusDialog } from './components/ConfirmDialog';
 import {
   useDragAndSortSocialLinks,
   useUpdateSocialLinks,
-} from "@/features/settings/socials/services/mutations";
+} from '@/features/settings/socials/services/mutations';
 
 type SocialLinkFormType = {
   links: {
     linkAddress: string;
-    Status: "ACTIVE" | "INACTIVE";
+    Status: 'ACTIVE' | 'INACTIVE';
     fileId?: string;
     name?: string;
     id: string;
   }[];
 };
 
-const ITEM_TYPE = "SOCIAL_LINK";
+const ITEM_TYPE = 'SOCIAL_LINK';
 
-const DraggableRow = ({
-  link,
-  index,
-  moveRow,
-  isEditing,
-  handleModalOpen,
-  handleStatusChange,
-}) => {
+const DraggableRow = ({ link, index, moveRow, isEditing, handleModalOpen, handleStatusChange }) => {
   const ref = useRef(null);
   const [, drop] = useDrop({
     accept: ITEM_TYPE,
@@ -78,23 +65,15 @@ const DraggableRow = ({
     <div
       ref={ref}
       className={`relative w-full flex items-center gap-2 md:gap-3 ${
-        isDragging ? "opacity-50" : ""
+        isDragging ? 'opacity-50' : ''
       }`}
     >
       {/* Drag Icon (Only allows dragging when editing) */}
       <div
         ref={ref}
-        className={`cursor-grab ${
-          isEditing ? "opacity-100" : "opacity-50 cursor-not-allowed"
-        }`}
+        className={`cursor-grab ${isEditing ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}
       >
-        <Image
-          src="/components/drag.svg"
-          alt="Drag"
-          width={24}
-          height={24}
-          className="w-6 h-6"
-        />
+        <Image src="/components/drag.svg" alt="Drag" width={24} height={24} className="w-6 h-6" />
       </div>
 
       {/* Avatar */}
@@ -109,9 +88,7 @@ const DraggableRow = ({
 
       {/* Chevron */}
       <div
-        className={
-          isEditing ? "cursor-pointer" : "cursor-not-allowed opacity-50"
-        }
+        className={isEditing ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}
         onClick={isEditing ? () => handleModalOpen(index) : undefined}
       >
         <ChevronDown className="w-4 h-4 md:w-6 md:h-6 text-default-secondary" />
@@ -123,7 +100,7 @@ const DraggableRow = ({
         render={({ field }) => (
           <FormItem className="mt-0 w-full relative">
             <FormLabel className="text-xs md:text-sm absolute top-0 left-2 z-10 text-default-secondary bg-white">
-              {isEditing ? "Paste link here*" : "Link*"}
+              {isEditing ? 'Paste link here*' : 'Link*'}
             </FormLabel>
             <FormControl>
               <Input {...field} disabled={!isEditing} className="w-full h-14" />
@@ -139,10 +116,8 @@ const DraggableRow = ({
           <FormItem className="mt-0">
             <FormControl>
               <Switch
-                checked={field.value === "ACTIVE"}
-                onCheckedChange={(checked) =>
-                  handleStatusChange(index, checked)
-                }
+                checked={field.value === 'ACTIVE'}
+                onCheckedChange={(checked) => handleStatusChange(index, checked)}
                 disabled={!isEditing}
               />
             </FormControl>
@@ -156,16 +131,13 @@ const DraggableRow = ({
 const SocialLinks = () => {
   const { data: socialLinks, isLoading } = useGetSocialLinks();
   const { data: socialLinkIcons } = useGetSocialLinkIcons();
-  const { mutateAsync: formUpdating, isPending: formSubmitting } =
-    useUpdateSocialLinks();
+  const { mutateAsync: formUpdating, isPending: formSubmitting } = useUpdateSocialLinks();
   const { mutateAsync: dragHandler } = useDragAndSortSocialLinks();
 
   const [data, setData] = React.useState<SocialLinksType[]>([]);
   const [isEditing, setIsEditing] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [currentEditingIndex, setCurrentEditingIndex] = React.useState<
-    number | null
-  >(null);
+  const [currentEditingIndex, setCurrentEditingIndex] = React.useState<number | null>(null);
   const [statusDialogOpen, setStatusDialogOpen] = React.useState(false);
   const [pendingStatusChange, setPendingStatusChange] = React.useState<{
     index: number;
@@ -184,10 +156,10 @@ const SocialLinks = () => {
       setData(socialLinks.body.data);
       form.reset({
         links: socialLinks.body.data.map((link) => ({
-          linkAddress: link.linkAddress ?? "",
-          Status: (link.Status ?? "INACTIVE") as "INACTIVE" | "ACTIVE",
-          fileId: link.fileId ?? "",
-          name: link.name ?? "",
+          linkAddress: link.linkAddress ?? '',
+          Status: (link.Status ?? 'INACTIVE') as 'INACTIVE' | 'ACTIVE',
+          fileId: link.fileId ?? '',
+          name: link.name ?? '',
           id: link.id,
         })),
       });
@@ -217,7 +189,7 @@ const SocialLinks = () => {
   const handleStatusChangeConfirm = () => {
     if (pendingStatusChange) {
       const { index, newStatus } = pendingStatusChange;
-      form.setValue(`links.${index}.Status`, newStatus ? "ACTIVE" : "INACTIVE");
+      form.setValue(`links.${index}.Status`, newStatus ? 'ACTIVE' : 'INACTIVE');
       setStatusDialogOpen(false);
       setPendingStatusChange(null);
     }
@@ -241,16 +213,14 @@ const SocialLinks = () => {
       const response = await formUpdating({ links: formData });
 
       if (response.meta?.success) {
-        toast.success(response?.meta?.message ?? "Successfully updated.");
+        toast.success(response?.meta?.message ?? 'Successfully updated.');
         setIsEditing(false);
       } else {
         const errorResponse: any = response;
-        toast.error(errorResponse.error?.data?.message ?? "");
+        toast.error(errorResponse.error?.data?.message ?? '');
       }
     } catch (error: any) {
-      toast.error(
-        error?.response?.data?.meta?.message ?? "Something went wrong",
-      );
+      toast.error(error?.response?.data?.meta?.message ?? 'Something went wrong');
     }
   };
 
@@ -330,9 +300,7 @@ const SocialLinks = () => {
           open={modalOpen}
           onClose={() => setModalOpen(false)}
           availableLinks={
-            Array.isArray(socialLinkIcons?.body?.data)
-              ? (socialLinkIcons?.body?.data ?? [])
-              : []
+            Array.isArray(socialLinkIcons?.body?.data) ? (socialLinkIcons?.body?.data ?? []) : []
           }
           selectedLinks={data}
           onSelect={handleIconSelect}

@@ -1,61 +1,55 @@
-"use client";
-import React from "react";
-import { DataTable } from "@/components/shared/data-table";
-import { ColumnDef } from "@tanstack/react-table";
-import { UserTransaction } from "@/features/users/types";
-import Status from "@/components/shared/Status";
-import dayjs from "dayjs";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetUserTransactions } from "@/features/users/services/queries";
-import { getFeeTypeName, getFeeTypeRoute } from "@/utils/getFeeTypeName";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import Link from "next/link";
+'use client';
+import React from 'react';
+import { DataTable } from '@/components/shared/data-table';
+import { ColumnDef } from '@tanstack/react-table';
+import { UserTransaction } from '@/features/users/types';
+import Status from '@/components/shared/Status';
+import dayjs from 'dayjs';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetUserTransactions } from '@/features/users/services/queries';
+import { getFeeTypeName, getFeeTypeRoute } from '@/utils/getFeeTypeName';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import Link from 'next/link';
 
 const columnDefs: ColumnDef<UserTransaction>[] = [
   {
-    accessorKey: "FeeType",
-    header: "Type",
+    accessorKey: 'FeeType',
+    header: 'Type',
     cell: ({ row }) => <span>{getFeeTypeName(row?.original?.FeeType)}</span>,
   },
   {
-    accessorKey: "content",
-    header: "Content",
+    accessorKey: 'content',
+    header: 'Content',
     cell: ({ row }) => <span>{row?.original?.content}</span>,
   },
   {
-    accessorKey: "status",
-    header: "Payment Status",
+    accessorKey: 'status',
+    header: 'Payment Status',
     cell: ({ row }) => (
       <Status
-        showGreenDot={row?.original?.PaymentStatus === "SUCCESSFUL"}
+        showGreenDot={row?.original?.PaymentStatus === 'SUCCESSFUL'}
         status={row?.original?.PaymentStatus}
       />
     ),
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: 'amount',
+    header: 'Amount',
     cell: ({ row }) => <span> ${CurrencyFormat(row?.original?.total)}</span>,
   },
   {
-    accessorKey: "createdAt",
-    header: "Date",
+    accessorKey: 'createdAt',
+    header: 'Date',
     size: 200,
-    cell: ({ row }) => (
-      <span>
-        {" "}
-        {dayjs(row?.original?.createdAt).format("DD MMM YYYY, HH:mm")}
-      </span>
-    ),
+    cell: ({ row }) => <span> {dayjs(row?.original?.createdAt).format('DD MMM YYYY, HH:mm')}</span>,
   },
   {
-    header: "Actions",
+    header: 'Actions',
     cell: ({ row }) => (
       <Link
         href={
-          row.original.FeeType == "DOMAIN_REGISTRATION" ||
-          row.original.FeeType == "DOMAIN_RENEWAL"
+          row.original.FeeType == 'DOMAIN_REGISTRATION' || row.original.FeeType == 'DOMAIN_RENEWAL'
             ? `/users/all/${row.original.oneSiteUserId}/${row?.original?.id}`
             : `${getFeeTypeRoute(row?.original?.FeeType)}/${row?.original?.id}`
         }

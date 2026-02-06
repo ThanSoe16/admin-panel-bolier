@@ -1,11 +1,8 @@
-
-import { NextPage } from "next";
-import CreateFAQ from "@/components/pages/settings/faq/create";
+import { NextPage } from 'next';
+import CreateFAQ from '@/components/pages/settings/faq/create';
 
 const CreateFAQPage: NextPage = () => {
-  return (
-      <CreateFAQ />
-  )
-}
+  return <CreateFAQ />;
+};
 
 export default CreateFAQPage;

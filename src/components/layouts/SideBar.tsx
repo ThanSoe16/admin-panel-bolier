@@ -1,19 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import { Box, Flex } from "@radix-ui/themes";
-import { ChevronDown, ChevronsLeft, ChevronsRight } from "lucide-react";
-import useSideBarStore from "@/store";
-import { cn } from "@/lib/utils";
-import { Image } from "../ui/image";
-import { useNavigation } from "@/features/base/hooks/useNavigation";
-import { Menu } from "@/data/menu";
-import { useRouter } from "next/navigation";
-import { useScreenSize } from "@/features/base/hooks/useScreenSize";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+'use client';
+import React, { useState } from 'react';
+import { Box, Flex } from '@radix-ui/themes';
+import { ChevronDown, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import useSideBarStore from '@/store';
+import { cn } from '@/lib/utils';
+import { Image } from '../ui/image';
+import { useNavigation } from '@/features/base/hooks/useNavigation';
+import { Menu } from '@/data/menu';
+import { useRouter } from 'next/navigation';
+import { useScreenSize } from '@/features/base/hooks/useScreenSize';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
 const SideBar: React.FC = () => {
   const { collapse, setCollapse } = useSideBarStore();
@@ -39,8 +35,8 @@ const SideBar: React.FC = () => {
           align="center"
           justify="between"
           className={cn(
-            item.active ? "bg-primary" : "hover:bg-white hover:text-black",
-            "space-x-2 py-3 px-4 rounded-xl"
+            item.active ? 'bg-primary' : 'hover:bg-white hover:text-black',
+            'space-x-2 py-3 px-4 rounded-xl',
           )}
           onClick={() => {
             if (item.subPaths) {
@@ -57,10 +53,7 @@ const SideBar: React.FC = () => {
             {item.active ? item.activeIcon : item.icon}
             {!collapse && (
               <div
-                className={cn(
-                  item.active ? "text-white font-bold " : " ",
-                  "w-[155px] truncate"
-                )}
+                className={cn(item.active ? 'text-white font-bold ' : ' ', 'w-[155px] truncate')}
               >
                 {item.name}
               </div>
@@ -69,9 +62,9 @@ const SideBar: React.FC = () => {
           {!collapse && item.subPaths && (
             <ChevronDown
               className={cn(
-                "w-4 h-4 transition-transform",
-                openDropdowns[item.path] ? "rotate-180" : "",
-                item.active ? "text-white" : ""
+                'w-4 h-4 transition-transform',
+                openDropdowns[item.path] ? 'rotate-180' : '',
+                item.active ? 'text-white' : '',
               )}
             />
           )}
@@ -83,7 +76,7 @@ const SideBar: React.FC = () => {
                 key={subItem.path}
                 align="center"
                 className={cn(
-                  "rounded-lg px-4 py-3 cursor-pointer transition-all mb-1 hover:bg-white hover:text-black"
+                  'rounded-lg px-4 py-3 cursor-pointer transition-all mb-1 hover:bg-white hover:text-black',
                 )}
                 onClick={() => {
                   router.push(subItem.path);
@@ -94,9 +87,7 @@ const SideBar: React.FC = () => {
               >
                 <Flex align="center" gap="2">
                   <div className="w-6 h-6" />
-                  <div
-                    className={subItem.active ? "text-primary font-bold" : ""}
-                  >
+                  <div className={subItem.active ? 'text-primary font-bold' : ''}>
                     {subItem.name}
                   </div>
                 </Flex>
@@ -112,10 +103,7 @@ const SideBar: React.FC = () => {
       <div>
         {!item.subPaths && (
           <div
-            className={cn(
-              item.active ? "bg-primary" : "",
-              "py-3 px-4 rounded-xl"
-            )}
+            className={cn(item.active ? 'bg-primary' : '', 'py-3 px-4 rounded-xl')}
             onClick={() => {
               router.push(item.path);
             }}
@@ -126,10 +114,7 @@ const SideBar: React.FC = () => {
         {item.subPaths && (
           <DropdownMenu>
             <DropdownMenuTrigger
-              className={cn(
-                item.active ? "bg-primary" : "",
-                "py-3 px-4 rounded-xl"
-              )}
+              className={cn(item.active ? 'bg-primary' : '', 'py-3 px-4 rounded-xl')}
             >
               {item.active ? item.activeIcon : item.icon}
             </DropdownMenuTrigger>
@@ -140,7 +125,7 @@ const SideBar: React.FC = () => {
                     key={subItem.path}
                     align="center"
                     className={cn(
-                      "rounded-lg px-4 py-3 cursor-pointer transition-all mb-1 hover:bg-white hover:text-black"
+                      'rounded-lg px-4 py-3 cursor-pointer transition-all mb-1 hover:bg-white hover:text-black',
                     )}
                     onClick={() => {
                       router.push(subItem.path);
@@ -150,11 +135,7 @@ const SideBar: React.FC = () => {
                     }}
                   >
                     <Flex align="center" gap="2">
-                      <div
-                        className={
-                          subItem.active ? "text-primary font-bold" : ""
-                        }
-                      >
+                      <div className={subItem.active ? 'text-primary font-bold' : ''}>
                         {subItem.name}
                       </div>
                     </Flex>
@@ -173,27 +154,15 @@ const SideBar: React.FC = () => {
       <div className="h-full w-full bg-secondary relative cursor-pointer">
         <Box
           className={cn(
-            collapse ? "bg-primary " : "bg-primary",
-            "h-[70px] px-4 bg-cover bg-center bg-no-repeat"
+            collapse ? 'bg-primary ' : 'bg-primary',
+            'h-[70px] px-4 bg-cover bg-center bg-no-repeat',
           )}
         >
-          <Flex
-            justify={collapse ? "center" : "between"}
-            align="center"
-            className="h-full w-full"
-          >
+          <Flex justify={collapse ? 'center' : 'between'} align="center" className="h-full w-full">
             {!collapse && (
-              <Image
-                src="/primary-logo.png"
-                width={130}
-                height={40}
-                alt="Profile Image"
-              />
+              <Image src="/primary-logo.png" width={130} height={40} alt="Profile Image" />
             )}
-            <div
-              onClick={() => setCollapse(!collapse)}
-              className="cursor-pointer"
-            >
+            <div onClick={() => setCollapse(!collapse)} className="cursor-pointer">
               {collapse ? (
                 <ChevronsRight className="text-white w-6 h-6" />
               ) : (

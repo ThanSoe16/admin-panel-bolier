@@ -136,8 +136,8 @@
 }
 
 /* Ensure all alignment buttons show correctly */
-.ql-align-left .ql-picker-item[data-value=""],
-.ql-align-left .ql-picker-item[data-value="left"] {
+.ql-align-left .ql-picker-item[data-value=''],
+.ql-align-left .ql-picker-item[data-value='left'] {
   display: block;
 }
 
@@ -145,19 +145,19 @@
   text-align: inherit;
 }
 
-[data-ql-align="left"] {
+[data-ql-align='left'] {
   text-align: left;
 }
 
-[data-ql-align="center"] {
+[data-ql-align='center'] {
   text-align: center;
 }
 
-[data-ql-align="right"] {
+[data-ql-align='right'] {
   text-align: right;
 }
 
-[data-ql-align="justify"] {
+[data-ql-align='justify'] {
   text-align: justify;
 }
 
@@ -195,13 +195,13 @@
   color: white;
 }
 
-.dark .ql-snow .ql-tooltip input[type="text"] {
+.dark .ql-snow .ql-tooltip input[type='text'] {
   background-color: #0f172a;
   border-color: #334155;
   color: white;
 }
 
-.ql-tooltip.ql-editing[data-mode="link"] {
+.ql-tooltip.ql-editing[data-mode='link'] {
   left: 0 !important;
 }
 

@@ -1,11 +1,8 @@
-
-import { NextPage } from "next";
-import Maintenance from "@/components/pages/settings/maintenance";
+import { NextPage } from 'next';
+import Maintenance from '@/components/pages/settings/maintenance';
 
 const MaintenancePage: NextPage = () => {
-  return (
-    <Maintenance />
-  )
-}
+  return <Maintenance />;
+};
 
 export default MaintenancePage;

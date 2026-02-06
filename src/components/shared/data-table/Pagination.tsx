@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   PaginationContent,
   Pagination as SPagination,
@@ -7,17 +7,17 @@ import {
   PaginationLink,
   PaginationEllipsis,
   PaginationNext,
-} from "@/components/ui/pagination";
-import { Box } from "@radix-ui/themes";
+} from '@/components/ui/pagination';
+import { Box } from '@radix-ui/themes';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import { usePagination } from "@/features/base/hooks/usePagination";
+} from '@/components/ui/select';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import { usePagination } from '@/features/base/hooks/usePagination';
 
 const pageSizes = [10, 20, 50];
 
@@ -37,13 +37,10 @@ export function Pagination({ currentPage, pageSize, total }: PaginationProps) {
     const pushPage = (page: number) => {
       items.push(
         <PaginationItem key={page}>
-          <PaginationLink
-            isActive={currentPage === page}
-            onClick={() => setPageIndex(page)}
-          >
+          <PaginationLink isActive={currentPage === page} onClick={() => setPageIndex(page)}>
             {page}
           </PaginationLink>
-        </PaginationItem>
+        </PaginationItem>,
       );
     };
 
@@ -51,7 +48,7 @@ export function Pagination({ currentPage, pageSize, total }: PaginationProps) {
       items.push(
         <PaginationItem key={key}>
           <PaginationEllipsis />
-        </PaginationItem>
+        </PaginationItem>,
       );
     };
 
@@ -60,7 +57,7 @@ export function Pagination({ currentPage, pageSize, total }: PaginationProps) {
 
     // Left ellipsis
     if (currentPage > 3) {
-      pushEllipsis("left");
+      pushEllipsis('left');
     }
 
     // Middle pages (sliding window)
@@ -73,7 +70,7 @@ export function Pagination({ currentPage, pageSize, total }: PaginationProps) {
 
     // Right ellipsis
     if (currentPage < totalPageCount - 2) {
-      pushEllipsis("right");
+      pushEllipsis('right');
     }
 
     // Always show last page
@@ -135,9 +132,7 @@ export function Pagination({ currentPage, pageSize, total }: PaginationProps) {
           </SelectContent>
         </Select>
 
-        <div className="font-normal text-sm text-default">
-          of {CurrencyFormat(totalPageCount)}
-        </div>
+        <div className="font-normal text-sm text-default">of {CurrencyFormat(totalPageCount)}</div>
       </div>
     </div>
   );

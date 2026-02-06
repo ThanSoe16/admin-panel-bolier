@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import { Flex } from "@radix-ui/themes";
-import { Trash2 } from "lucide-react";
-import { JSX } from "react";
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
+import { Flex } from '@radix-ui/themes';
+import { Trash2 } from 'lucide-react';
+import { JSX } from 'react';
 
 interface SecondarySuccessDialogProps {
   open: boolean;
@@ -24,7 +24,7 @@ const ConfirmationDialog: React.FC<SecondarySuccessDialogProps> = ({
   onPress,
   isDelete,
   isLoading,
-  confirmText = "Confirm",
+  confirmText = 'Confirm',
   enableDeleteIcon = false,
 }) => {
   return (
@@ -35,12 +35,10 @@ const ConfirmationDialog: React.FC<SecondarySuccessDialogProps> = ({
             <Flex direction="column" justify="center" align="center">
               <div className="">
                 <Flex align="center" justify="between">
-                  <div className="font-bold text-blueDark-normal text-xl">
-                    {title}
-                  </div>
+                  <div className="font-bold text-blueDark-normal text-xl">{title}</div>
                 </Flex>
                 <div className="text-base pt-3">{desc}</div>
-                <Flex className="gap-4" justify={"end"}>
+                <Flex className="gap-4" justify={'end'}>
                   <Button
                     variant="outline"
                     size="lg"
@@ -52,8 +50,8 @@ const ConfirmationDialog: React.FC<SecondarySuccessDialogProps> = ({
                   <Button
                     size="lg"
                     className={cn(
-                      isDelete ? "bg-error hover:bg-red-400" : "bg-success",
-                      "mt-6 w-[120px]"
+                      isDelete ? 'bg-error hover:bg-red-400' : 'bg-success',
+                      'mt-6 w-[120px]',
                     )}
                     onClick={onPress}
                     loading={isLoading}

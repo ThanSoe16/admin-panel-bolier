@@ -1,4 +1,4 @@
-import WithdrawalHistoryDetail from "@/components/pages/users/withdrawal-history/details";
+import WithdrawalHistoryDetail from '@/components/pages/users/withdrawal-history/details';
 
 interface Props {
   params: Promise<{ id: string }>;

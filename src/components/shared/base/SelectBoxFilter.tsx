@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Select,
@@ -6,9 +6,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { useQueryState, parseAsString } from "nuqs";
+} from '@/components/ui/select';
+import { cn } from '@/lib/utils';
+import { useQueryState, parseAsString } from 'nuqs';
 
 interface Props {
   selectParam?: string;
@@ -22,15 +22,15 @@ interface Props {
 }
 
 const SelectBoxFilter = ({
-  selectParam = "select",
+  selectParam = 'select',
   arr,
   classNames,
-  placeholder = "Select",
+  placeholder = 'Select',
   value,
 }: Props) => {
   const [search, setSearch] = useQueryState(
     selectParam,
-    parseAsString.withDefault(value ?? arr[0].value)
+    parseAsString.withDefault(value ?? arr[0].value),
   );
 
   return (
@@ -42,10 +42,7 @@ const SelectBoxFilter = ({
       value={value}
     >
       <SelectTrigger
-        className={cn(
-          "min-w-[120px] h-[45px] rounded-lg border border-border",
-          classNames
-        )}
+        className={cn('min-w-[120px] h-[45px] rounded-lg border border-border', classNames)}
       >
         <SelectValue className="text-sm" />
       </SelectTrigger>

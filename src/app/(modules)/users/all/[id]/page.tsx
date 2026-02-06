@@ -1,4 +1,4 @@
-import UserDetails from "@/components/pages/users/details";
+import UserDetails from '@/components/pages/users/details';
 
 interface Props {
   params: Promise<{ id: string }>;

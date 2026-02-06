@@ -1,6 +1,6 @@
-import Blog from "@/components/pages/users/details/components/Blog";
-import { fileUploadResponseSchema } from "@/features/base/types";
-import { z } from "zod";
+import Blog from '@/components/pages/users/details/components/Blog';
+import { fileUploadResponseSchema } from '@/features/base/types';
+import { z } from 'zod';
 
 export const userSchema = z.object({
   id: z.string(),
@@ -138,9 +138,7 @@ export const userPurchaseTemplatesSchema = z.object({
   }),
 });
 
-export type UserPurchaseTemplatesData = z.infer<
-  typeof userPurchaseTemplatesSchema
->;
+export type UserPurchaseTemplatesData = z.infer<typeof userPurchaseTemplatesSchema>;
 
 export const userPurchasedBlogSchema = z.object({
   id: z.string(),
@@ -175,14 +173,14 @@ export const userDetailSchema = z.object({
 export type UserDetailData = z.infer<typeof userDetailSchema>;
 
 export const FeeTypeEnum = z.enum([
-  "TEMPLATE_PURCHASE",
-  "MAINTENANCE_FEE",
-  "SERVER_FEE",
-  "HOSTING_FEE",
-  "SERVICE_FEE",
-  "CREATE_BLOG",
-  "DOMAIN_REGISTRATION",
-  "DOMAIN_RENEWAL",
+  'TEMPLATE_PURCHASE',
+  'MAINTENANCE_FEE',
+  'SERVER_FEE',
+  'HOSTING_FEE',
+  'SERVICE_FEE',
+  'CREATE_BLOG',
+  'DOMAIN_REGISTRATION',
+  'DOMAIN_RENEWAL',
 ]);
 export type FeeType = z.infer<typeof FeeTypeEnum>;
 
@@ -191,7 +189,7 @@ export const transactionSchema = z.object({
   oneSiteUserId: z.string(),
   FeeType: FeeTypeEnum,
   content: z.string(),
-  PaymentStatus: z.enum(["SUCCESSFUL", "FAILED"]),
+  PaymentStatus: z.enum(['SUCCESSFUL', 'FAILED']),
   total: z.number(),
   createdAt: z.string(),
   updatedAt: z.string(),
@@ -235,9 +233,7 @@ export const userReceivingAccountSchema = z.object({
   QR: fileUploadResponseSchema,
 });
 
-export type UserReceivingAccountData = z.infer<
-  typeof userReceivingAccountSchema
->;
+export type UserReceivingAccountData = z.infer<typeof userReceivingAccountSchema>;
 
 export const userEarningSummarySchema = z.object({
   totalEarning: z.number(),

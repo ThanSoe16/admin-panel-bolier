@@ -1,4 +1,4 @@
-import WithdrawalRequestDetail from "@/components/pages/users/withdrawal-requests/detail";
+import WithdrawalRequestDetail from '@/components/pages/users/withdrawal-requests/detail';
 
 interface Props {
   params: Promise<{ id: string }>;

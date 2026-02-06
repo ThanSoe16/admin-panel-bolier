@@ -2,8 +2,8 @@ import {
   PermissionData,
   PermissionKey,
   PermissionConfigItem,
-} from "@/features/admins/types/permission.type";
-import { permissions as permissionsList } from "./permissions-list";
+} from '@/features/admins/types/permission.type';
+import { permissions as permissionsList } from './permissions-list';
 
 export const permissions: readonly PermissionConfigItem[] = permissionsList;
 export type { PermissionKey };

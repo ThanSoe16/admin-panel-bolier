@@ -1,11 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   ApproveWithdrawalRequestRequest,
   RejectWithdrawalRequestRequest,
   UpdateWithdrawalSettingRequest,
-} from "../types";
-import withdrawalApiService from "./api";
-import { toast } from "sonner";
+} from '../types';
+import withdrawalApiService from './api';
+import { toast } from 'sonner';
 
 export const useUpdateWithdrawalSetting = () => {
   const queryClient = useQueryClient();
@@ -18,8 +18,8 @@ export const useUpdateWithdrawalSetting = () => {
       toast.error(error?.response?.data?.meta?.message);
     },
     onSuccess: async (response, variables) => {
-      toast.success("updated successfully");
-      await queryClient.invalidateQueries({ queryKey: ["withdrawal-setting"] });
+      toast.success('updated successfully');
+      await queryClient.invalidateQueries({ queryKey: ['withdrawal-setting'] });
     },
   });
 };
@@ -35,18 +35,18 @@ export const useApproveWithdrawalRequest = () => {
       toast.error(error?.response?.data?.meta?.message);
     },
     onSuccess: async (response, variables) => {
-      toast.success("withdrawal request approved successfully");
+      toast.success('withdrawal request approved successfully');
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-requests"],
+        queryKey: ['withdrawal-requests'],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-request-detail", variables.id],
+        queryKey: ['withdrawal-request-detail', variables.id],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-history"],
+        queryKey: ['withdrawal-history'],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-history-detail", variables.id],
+        queryKey: ['withdrawal-history-detail', variables.id],
       });
     },
   });
@@ -63,18 +63,18 @@ export const useRejectWithdrawalRequest = () => {
       toast.error(error?.response?.data?.meta?.message);
     },
     onSuccess: async (response, variables) => {
-      toast.success("withdrawal request rejected successfully");
+      toast.success('withdrawal request rejected successfully');
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-requests"],
+        queryKey: ['withdrawal-requests'],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-request-detail", variables.id],
+        queryKey: ['withdrawal-request-detail', variables.id],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-history"],
+        queryKey: ['withdrawal-history'],
       });
       await queryClient.invalidateQueries({
-        queryKey: ["withdrawal-history-detail", variables.id],
+        queryKey: ['withdrawal-history-detail', variables.id],
       });
     },
   });

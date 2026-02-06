@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { UserData } from "@/features/base/types/user-info.types";
-import { PermissionData } from "@/features/admins/types/permission.type";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { UserData } from '@/features/base/types/user-info.types';
+import { PermissionData } from '@/features/admins/types/permission.type';
 
 interface AuthState {
   user: UserData | null;
@@ -11,11 +11,7 @@ interface AuthState {
 }
 
 interface AuthActions {
-  setAuth: (data: {
-    user: UserData;
-    accessToken: string;
-    refreshToken: string;
-  }) => void;
+  setAuth: (data: { user: UserData; accessToken: string; refreshToken: string }) => void;
   setTokens: (accessToken: string, refreshToken: string) => void;
   setPermissions: (permissions: PermissionData) => void;
   setUser: (user: UserData) => void;
@@ -34,11 +30,9 @@ export const useAuthStore = create<AuthState & AuthActions>()(
     (set) => ({
       ...initialState,
 
-      setAuth: ({ user, accessToken, refreshToken }) =>
-        set({ user, accessToken, refreshToken }),
+      setAuth: ({ user, accessToken, refreshToken }) => set({ user, accessToken, refreshToken }),
 
-      setTokens: (accessToken, refreshToken) =>
-        set({ accessToken, refreshToken }),
+      setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken }),
 
       setPermissions: (permissions) => set({ permissions }),
 
@@ -52,7 +46,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
       },
     }),
     {
-      name: "auth-storage", // unique name in localStorage
+      name: 'auth-storage', // unique name in localStorage
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         user: state.user,

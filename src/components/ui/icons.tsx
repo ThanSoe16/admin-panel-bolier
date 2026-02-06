@@ -42,60 +42,144 @@ export const Icons = {
   },
   Cart: ({ ...props }) => {
     return (
-      <svg width="17" height="16" {...props} viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.5002 3.33301L13.1668 7.99967H5.41797" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M2.5 2H4.5L5.83333 10.6667H13.8333" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <ellipse cx="5.83317" cy="13.3337" rx="0.666667" ry="0.666667" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="13.1667" cy="13.3337" r="0.666667" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M7.8335 3.66699H11.1668" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <svg
+        width="17"
+        height="16"
+        {...props}
+        viewBox="0 0 17 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.5002 3.33301L13.1668 7.99967H5.41797"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M2.5 2H4.5L5.83333 10.6667H13.8333"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <ellipse
+          cx="5.83317"
+          cy="13.3337"
+          rx="0.666667"
+          ry="0.666667"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle
+          cx="13.1667"
+          cy="13.3337"
+          r="0.666667"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M7.8335 3.66699H11.1668"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
         <path d="M9.5 2V5.33333" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
-
     );
   },
   TemplateEdit: ({ ...props }) => {
     return (
       <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <mask
-        id="mask0_18505_52105"
-        style={{ maskType: "alpha" }}
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
+        xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"
+        viewBox="0 0 20 20"
+        fill="none"
       >
-        <rect width="20" height="20" fill="#D9D9D9" />
-      </mask>
-      <g mask="url(#mask0_18505_52105)">
-        <path
-          d="M16.667 5.00065H3.33366V15.0007H10.0003C10.2364 15.0007 10.4344 15.0805 10.5941 15.2402C10.7538 15.4 10.8337 15.5979 10.8337 15.834C10.8337 16.0701 10.7538 16.268 10.5941 16.4277C10.4344 16.5875 10.2364 16.6673 10.0003 16.6673H3.33366C2.87533 16.6673 2.48296 16.5041 2.15658 16.1777C1.83019 15.8513 1.66699 15.459 1.66699 15.0007V5.00065C1.66699 4.54232 1.83019 4.14996 2.15658 3.82357C2.48296 3.49718 2.87533 3.33398 3.33366 3.33398H16.667C17.1253 3.33398 17.5177 3.49718 17.8441 3.82357C18.1705 4.14996 18.3337 4.54232 18.3337 5.00065V10.0007C18.3337 10.2368 18.2538 10.4347 18.0941 10.5944C17.9344 10.7541 17.7364 10.834 17.5003 10.834C17.2642 10.834 17.0663 10.7541 16.9066 10.5944C16.7469 10.4347 16.667 10.2368 16.667 10.0007V5.00065ZM3.33366 5.00065V15.0007V10.834V10.8965V5.00065ZM10.0003 9.16732L16.667 5.00065V6.66732L10.4378 10.5632C10.2989 10.6465 10.1531 10.6882 10.0003 10.6882C9.84755 10.6882 9.70172 10.6465 9.56283 10.5632L3.33366 6.66732V5.00065L10.0003 9.16732ZM15.9795 16.6673H13.3337C13.0975 16.6673 12.8996 16.5875 12.7399 16.4277C12.5802 16.268 12.5003 16.0701 12.5003 15.834C12.5003 15.5979 12.5802 15.4 12.7399 15.2402C12.8996 15.0805 13.0975 15.0007 13.3337 15.0007H15.9795L15.2295 14.2507C15.0628 14.084 14.983 13.8895 14.9899 13.6673C14.9969 13.4451 15.0837 13.2507 15.2503 13.084C15.417 12.9312 15.6114 12.8513 15.8337 12.8444C16.0559 12.8375 16.2503 12.9173 16.417 13.084L18.5837 15.2507C18.667 15.334 18.7295 15.4243 18.7712 15.5215C18.8128 15.6187 18.8337 15.7229 18.8337 15.834C18.8337 15.9451 18.8128 16.0493 18.7712 16.1465C18.7295 16.2437 18.667 16.334 18.5837 16.4173L16.417 18.584C16.2642 18.7368 16.0732 18.8166 15.8441 18.8236C15.6149 18.8305 15.417 18.7507 15.2503 18.584C15.0975 18.4312 15.0212 18.2368 15.0212 18.0007C15.0212 17.7645 15.0975 17.5701 15.2503 17.4173L15.9795 16.6673Z"
-          fill="white"
-        />
-      </g>
-    </svg>
-    )
+        <mask
+          id="mask0_18505_52105"
+          style={{ maskType: 'alpha' }}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="20"
+          height="20"
+        >
+          <rect width="20" height="20" fill="#D9D9D9" />
+        </mask>
+        <g mask="url(#mask0_18505_52105)">
+          <path
+            d="M16.667 5.00065H3.33366V15.0007H10.0003C10.2364 15.0007 10.4344 15.0805 10.5941 15.2402C10.7538 15.4 10.8337 15.5979 10.8337 15.834C10.8337 16.0701 10.7538 16.268 10.5941 16.4277C10.4344 16.5875 10.2364 16.6673 10.0003 16.6673H3.33366C2.87533 16.6673 2.48296 16.5041 2.15658 16.1777C1.83019 15.8513 1.66699 15.459 1.66699 15.0007V5.00065C1.66699 4.54232 1.83019 4.14996 2.15658 3.82357C2.48296 3.49718 2.87533 3.33398 3.33366 3.33398H16.667C17.1253 3.33398 17.5177 3.49718 17.8441 3.82357C18.1705 4.14996 18.3337 4.54232 18.3337 5.00065V10.0007C18.3337 10.2368 18.2538 10.4347 18.0941 10.5944C17.9344 10.7541 17.7364 10.834 17.5003 10.834C17.2642 10.834 17.0663 10.7541 16.9066 10.5944C16.7469 10.4347 16.667 10.2368 16.667 10.0007V5.00065ZM3.33366 5.00065V15.0007V10.834V10.8965V5.00065ZM10.0003 9.16732L16.667 5.00065V6.66732L10.4378 10.5632C10.2989 10.6465 10.1531 10.6882 10.0003 10.6882C9.84755 10.6882 9.70172 10.6465 9.56283 10.5632L3.33366 6.66732V5.00065L10.0003 9.16732ZM15.9795 16.6673H13.3337C13.0975 16.6673 12.8996 16.5875 12.7399 16.4277C12.5802 16.268 12.5003 16.0701 12.5003 15.834C12.5003 15.5979 12.5802 15.4 12.7399 15.2402C12.8996 15.0805 13.0975 15.0007 13.3337 15.0007H15.9795L15.2295 14.2507C15.0628 14.084 14.983 13.8895 14.9899 13.6673C14.9969 13.4451 15.0837 13.2507 15.2503 13.084C15.417 12.9312 15.6114 12.8513 15.8337 12.8444C16.0559 12.8375 16.2503 12.9173 16.417 13.084L18.5837 15.2507C18.667 15.334 18.7295 15.4243 18.7712 15.5215C18.8128 15.6187 18.8337 15.7229 18.8337 15.834C18.8337 15.9451 18.8128 16.0493 18.7712 16.1465C18.7295 16.2437 18.667 16.334 18.5837 16.4173L16.417 18.584C16.2642 18.7368 16.0732 18.8166 15.8441 18.8236C15.6149 18.8305 15.417 18.7507 15.2503 18.584C15.0975 18.4312 15.0212 18.2368 15.0212 18.0007C15.0212 17.7645 15.0975 17.5701 15.2503 17.4173L15.9795 16.6673Z"
+            fill="white"
+          />
+        </g>
+      </svg>
+    );
   },
   Close: ({ ...props }) => {
     return (
-      <svg width="24" height="24" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M6 6L18 18" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="24"
+        height="24"
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6L6 18"
+          stroke="#1E1E1E"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6 6L18 18"
+          stroke="#1E1E1E"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   },
   LastPage: ({ ...props }) => {
     return (
-      <svg width="24" height="24" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M11 16L15 12L11 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="24"
+        height="24"
+        {...props}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 12H3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11 16L15 12L11 8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   },
@@ -198,7 +282,7 @@ export const Icons = {
           x="0"
           y="0"
           maskUnits="userSpaceOnUse"
-          style={{ maskType: "alpha" }}
+          style={{ maskType: 'alpha' }}
         >
           <path fill="#D9D9D9" d="M0 0h20v20H0z"></path>
         </mask>

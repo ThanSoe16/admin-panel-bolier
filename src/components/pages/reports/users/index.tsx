@@ -1,28 +1,28 @@
-"use client";
-import React from "react";
-import dayjs from "dayjs";
-import PageTitle from "@/components/shared/PageTitle";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { DataTable } from "@/components/shared/data-table";
+'use client';
+import React from 'react';
+import dayjs from 'dayjs';
+import PageTitle from '@/components/shared/PageTitle';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { DataTable } from '@/components/shared/data-table';
 import {
   monthlyNewUsersColumnDefs,
   todayNewUsersColumnDefs,
   yearlyNewUsersColumnDefs,
-} from "./components/columnDefs";
-import TopFilters from "../components/TopFilters";
-import SearchInput from "@/components/shared/search-input";
-import { DetailTable } from "@/components/shared/detail-table";
-import { useGetUserReport } from "@/features/report/users/services/queries";
+} from './components/columnDefs';
+import TopFilters from '../components/TopFilters';
+import SearchInput from '@/components/shared/search-input';
+import { DetailTable } from '@/components/shared/detail-table';
+import { useGetUserReport } from '@/features/report/users/services/queries';
 
 const UserReport = () => {
   const { rowPerPage, pageIndex, date, tab, word } = usePagination();
   const { data, isLoading } = useGetUserReport({
     date:
-      tab === "monthly"
-        ? dayjs(date).format("YYYY-MM")
-        : tab === "yearly"
-        ? dayjs(date).format("YYYY")
-        : date,
+      tab === 'monthly'
+        ? dayjs(date).format('YYYY-MM')
+        : tab === 'yearly'
+          ? dayjs(date).format('YYYY')
+          : date,
     type: tab,
     word,
     pageIndex,
@@ -31,14 +31,14 @@ const UserReport = () => {
 
   const currentDataTable = React.useMemo(() => {
     switch (tab) {
-      case "monthly":
+      case 'monthly':
         return {
           data: data?.body?.data?.userList ?? [],
           columns: monthlyNewUsersColumnDefs,
           isShowNo: false,
           header: <PageTitle>All Templates</PageTitle>,
         };
-      case "yearly":
+      case 'yearly':
         return {
           data: data?.body?.data?.userList ?? [],
           columns: yearlyNewUsersColumnDefs,
@@ -64,11 +64,11 @@ const UserReport = () => {
       <DetailTable
         data={[
           {
-            label: "Total Users",
+            label: 'Total Users',
             value: data?.body?.data?.totalUsers,
           },
           {
-            label: "New Users",
+            label: 'New Users',
             value: data?.body?.data?.newUsers,
           },
         ]}
@@ -88,9 +88,7 @@ const UserReport = () => {
           renderHeader={() => (
             <div className="flex items-center justify-between gap-2">
               <PageTitle className="mb-0"> Users List </PageTitle>
-              {tab === "daily" && (
-                <SearchInput placeholder="Search by Username or ID" />
-              )}
+              {tab === 'daily' && <SearchInput placeholder="Search by Username or ID" />}
             </div>
           )}
         />

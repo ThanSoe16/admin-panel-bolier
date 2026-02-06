@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const userReportListSchema = z.object({
   id: z.string(),
@@ -10,17 +10,16 @@ export const userReportListSchema = z.object({
   joinData: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  date:z.string(),
-  month:z.string(),
-  count:z.number()
-})
+  date: z.string(),
+  month: z.string(),
+  count: z.number(),
+});
 
 export type UserReportListData = z.infer<typeof userReportListSchema>;
 
 export const userReportSchema = z.object({
   totalUsers: z.number(),
   newUsers: z.number(),
-  userList:z.array(userReportListSchema),
-})
+  userList: z.array(userReportListSchema),
+});
 export type UserReportResponse = z.infer<typeof userReportSchema>;
-

@@ -1,33 +1,20 @@
-import { APIResponse } from "@/features/base/types";
-import {
-  Admin,
-  ChangePasswordAPIPayload,
-  LoginForm,
-  LoginResponse,
-} from "./../types/index";
-import appAxios from "@/lib/appAxios";
+import { APIResponse } from '@/features/base/types';
+import { Admin, ChangePasswordAPIPayload, LoginForm, LoginResponse } from './../types/index';
+import appAxios from '@/lib/appAxios';
 
 const authApiService = {
   login: async (data: LoginForm) => {
-    const response = await appAxios.post<APIResponse<LoginResponse>>(
-      "/auth/admin/login",
-      data
-    );
+    const response = await appAxios.post<APIResponse<LoginResponse>>('/auth/admin/login', data);
     return response.data;
   },
 
   getMe: async () => {
-    const response = await appAxios.get<APIResponse<Admin>>(
-      "/auth/admin/whoami"
-    );
+    const response = await appAxios.get<APIResponse<Admin>>('/auth/admin/whoami');
     return response.data;
   },
 
   changePassword: async (data: ChangePasswordAPIPayload) => {
-    const response = await appAxios.patch<APIResponse<Admin>>(
-      "/auth/admin/change-password",
-      data
-    );
+    const response = await appAxios.patch<APIResponse<Admin>>('/auth/admin/change-password', data);
     return response.data;
   },
 

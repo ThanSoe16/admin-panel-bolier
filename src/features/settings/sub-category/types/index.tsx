@@ -1,5 +1,5 @@
-import { categorySchema } from "@/features/settings/category/types";
-import { z } from "zod";
+import { categorySchema } from '@/features/settings/category/types';
+import { z } from 'zod';
 
 export const subCategoryTemplateSchema = z.object({
   id: z.string(),
@@ -11,7 +11,7 @@ export type SubCategoryTemplateData = z.infer<typeof subCategoryTemplateSchema>;
 export const subCategorySchema = z.object({
   id: z.string(),
   index: z.number(),
-  Status: z.enum(["ACTIVE", "INACTIVE"]),
+  Status: z.enum(['ACTIVE', 'INACTIVE']),
   templateCategoryId: z.string(),
   createdById: z.string(),
   createdAt: z.string(),
@@ -31,34 +31,34 @@ export const subCategoryFilterSchema = z.object({
 
 export type SubCategoryFilter = z.infer<typeof subCategoryFilterSchema>;
 export const createSubCategorySchema = z.object({
-  templateCategoryId: z.string().min(1, { message: "Category is Required" }),
+  templateCategoryId: z.string().min(1, { message: 'Category is Required' }),
   items: z.array(
     z.object({
-      langId: z.string().min(1, { message: "Language is Required" }),
+      langId: z.string().min(1, { message: 'Language is Required' }),
       name: z
         .string()
         .transform((val) => val.trim())
         .refine((val) => val.length > 0, {
-          message: "Sub Category Name must be at least 1 character",
+          message: 'Sub Category Name must be at least 1 character',
         }),
-    })
+    }),
   ),
 });
 
 export type CreateSubCategoryRequest = z.infer<typeof createSubCategorySchema>;
 export const updateSubCategorySchema = z.object({
   id: z.string(),
-  templateCategoryId: z.string().min(1, { message: "Category is Required" }),
+  templateCategoryId: z.string().min(1, { message: 'Category is Required' }),
   items: z.array(
     z.object({
-      langId: z.string().min(1, { message: "Language is Required" }),
+      langId: z.string().min(1, { message: 'Language is Required' }),
       name: z
         .string()
         .transform((val) => val.trim())
         .refine((val) => val.length > 0, {
-          message: "Sub Category Name must be at least 1 character",
+          message: 'Sub Category Name must be at least 1 character',
         }),
-    })
+    }),
   ),
 });
 
@@ -68,7 +68,7 @@ export const orderSubCategorySchema = z.object({
     z.object({
       id: z.string(),
       index: z.number(),
-    })
+    }),
   ),
 });
 

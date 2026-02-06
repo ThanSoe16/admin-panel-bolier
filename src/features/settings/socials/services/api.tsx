@@ -1,23 +1,23 @@
-import appAxios from "@/lib/appAxios";
-import { APIResponse } from "@/features/base/types";
+import appAxios from '@/lib/appAxios';
+import { APIResponse } from '@/features/base/types';
 import {
   SocialLinksType,
   SocialLinksForm,
   SocialLinksDragType,
   SocialLinkIconsType,
-} from "../types";
+} from '../types';
 
 const socialLinksApiService = {
   getSocialLinks: async () => {
     const response = await appAxios.get<APIResponse<SocialLinksType[]>>(
-      "/admin-settings/social-links"
+      '/admin-settings/social-links',
     );
     return response.data;
   },
 
   getSocialLinkIcons: async () => {
     const response = await appAxios.get<APIResponse<SocialLinkIconsType>>(
-      "/admin-settings/social-link-images"
+      '/admin-settings/social-link-images',
     );
     return response.data;
   },
@@ -25,7 +25,7 @@ const socialLinksApiService = {
   updateSocialLinks: async (params: { links: SocialLinksForm[] }) => {
     const response = await appAxios.put<APIResponse<SocialLinksType>>(
       `/admin-settings/social-links/update`,
-      params.links
+      params.links,
     );
     return response.data;
   },
@@ -33,7 +33,7 @@ const socialLinksApiService = {
   dragAndSortSocialLinks: async (params: { data: SocialLinksDragType }) => {
     const response = await appAxios.post<APIResponse<SocialLinksType>>(
       `/admin-settings/social-links/swap-sorting`,
-      params.data
+      params.data,
     );
     return response.data;
   },

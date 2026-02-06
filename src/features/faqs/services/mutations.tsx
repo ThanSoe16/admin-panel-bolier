@@ -1,6 +1,6 @@
-import { toast } from "sonner";
-import faqsApiService from "./api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from 'sonner';
+import faqsApiService from './api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useCreateFaq = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useCreateFaq = () => {
 
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["faqs"] });
+        await queryClient.invalidateQueries({ queryKey: ['faqs'] });
       }
     },
   });
@@ -29,9 +29,9 @@ export const useUpdateFaq = () => {
         toast.error(errorResponse?.response?.data?.meta?.message);
       } else {
         await queryClient.invalidateQueries({
-          queryKey: ["faq", variables.id],
+          queryKey: ['faq', variables.id],
         });
-        await queryClient.invalidateQueries({ queryKey: ["faqs"] });
+        await queryClient.invalidateQueries({ queryKey: ['faqs'] });
       }
     },
   });

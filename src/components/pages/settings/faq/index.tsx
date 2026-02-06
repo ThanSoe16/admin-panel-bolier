@@ -1,39 +1,38 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import Tabs from "@/components/shared/tabs";
-import QNA from "./components/QNA";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import { useRouter, useSearchParams } from "next/navigation";
-import { FAQTypesEnum } from "@/features/base/types/backend-defined-enums";
-import { useGetFAQs } from "@/features/faqs/services/queries";
-import { Loading } from "@/components/shared/loading";
-import NoDataUI from "@/components/shared/base/NoData";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import Tabs from '@/components/shared/tabs';
+import QNA from './components/QNA';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { FAQTypesEnum } from '@/features/base/types/backend-defined-enums';
+import { useGetFAQs } from '@/features/faqs/services/queries';
+import { Loading } from '@/components/shared/loading';
+import NoDataUI from '@/components/shared/base/NoData';
 
 const tabList = [
   {
     tab: `${FAQTypesEnum.PURCHASING_DOMAINS}`,
-    label: "Purchasing Domains",
+    label: 'Purchasing Domains',
     inCludeSearchParam: [FAQTypesEnum.PURCHASING_DOMAINS],
   },
   {
     tab: `${FAQTypesEnum.EXPIRED_DOMAINS}`,
-    label: "Expired Domains",
+    label: 'Expired Domains',
   },
   {
     tab: `${FAQTypesEnum.PAYMENT}`,
-    label: "Payment",
+    label: 'Payment',
   },
   {
     tab: `${FAQTypesEnum.OTHERS}`,
-    label: "Others",
+    label: 'Others',
   },
 ];
 
 const FAQs = () => {
   const router = useRouter();
-  const tab =
-    useSearchParams().get("tab") || `${FAQTypesEnum.PURCHASING_DOMAINS}`;
+  const tab = useSearchParams().get('tab') || `${FAQTypesEnum.PURCHASING_DOMAINS}`;
   const { data, isLoading } = useGetFAQs({
     type: tab as FAQTypesEnum,
   });
@@ -50,11 +49,7 @@ const FAQs = () => {
         <CreateButton
           asBtn
           onClick={() =>
-            router.push(
-              `/settings/faqs/create?tab=${
-                tab || FAQTypesEnum.PURCHASING_DOMAINS
-              }`
-            )
+            router.push(`/settings/faqs/create?tab=${tab || FAQTypesEnum.PURCHASING_DOMAINS}`)
           }
         />
       </div>
@@ -62,9 +57,7 @@ const FAQs = () => {
         {isLoading ? (
           <Loading />
         ) : data?.body?.data?.length ? (
-          data.body.data.map((faq, index) => (
-            <QNA key={faq.id} data={faq} index={index} />
-          ))
+          data.body.data.map((faq, index) => <QNA key={faq.id} data={faq} index={index} />)
         ) : (
           <NoDataUI />
         )}

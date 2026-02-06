@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import { ColumnDef } from "@tanstack/react-table";
-import Link from "next/link";
-import { AdminData } from "@/features/admins/types";
-import { formatDate } from "@/utils/dateTime";
-import StatusSwitch from "@/components/shared/buttons/StatusSwitch";
-import { useUpdateAdmin } from "@/features/admins/services/mutations";
-import { useGetMe } from "@/features/auth/service/queries";
+'use client';
+import React from 'react';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+import { AdminData } from '@/features/admins/types';
+import { formatDate } from '@/utils/dateTime';
+import StatusSwitch from '@/components/shared/buttons/StatusSwitch';
+import { useUpdateAdmin } from '@/features/admins/services/mutations';
+import { useGetMe } from '@/features/auth/service/queries';
 
 const Actions = (props: { target: AdminData }) => {
   return (
@@ -34,15 +34,14 @@ const AccessSwitch = (props: { target: AdminData }) => {
       phone: props?.target?.phone,
       adminRoleId: props?.target?.AdminRole.id,
       avatarId: props?.target?.Avatar?.id,
-      AdminAccountStatus:
-        props?.target?.AdminAccountStatus == "ACTIVE" ? "INACTIVE" : "ACTIVE",
+      AdminAccountStatus: props?.target?.AdminAccountStatus == 'ACTIVE' ? 'INACTIVE' : 'ACTIVE',
       profileUrl: props?.target?.Avatar?.url,
     });
   };
 
   return (
     <StatusSwitch
-      value={props?.target?.AdminAccountStatus == "ACTIVE"}
+      value={props?.target?.AdminAccountStatus == 'ACTIVE'}
       onChange={handleChange}
       disabled={profile?.data?.body?.data?.id == props.target.id}
     />
@@ -54,7 +53,7 @@ const AdminName = (props: { target: AdminData }) => {
 
   return (
     <div>
-      {props.target.name}{" "}
+      {props.target.name}{' '}
       {profile?.data?.body?.data?.id == props.target.id && (
         <span className="text-xs text-green-500">(Yourself)</span>
       )}
@@ -64,44 +63,42 @@ const AdminName = (props: { target: AdminData }) => {
 
 export const adminColDefs: ColumnDef<AdminData>[] = [
   {
-    accessorKey: "name",
-    header: "Admin Name",
+    accessorKey: 'name',
+    header: 'Admin Name',
     size: 200,
     cell: ({ row }) => <AdminName target={row.original} />,
   },
   {
-    accessorKey: "phone",
-    header: "Phone No.",
+    accessorKey: 'phone',
+    header: 'Phone No.',
     size: 100,
   },
   {
-    accessorKey: "loginId",
-    header: "Login ID",
+    accessorKey: 'loginId',
+    header: 'Login ID',
     size: 100,
   },
   {
-    accessorKey: "AdminRole.name",
-    header: "Role",
+    accessorKey: 'AdminRole.name',
+    header: 'Role',
     size: 200,
-    cell: ({ row }) => (
-      <div className="line-clamp-1">{row.original.AdminRole.name}</div>
-    ),
+    cell: ({ row }) => <div className="line-clamp-1">{row.original.AdminRole.name}</div>,
   },
   {
-    accessorKey: "AdminAccountStatus",
-    header: "Status",
+    accessorKey: 'AdminAccountStatus',
+    header: 'Status',
     size: 100,
     cell: ({ row }) => <AccessSwitch target={row.original} />,
   },
   {
-    accessorKey: "createdAt",
-    header: "Created on/ Updated on",
+    accessorKey: 'createdAt',
+    header: 'Created on/ Updated on',
     size: 150,
     cell: ({ row }) => <span>{formatDate(row.original.createdAt)}</span>,
   },
   {
-    id: "actions",
-    header: "Actions",
+    id: 'actions',
+    header: 'Actions',
     size: 150,
     cell: ({ row }) => <Actions target={row.original} />,
   },

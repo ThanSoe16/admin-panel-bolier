@@ -1,5 +1,5 @@
-import IncomeReportPurchaseTemplateDetail from "@/components/pages/reports/income/purchase_template/details";
-import { NextPage } from "next";
+import IncomeReportPurchaseTemplateDetail from '@/components/pages/reports/income/purchase_template/details';
+import { NextPage } from 'next';
 
 const IncomeReportPurchaseTemplateYearlyPage: NextPage = () => {
   return <IncomeReportPurchaseTemplateDetail type="yearly" />;

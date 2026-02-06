@@ -1,5 +1,5 @@
-import IncomeReportSetupFee from "@/components/pages/reports/income/setup_fee";
-import { NextPage } from "next";
+import IncomeReportSetupFee from '@/components/pages/reports/income/setup_fee';
+import { NextPage } from 'next';
 
 const IncomeReportSetupFeePage: NextPage = () => {
   return <IncomeReportSetupFee />;

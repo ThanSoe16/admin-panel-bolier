@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 import {
   ColumnDef,
@@ -12,19 +12,12 @@ import {
   Row,
   SortingState,
   useReactTable,
-} from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../ui/table";
-import { Pagination } from "./Pagination";
-import { cn } from "@/lib/utils";
-import { Loading } from "../loading";
-import useSideBarStore from "@/store";
+} from '@tanstack/react-table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table';
+import { Pagination } from './Pagination';
+import { cn } from '@/lib/utils';
+import { Loading } from '../loading';
+import useSideBarStore from '@/store';
 import {
   DndContext,
   KeyboardSensor,
@@ -33,19 +26,12 @@ import {
   useSensor,
   useSensors,
   type DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  restrictToVerticalAxis,
-  restrictToWindowEdges,
-} from "@dnd-kit/modifiers";
-import {
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { PaginationTypes } from "./table-base-types";
-import { Menu } from "lucide-react";
+} from '@dnd-kit/core';
+import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { PaginationTypes } from './table-base-types';
+import { Menu } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -79,18 +65,17 @@ export function DraggableTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
-  const pageStartIndex =
-    ((query?.pageIndex ?? 1) - 1) * (query?.rowPerPage ?? 20);
+  const pageStartIndex = ((query?.pageIndex ?? 1) - 1) * (query?.rowPerPage ?? 20);
   const dragRef = useRef<HTMLButtonElement>(null);
   const displayColumns = !isShowNo
     ? [
         {
-          accessorKey: "drag",
+          accessorKey: 'drag',
           header: () => <span className="pl-2"></span>,
           cell: ({ row }: { row: Row<TData> }) => (
             <button
               ref={dragRef}
-              style={{ cursor: "move" }}
+              style={{ cursor: 'move' }}
               className="flex items-center justify-center"
             >
               <Menu />
@@ -102,13 +87,13 @@ export function DraggableTable<TData, TValue>({
       ]
     : [
         {
-          accessorKey: "drag",
+          accessorKey: 'drag',
           header: () => <span className="pl-2">Sorting</span>,
           cell: ({ row }: { row: Row<TData> }) => (
             <div className="bg-black">
               <button
                 ref={dragRef}
-                style={{ cursor: "move" }}
+                style={{ cursor: 'move' }}
                 className="flex items-center justify-center"
               >
                 <Menu />
@@ -145,7 +130,7 @@ export function DraggableTable<TData, TValue>({
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
+    useSensor(KeyboardSensor, {}),
   );
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -172,17 +157,12 @@ export function DraggableTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div
-      className={cn(
-        `flex flex-col h-full w-full space-y-3`,
-        tablewrapperclasses
-      )}
-    >
+    <div className={cn(`flex flex-col h-full w-full space-y-3`, tablewrapperclasses)}>
       {renderHeader ? renderHeader() : null}
       <div
         className={cn(
-          className ? className : "",
-          "relative h-full w-full flex-grow rounded-md overflow-auto"
+          className ? className : '',
+          'relative h-full w-full flex-grow rounded-md overflow-auto',
         )}
       >
         {isLoading ? (
@@ -205,10 +185,7 @@ export function DraggableTable<TData, TValue>({
                         >
                           {header.isPlaceholder
                             ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
+                            : flexRender(header.column.columnDef.header, header.getContext())}
                         </TableHead>
                       );
                     })}
@@ -232,10 +209,7 @@ export function DraggableTable<TData, TValue>({
                       ))
                   ) : (
                     <TableRow>
-                      <TableCell
-                        colSpan={columns.length}
-                        className="h-24 text-center "
-                      >
+                      <TableCell colSpan={columns.length} className="h-24 text-center ">
                         No results.
                       </TableCell>
                     </TableRow>
@@ -247,27 +221,16 @@ export function DraggableTable<TData, TValue>({
         )}
       </div>
       {!hidePagination && query && total ? (
-        <Pagination
-          total={total}
-          currentPage={query.pageIndex}
-          pageSize={query.rowPerPage}
-        />
+        <Pagination total={total} currentPage={query.pageIndex} pageSize={query.rowPerPage} />
       ) : (
-        ""
+        ''
       )}
     </div>
   );
 }
 
 const SortableRow = ({ row, index }: { row: Row<any>; index: number }) => {
-  const {
-    attributes,
-    listeners,
-    transform,
-    transition,
-    setNodeRef,
-    isDragging,
-  } = useSortable({
+  const { attributes, listeners, transform, transition, setNodeRef, isDragging } = useSortable({
     id: row.original.id,
   });
 
@@ -278,18 +241,14 @@ const SortableRow = ({ row, index }: { row: Row<any>; index: number }) => {
   };
 
   return (
-    <TableRow
-      ref={setNodeRef}
-      style={style}
-      className={`border ${isDragging ? "shadow-md" : ""}`}
-    >
+    <TableRow ref={setNodeRef} style={style} className={`border ${isDragging ? 'shadow-md' : ''}`}>
       {row.getVisibleCells().map((cell, dIndex) => (
         <TableCell
           key={`${cell.id}-${dIndex}`}
           style={{ minWidth: `${cell.column.getSize()}px` }}
           className="pl-3"
         >
-          {cell.column.id === "drag" ? (
+          {cell.column.id === 'drag' ? (
             <button
               {...attributes}
               {...listeners}

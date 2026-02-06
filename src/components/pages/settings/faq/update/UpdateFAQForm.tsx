@@ -1,31 +1,21 @@
-"use client";
-import React from "react";
-import {
-  FAQData,
-  UpdateFAQRequest,
-  updateFAQSchema,
-} from "@/features/faqs/types";
-import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Loading } from "@/components/shared/loading";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import Image from "next/image";
-import { toSentenceCase } from "@/utils/toSentenceCase";
-import { useUpdateFaq } from "@/features/faqs/services/mutations";
-import { toast } from "sonner";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
+'use client';
+import React from 'react';
+import { FAQData, UpdateFAQRequest, updateFAQSchema } from '@/features/faqs/types';
+import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Loading } from '@/components/shared/loading';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import Image from 'next/image';
+import { toSentenceCase } from '@/utils/toSentenceCase';
+import { useUpdateFaq } from '@/features/faqs/services/mutations';
+import { toast } from 'sonner';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 
 interface UpdateFAQFormProps {
   data: FAQData;
@@ -33,23 +23,23 @@ interface UpdateFAQFormProps {
 
 const UpdateFAQForm: React.FC<UpdateFAQFormProps> = ({ data }) => {
   const router = useRouter();
-  const tab = useSearchParams().get("tab") || "";
+  const tab = useSearchParams().get('tab') || '';
   const { data: landingLanguages, isLoading } = useGetLandingLanguages();
 
   const { mutateAsync, isPending } = useUpdateFaq();
 
   const links = [
     {
-      href: "",
-      label: "FAQs",
+      href: '',
+      label: 'FAQs',
     },
     {
       href: `/settings/faqs?tab=${tab}`,
       label: toSentenceCase(tab),
     },
     {
-      href: "",
-      label: "Edit",
+      href: '',
+      label: 'Edit',
     },
   ];
 
@@ -95,7 +85,7 @@ const UpdateFAQForm: React.FC<UpdateFAQFormProps> = ({ data }) => {
             {landingLanguages?.body?.data &&
               landingLanguages.body.data.map((language) => {
                 const index = data.FaqContent.findIndex(
-                  (content) => content.languageId === language.id
+                  (content) => content.languageId === language.id,
                 );
 
                 return (
@@ -108,10 +98,7 @@ const UpdateFAQForm: React.FC<UpdateFAQFormProps> = ({ data }) => {
                         alt="icon"
                         className="rounded-full w-5 h-5"
                       />
-                      <p className="font-bold text-default text-base">
-                        {" "}
-                        For {language.name}{" "}
-                      </p>
+                      <p className="font-bold text-default text-base"> For {language.name} </p>
                     </div>
 
                     <FormField
@@ -138,11 +125,7 @@ const UpdateFAQForm: React.FC<UpdateFAQFormProps> = ({ data }) => {
                         <FormItem>
                           <FormLabel> Answer </FormLabel>
                           <FormControl>
-                            <Textarea
-                              {...field}
-                              className="input-field"
-                              placeholder="Answer"
-                            />
+                            <Textarea {...field} className="input-field" placeholder="Answer" />
                           </FormControl>
                         </FormItem>
                       )}
@@ -162,8 +145,8 @@ const UpdateFAQForm: React.FC<UpdateFAQFormProps> = ({ data }) => {
               Cancel
             </Button>
             <Button loading={isPending} addDoneIcon>
-              {" "}
-              Update{" "}
+              {' '}
+              Update{' '}
             </Button>
           </div>
         </form>

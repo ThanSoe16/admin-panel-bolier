@@ -1,7 +1,7 @@
-import contactUsApiService from "./api";
-import { useQueryClient } from "@tanstack/react-query";
-import { useMutation } from "@tanstack/react-query";
-import { UpdateContactApiType } from "../types";
+import contactUsApiService from './api';
+import { useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
+import { UpdateContactApiType } from '../types';
 
 export const useUpdateContactUs = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useUpdateContactUs = () => {
     onSettled: async (_, error) => {
       if (error) {
       } else {
-        await queryClient.invalidateQueries({ queryKey: ["contact-us"] });
+        await queryClient.invalidateQueries({ queryKey: ['contact-us'] });
       }
     },
   });

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 import {
   Select,
   SelectTrigger,
@@ -8,18 +8,17 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 interface OptionType {
   label: string | React.ReactNode;
   value: string;
 }
 
-interface OptionSelectProps
-  extends Omit<
-    React.ComponentPropsWithoutRef<typeof Select>,
-    "onValueChange" | "value"
-  > {
+interface OptionSelectProps extends Omit<
+  React.ComponentPropsWithoutRef<typeof Select>,
+  'onValueChange' | 'value'
+> {
   value: string;
   onChange: (value: string) => void;
   options: OptionType[];
@@ -39,7 +38,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
     <div>
       <Select value={value} onValueChange={onChange} {...rest}>
         <SelectTrigger className={selectClassName}>
-          <SelectValue placeholder={placeholder ? placeholder : "Select"} />
+          <SelectValue placeholder={placeholder ? placeholder : 'Select'} />
         </SelectTrigger>
         <SelectContent className="border-none">
           <SelectGroup>

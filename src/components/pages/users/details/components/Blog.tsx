@@ -1,38 +1,37 @@
-"use client";
-import { DataTable } from "@/components/shared/data-table";
-import React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { UserPurchasedBlog } from "@/features/users/types";
-import dayjs from "dayjs";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetUserBlogs } from "@/features/users/services/queries";
-import { Dot } from "lucide-react";
-import { cn } from "@/lib/utils";
+'use client';
+import { DataTable } from '@/components/shared/data-table';
+import React from 'react';
+import { ColumnDef } from '@tanstack/react-table';
+import { UserPurchasedBlog } from '@/features/users/types';
+import dayjs from 'dayjs';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetUserBlogs } from '@/features/users/services/queries';
+import { Dot } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const columnDefs: ColumnDef<UserPurchasedBlog>[] = [
   {
-    accessorKey: "url",
+    accessorKey: 'url',
     size: 200,
-    header: "Blog Name",
+    header: 'Blog Name',
     cell: ({ row }) => (
-      <div className="text-brand">
-        {row?.original?.BlogNameAndLogo[0]?.name ?? "-"}
-      </div>
+      <div className="text-brand">{row?.original?.BlogNameAndLogo[0]?.name ?? '-'}</div>
     ),
   },
   {
-    accessorKey: "status",
+    accessorKey: 'status',
     size: 200,
-    header: "Status",
+    header: 'Status',
     cell: ({ row }) => (
       <div className="flex flex-row items-center">
         <Dot
           className={cn(
-            "w-10 h-10 -ml-[12px] md:w-10 md:h-10 md:-ml-[16px]",
-            row?.original?.MerchantBlogStatus === "ACTIVE"
-              ? "text-green-500"
-              :
-              row?.original?.MerchantBlogStatus === "PENDING" ? "text-yellow-500" : "text-red-500"
+            'w-10 h-10 -ml-[12px] md:w-10 md:h-10 md:-ml-[16px]',
+            row?.original?.MerchantBlogStatus === 'ACTIVE'
+              ? 'text-green-500'
+              : row?.original?.MerchantBlogStatus === 'PENDING'
+                ? 'text-yellow-500'
+                : 'text-red-500',
           )}
         />
         <p className="text-text-primary text-sm -ml-1 capitalize">
@@ -42,24 +41,22 @@ const columnDefs: ColumnDef<UserPurchasedBlog>[] = [
     ),
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: 'createdAt',
     size: 200,
-    header: "Created On",
+    header: 'Created On',
     cell: ({ row }) => (
-      <span>
-        {dayjs(row?.original?.createdAt).format("DD MMM YYYY, hh:mm A")}
-      </span>
+      <span>{dayjs(row?.original?.createdAt).format('DD MMM YYYY, hh:mm A')}</span>
     ),
   },
   {
-    accessorKey: "publishedAt",
+    accessorKey: 'publishedAt',
     size: 200,
-    header: "Published On",
+    header: 'Published On',
     cell: ({ row }) => (
       <span>
         {row?.original?.publishedAt
-          ? dayjs(row?.original?.publishedAt).format("DD MMM YYYY, hh:mm A")
-          : "-"}
+          ? dayjs(row?.original?.publishedAt).format('DD MMM YYYY, hh:mm A')
+          : '-'}
       </span>
     ),
   },

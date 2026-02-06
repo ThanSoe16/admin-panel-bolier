@@ -1,31 +1,30 @@
-import baseApiService from "@/features/base/services/api";
+import baseApiService from '@/features/base/services/api';
 
 const replaceLinksWithPreview = async (htmlString: string): Promise<string> => {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, "text/html");
+  const doc = parser.parseFromString(htmlString, 'text/html');
 
-  const nodes = Array.from(doc.querySelectorAll("a.seo-preview-block[href]"));
+  const nodes = Array.from(doc.querySelectorAll('a.seo-preview-block[href]'));
 
   for (const a of nodes) {
-    const url = a.getAttribute("href") || "";
+    const url = a.getAttribute('href') || '';
 
     const response = await baseApiService.getSeoPreview({
       url: encodeURIComponent(url),
     });
 
     if (!response?.meta?.success) {
-      throw new Error("Failed to fetch URL");
+      throw new Error('Failed to fetch URL');
     }
 
     const data = response?.body?.data;
 
     if (!data) {
-      throw new Error("Failed to fetch URL");
+      throw new Error('Failed to fetch URL');
     }
 
-    const SEOPreviewBlot = (
-      await import("../components/shared/text-editor/SEOPreviewBlot")
-    ).default;
+    const SEOPreviewBlot = (await import('../components/shared/text-editor/SEOPreviewBlot'))
+      .default;
 
     const blotNode = SEOPreviewBlot.create(data);
 
@@ -37,19 +36,17 @@ const replaceLinksWithPreview = async (htmlString: string): Promise<string> => {
 
 function replacePreviewWithLink(htmlString: string): string {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, "text/html");
+  const doc = parser.parseFromString(htmlString, 'text/html');
 
-  const nodes = Array.from(
-    doc.querySelectorAll("div.seo-preview-block[data-url]")
-  );
+  const nodes = Array.from(doc.querySelectorAll('div.seo-preview-block[data-url]'));
 
   nodes.forEach((div) => {
-    const url = div.getAttribute("data-url");
+    const url = div.getAttribute('data-url');
     if (!url) return;
 
-    const a = doc.createElement("a");
-    a.setAttribute("href", url);
-    a.setAttribute("class", "seo-preview-block");
+    const a = doc.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('class', 'seo-preview-block');
     a.textContent = url; // set content to just the URL
 
     div.replaceWith(a);
@@ -66,9 +63,4 @@ const emailSVGString = `<svg xmlns="http://www.w3.org/2000/svg" width="16" heigh
     <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.803L0 4.697zm6.761 3.396L16 11.801V4.697l-5.803 3.803L8 9.586l-1.239-.493zm-6.761 4.11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4.697l-7.761 5.506-7.761-5.506V12.203z"/>
   </svg>`;
 
-export {
-  replaceLinksWithPreview,
-  replacePreviewWithLink,
-  phoneSVGString,
-  emailSVGString,
-};
+export { replaceLinksWithPreview, replacePreviewWithLink, phoneSVGString, emailSVGString };

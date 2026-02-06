@@ -1,21 +1,21 @@
-"use client";
-import CancelButton from "@/components/shared/buttons/CancelButton";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import EditButton from "@/components/shared/buttons/EditButton";
-import TableBaseButton from "@/components/shared/buttons/TableBaseButton";
-import { DataTable } from "@/components/shared/data-table";
-import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
-import columDefs from "./components/columnDefs";
-import { fetchUsers } from "./components/data";
-import { User } from "./components/types";
-import OptionSelect from "@/components/shared/OptionSelect";
-import { Input } from "@/components/ui/input";
-import FormCheckBox from "@/components/shared/check-box";
-import Combobox from "@/components/shared/combobox";
-import CustomTextArea from "@/components/shared/custom-textarea";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import { TextEditor } from "@/components/shared/text-editor";
+'use client';
+import CancelButton from '@/components/shared/buttons/CancelButton';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import EditButton from '@/components/shared/buttons/EditButton';
+import TableBaseButton from '@/components/shared/buttons/TableBaseButton';
+import { DataTable } from '@/components/shared/data-table';
+import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from 'react';
+import columDefs from './components/columnDefs';
+import { fetchUsers } from './components/data';
+import { User } from './components/types';
+import OptionSelect from '@/components/shared/OptionSelect';
+import { Input } from '@/components/ui/input';
+import FormCheckBox from '@/components/shared/check-box';
+import Combobox from '@/components/shared/combobox';
+import CustomTextArea from '@/components/shared/custom-textarea';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { TextEditor } from '@/components/shared/text-editor';
 
 const Snippets = () => {
   const [page, setPage] = useState(1);
@@ -33,8 +33,8 @@ const Snippets = () => {
       <div>
         <PageBreadcrumb
           links={[
-            { label: "Snippets", href: "/snippets" },
-            { label: "Create", href: "/snippets/create" },
+            { label: 'Snippets', href: '/snippets' },
+            { label: 'Create', href: '/snippets/create' },
           ]}
         />
       </div>
@@ -83,11 +83,11 @@ const Snippets = () => {
         <div className="mt-4">
           <OptionSelect
             options={[
-              { label: "Honey Nway OO", value: "1" },
-              { label: "Khin Wint War", value: "2" },
-              { label: "Poe Ma Mhe Thar", value: "3" },
+              { label: 'Honey Nway OO', value: '1' },
+              { label: 'Khin Wint War', value: '2' },
+              { label: 'Poe Ma Mhe Thar', value: '3' },
             ]}
-            value={"1"}
+            value={'1'}
             onChange={(value) => {}}
           />
         </div>
@@ -98,9 +98,9 @@ const Snippets = () => {
           <Combobox
             placeholder="Combobox"
             options={[
-              { label: "Honey Nway OO", value: "1" },
-              { label: "Khin Wint War", value: "2" },
-              { label: "Poe Ma Mhe Thar", value: "3" },
+              { label: 'Honey Nway OO', value: '1' },
+              { label: 'Khin Wint War', value: '2' },
+              { label: 'Poe Ma Mhe Thar', value: '3' },
             ]}
             value="1"
             setValue={(value) => {}}

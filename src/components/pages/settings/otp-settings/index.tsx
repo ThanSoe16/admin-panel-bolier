@@ -1,9 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import { useGetOTPSettings } from "@/features/settings/otp-settings/services/queries";
-import OTPSettingForm from "./_components/OTPSettingForm";
-import { Loading } from "@/components/shared/loading";
+'use client';
+import React, { useState } from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import { useGetOTPSettings } from '@/features/settings/otp-settings/services/queries';
+import OTPSettingForm from './_components/OTPSettingForm';
+import { Loading } from '@/components/shared/loading';
 
 const OTPSettings = () => {
   const { data, isLoading } = useGetOTPSettings();

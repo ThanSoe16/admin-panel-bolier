@@ -1,16 +1,22 @@
-"use client";
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem, Form } from "@/components/ui/form";
-import { Image } from "@/components/ui/image";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { LandingLanguage } from "@/features/landing-languages/types";
+import { Button } from '@/components/ui/button';
+import { FormControl, FormField, FormItem, Form } from '@/components/ui/form';
+import { Image } from '@/components/ui/image';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { LandingLanguage } from '@/features/landing-languages/types';
 import { TutorialsEnum } from '@/features/base/types/backend-defined-enums';
-import { CreateTutorialRequest } from "@/features/settings/tutorials/types";
-import VideoUploader from "@/components/shared/base/VideoUploader";
+import { CreateTutorialRequest } from '@/features/settings/tutorials/types';
+import VideoUploader from '@/components/shared/base/VideoUploader';
 import { X } from 'lucide-react';
 
 const getYouTubeEmbedUrl = (url: string) => {
@@ -22,11 +28,11 @@ const getYouTubeEmbedUrl = (url: string) => {
   // Extract video ID from various YouTube URL formats
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url?.match(regExp);
-  
+
   if (match && match[2].length === 11) {
     return `https://www.youtube.com/embed/${match[2]}`;
   }
-  
+
   // If it's not a YouTube URL, return the original URL
   return url;
 };
@@ -35,7 +41,7 @@ interface TutorialFormProps {
   form: any;
   handleClose: () => void;
   languages?: LandingLanguage[];
-  mode: "create" | "update" | "view";
+  mode: 'create' | 'update' | 'view';
   isLoading?: boolean;
   onSubmit: (data: CreateTutorialRequest) => void;
   defaultVideoSource?: 'youtube' | 'upload';
@@ -46,11 +52,11 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
   form,
   handleClose,
   languages,
-  mode = "create",
+  mode = 'create',
   isLoading = false,
   onSubmit,
   defaultVideoSource = 'youtube',
-  tutorial
+  tutorial,
 }) => {
   const [videoSource, setVideoSource] = useState<'youtube' | 'upload'>(defaultVideoSource);
 
@@ -84,14 +90,16 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
               <Select
                 value={field.value}
                 onValueChange={field.onChange}
-                disabled={mode === "view" || mode === "update" }
+                disabled={mode === 'view' || mode === 'update'}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select video type" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value={TutorialsEnum.LANDING}>Landing</SelectItem>
-                  <SelectItem value={TutorialsEnum.PURCHASED_TEMPLATE}>Purchased Template</SelectItem>
+                  <SelectItem value={TutorialsEnum.PURCHASED_TEMPLATE}>
+                    Purchased Template
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </FormItem>
@@ -125,21 +133,23 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
 
           {videoSource === 'youtube' ? (
             <>
-              {mode === "update" && form.getValues("videoLink") && form.getValues("videoLink").trim() !== "" && (
-                <div className="mb-4">
-                  <Label>Current Video Preview</Label>
-                  <div className="aspect-video mt-2">
-                    <iframe
-                      src={getYouTubeEmbedUrl(form.getValues("videoLink"))}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      className="rounded-xl h-full w-full aspect-video"
-                      allowFullScreen
-                      loading="eager"
-                    />
+              {mode === 'update' &&
+                form.getValues('videoLink') &&
+                form.getValues('videoLink').trim() !== '' && (
+                  <div className="mb-4">
+                    <Label>Current Video Preview</Label>
+                    <div className="aspect-video mt-2">
+                      <iframe
+                        src={getYouTubeEmbedUrl(form.getValues('videoLink'))}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        className="rounded-xl h-full w-full aspect-video"
+                        allowFullScreen
+                        loading="eager"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               <FormField
                 control={form.control}
                 name="videoLink"
@@ -150,7 +160,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                       <Input
                         placeholder="Enter YouTube video link"
                         {...field}
-                        disabled={mode === "view"}
+                        disabled={mode === 'view'}
                       />
                     </FormControl>
                   </FormItem>
@@ -159,7 +169,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
             </>
           ) : (
             <>
-              {mode === "update" && form.getValues("videoId") ? (
+              {mode === 'update' && form.getValues('videoId') ? (
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-2">
                     <Label>Current Video Preview</Label>
@@ -174,10 +184,10 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                         form.setValue('videoLink', '');
                       }}
                     >
-                      <X className='w-4 h-4' />
+                      <X className="w-4 h-4" />
                     </Button>
                     <video
-                      src={form.getValues("videoFile") || tutorial?.Video?.url}
+                      src={form.getValues('videoFile') || tutorial?.Video?.url}
                       controls
                       className="rounded-xl h-full w-full aspect-video object-fill"
                       preload="auto"
@@ -193,15 +203,15 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                       <Label>Upload Video</Label>
                       <FormControl>
                         <VideoUploader
-                          disabled={mode === "view"}
-                          videoURL={field.value || ""}
+                          disabled={mode === 'view'}
+                          videoURL={field.value || ''}
                           setVideoURL={(url) => {
                             field.onChange(url);
                             if (!url) {
                               form.setValue('videoId', '');
                             }
                           }}
-                          setVideoID={(value: string) => form.setValue("videoId", value)}
+                          setVideoID={(value: string) => form.setValue('videoId', value)}
                           limitations="Acceptable formats: MP4, WebM. Max file size: 100MB"
                         />
                       </FormControl>
@@ -226,9 +236,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                     alt="icon"
                     className="rounded-full w-5 h-5"
                   />
-                  <p className="font-bold text-default text-base">
-                    For {language.name}
-                  </p>
+                  <p className="font-bold text-default text-base">For {language.name}</p>
                 </div>
 
                 <FormField
@@ -240,7 +248,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                         <Input
                           placeholder="Enter tutorial title"
                           {...field}
-                          disabled={mode === "view"}
+                          disabled={mode === 'view'}
                           maxLength={60}
                         />
                       </FormControl>
@@ -257,7 +265,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                         <Textarea
                           placeholder="Enter tutorial description"
                           {...field}
-                          disabled={mode === "view"}
+                          disabled={mode === 'view'}
                         />
                       </FormControl>
                     </FormItem>
@@ -270,11 +278,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          type="hidden"
-                          {...field}
-                          value={language.id}
-                        />
+                        <Input type="hidden" {...field} value={language.id} />
                       </FormControl>
                     </FormItem>
                   )}
@@ -286,10 +290,7 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          type="hidden"
-                          {...field}
-                        />
+                        <Input type="hidden" {...field} />
                       </FormControl>
                     </FormItem>
                   )}
@@ -310,9 +311,9 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
           >
             Cancel
           </Button>
-          {mode !== "view" && (
+          {mode !== 'view' && (
             <Button loading={isLoading} addDoneIcon>
-              {mode === "create" ? "Create" : "Update"}
+              {mode === 'create' ? 'Create' : 'Update'}
             </Button>
           )}
         </div>
@@ -321,4 +322,4 @@ const TutorialForm: React.FC<TutorialFormProps> = ({
   );
 };
 
-export default TutorialForm; 
+export default TutorialForm;

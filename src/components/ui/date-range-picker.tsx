@@ -1,21 +1,17 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon, X } from "lucide-react";
-import { DateRange } from "react-day-picker";
+import * as React from 'react';
+import { format } from 'date-fns';
+import { Calendar as CalendarIcon, X } from 'lucide-react';
+import { DateRange } from 'react-day-picker';
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Flex } from "@radix-ui/themes";
-import { toast } from "sonner";
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Flex } from '@radix-ui/themes';
+import { toast } from 'sonner';
 
 interface DatePickerWithRangeProps {
   className?: string;
@@ -23,27 +19,23 @@ interface DatePickerWithRangeProps {
   onChange?: (date: DateRange | undefined) => void;
 }
 
-export function DatePickerWithRange({
-  className,
-  value,
-  onChange,
-}: DatePickerWithRangeProps) {
+export function DatePickerWithRange({ className, value, onChange }: DatePickerWithRangeProps) {
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<DateRange | undefined>(value);
   const isMobile = useIsMobile();
 
   const handleOk = () => {
     if (!date?.from) {
-      toast.error("Please select start date");
+      toast.error('Please select start date');
       return;
     }
 
     if (!date?.to) {
-      toast.error("Please select end date");
+      toast.error('Please select end date');
       return;
     }
 
-    if(date.from.getTime() === date.to.getTime()){
+    if (date.from.getTime() === date.to.getTime()) {
       date.to = new Date(date.from.getTime() + 24 * 60 * 60 * 1000 - 1);
     }
 
@@ -58,15 +50,15 @@ export function DatePickerWithRange({
   };
 
   return (
-    <div className={cn("grid gap-2 h-[48px]", className)}>
+    <div className={cn('grid gap-2 h-[48px]', className)}>
       <Popover open={open}>
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={"outline"}
+            variant={'outline'}
             className={cn(
-              "w-[300px] justify-start text-left font-normal h-full",
-              !date && "text-muted-foreground "
+              'w-[300px] justify-start text-left font-normal h-full',
+              !date && 'text-muted-foreground ',
             )}
             onClick={() => setOpen(true)}
           >
@@ -74,11 +66,10 @@ export function DatePickerWithRange({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date.from, 'LLL dd, y')
               )
             ) : (
               <span>Pick a date</span>
@@ -107,17 +98,12 @@ export function DatePickerWithRange({
             onSelect={setDate}
           />
           <Flex className="w-full gap-2" justify="end">
-            <Button 
-              variant="destructive" 
-              onClick={handleReset}
-              disabled={!date}
-            >
+            <Button variant="destructive" onClick={handleReset} disabled={!date}>
               Reset
             </Button>
-            <Button 
-              onClick={handleOk}
-              disabled={!date?.from || !date?.to}
-              >Done</Button>
+            <Button onClick={handleOk} disabled={!date?.from || !date?.to}>
+              Done
+            </Button>
           </Flex>
         </PopoverContent>
       </Popover>

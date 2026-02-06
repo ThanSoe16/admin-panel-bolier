@@ -58,7 +58,7 @@
 }
 
 .video-wrapper::after {
-  content: "";
+  content: '';
   @apply absolute inset-0 bg-black bg-opacity-30 opacity-0 transition-opacity duration-200 pointer-events-none;
 }
 

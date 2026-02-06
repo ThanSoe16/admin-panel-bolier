@@ -1,17 +1,14 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import {
-  CreateCategoryRequest,
-  createCategorySchema,
-} from "@/features/settings/category/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
-import { Loading } from "@/components/shared/loading";
-import { LandingLanguage } from "@/features/landing-languages/types";
-import { useCreateCategory } from "@/features/settings/category/services/mutations";
-import CategoryForm from "./CategoryForm";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useForm } from 'react-hook-form';
+import { CreateCategoryRequest, createCategorySchema } from '@/features/settings/category/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form } from '@/components/ui/form';
+import { Loading } from '@/components/shared/loading';
+import { LandingLanguage } from '@/features/landing-languages/types';
+import { useCreateCategory } from '@/features/settings/category/services/mutations';
+import CategoryForm from './CategoryForm';
 
 interface CreateModalProps {
   open: boolean;
@@ -20,22 +17,17 @@ interface CreateModalProps {
   isLoading?: boolean;
 }
 
-const CreateModal: React.FC<CreateModalProps> = ({
-  open,
-  handleClose,
-  languages,
-  isLoading,
-}) => {
+const CreateModal: React.FC<CreateModalProps> = ({ open, handleClose, languages, isLoading }) => {
   const createCategory = useCreateCategory();
   const defaultValues: CreateCategoryRequest = {
-    fileId: "",
-    url: "",
-    name: "",
+    fileId: '',
+    url: '',
+    name: '',
     items:
       languages?.map((language) => {
         return {
-          langId: language?.id ?? "",
-          name: "",
+          langId: language?.id ?? '',
+          name: '',
         };
       }) ?? [],
   };
@@ -59,10 +51,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
           <Loading />
         ) : (
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(submit)}
-              className="flex flex-col "
-            >
+            <form onSubmit={form.handleSubmit(submit)} className="flex flex-col ">
               <CategoryForm
                 form={form}
                 handleClose={handleClose}

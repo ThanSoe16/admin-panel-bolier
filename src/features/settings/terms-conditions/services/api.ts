@@ -1,15 +1,15 @@
-import { APIResponse } from "@/features/base/types";
-import appAxios from "@/lib/appAxios";
+import { APIResponse } from '@/features/base/types';
+import appAxios from '@/lib/appAxios';
 import {
   EarningWithdrawalTNCData,
   TermsConditionsData,
   UpdateTermsConditionsRequest,
-} from "../types";
+} from '../types';
 
 const termsConditionApiService = {
   getTermsConditions: async () => {
     const response = await appAxios.get<APIResponse<TermsConditionsData[]>>(
-      `/admin-settings/terms-and-conditions`
+      `/admin-settings/terms-and-conditions`,
     );
     return response.data;
   },
@@ -18,14 +18,14 @@ const termsConditionApiService = {
       `/admin-settings/terms-and-conditions/update`,
       {
         data: [data],
-      }
+      },
     );
     return response.data;
   },
   getEarningWithdrawalTNC: async () => {
-    const response = await appAxios.get<
-      APIResponse<{ data: EarningWithdrawalTNCData[] }>
-    >(`/membership-admin/get-membership-withdraw-tnc`);
+    const response = await appAxios.get<APIResponse<{ data: EarningWithdrawalTNCData[] }>>(
+      `/membership-admin/get-membership-withdraw-tnc`,
+    );
     return response.data;
   },
   updateEarningWithdrawalTNC: async (data: UpdateTermsConditionsRequest) => {
@@ -33,7 +33,7 @@ const termsConditionApiService = {
       `/membership-admin/update-membership-withdrawTNC/${data.id}`,
       {
         content: data.description,
-      }
+      },
     );
     return response.data;
   },

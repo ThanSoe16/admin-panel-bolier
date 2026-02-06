@@ -1,5 +1,5 @@
-import { FeeTypeEnum } from "@/features/users/types";
-import { z } from "zod";
+import { FeeTypeEnum } from '@/features/users/types';
+import { z } from 'zod';
 
 export const totalIncomeSchema = z.object({
   _sum: z.object({ total: z.number() }),
@@ -20,15 +20,9 @@ export type IncomeReportResponse = z.infer<typeof incomeReportSchema>;
 export const dIncomeReportSchema = z.object({
   id: z.string(),
   type: z.string(),
-  pageType: z.enum([
-    "purchase-template",
-    "setup-fee",
-    "hosting-fee",
-    "maintain-fee",
-    "server-fee",
-  ]),
+  pageType: z.enum(['purchase-template', 'setup-fee', 'hosting-fee', 'maintain-fee', 'server-fee']),
   amount: z.number(),
-  status: z.enum(["COMPLETED", "PENDING", "FAILED"]),
+  status: z.enum(['COMPLETED', 'PENDING', 'FAILED']),
   date: z.string(),
   customer: z.string(),
 });
@@ -52,9 +46,7 @@ export const purchaseTemplateYearlySchema = z.object({
   count: z.number(),
 });
 
-export type PurchaseTemplateYearlyData = z.infer<
-  typeof purchaseTemplateYearlySchema
->;
+export type PurchaseTemplateYearlyData = z.infer<typeof purchaseTemplateYearlySchema>;
 
 export const purchaseTemplateCategorySchema = z.object({
   type: z.string(),
@@ -62,9 +54,7 @@ export const purchaseTemplateCategorySchema = z.object({
   count: z.number(),
 });
 
-export type PurchaseTemplateCategoryData = z.infer<
-  typeof purchaseTemplateCategorySchema
->;
+export type PurchaseTemplateCategoryData = z.infer<typeof purchaseTemplateCategorySchema>;
 
 //**********************FOR SETUP FEE */
 export const setupFeeSchema = z.object({

@@ -1,27 +1,27 @@
-import ProfilePicker from "@/components/shared/base/ProfilePicker";
-import PageTitle from "@/components/shared/PageTitle";
-import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import ProfilePicker from '@/components/shared/base/ProfilePicker';
+import PageTitle from '@/components/shared/PageTitle';
+import { Button } from '@/components/ui/button';
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useGetRoles } from "@/features/admins/services/queries";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { Flex } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/select';
+import { useGetRoles } from '@/features/admins/services/queries';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { Flex } from '@radix-ui/themes';
+import { useRouter } from 'next/navigation';
 
 const AdminForm = ({
   form,
-  mode = "create",
+  mode = 'create',
   isLoading,
 }: {
   form: any;
-  mode: "view" | "update" | "create";
+  mode: 'view' | 'update' | 'create';
   isLoading: boolean;
 }) => {
   const router = useRouter();
@@ -35,7 +35,7 @@ const AdminForm = ({
 
   return (
     <div className="space-y-4 pt-6">
-      <PageTitle>{mode == "create" ? "Create Admin" : "Edit Admin"}</PageTitle>
+      <PageTitle>{mode == 'create' ? 'Create Admin' : 'Edit Admin'}</PageTitle>
       <Flex justify="center" className="pb-6">
         <FormField
           control={form.control}
@@ -46,7 +46,7 @@ const AdminForm = ({
                 <ProfilePicker
                   imageURL={field.value}
                   setImageURL={field.onChange}
-                  setImageID={(value) => form.setValue("avatarId", value)}
+                  setImageID={(value) => form.setValue('avatarId', value)}
                 />
               </FormControl>
             </FormItem>
@@ -67,7 +67,7 @@ const AdminForm = ({
               <SelectContent>
                 {roles?.data?.body?.data &&
                   roles?.data?.body?.data
-                    .filter((item) => item.Status == "ACTIVE")
+                    .filter((item) => item.Status == 'ACTIVE')
                     .map((item, key) => (
                       <SelectItem value={item.id} key={key}>
                         {item.name}
@@ -88,7 +88,7 @@ const AdminForm = ({
                 {...field}
                 error={!!form.formState.errors.name}
                 placeholder="Admin Name"
-                readOnly={mode === "view"}
+                readOnly={mode === 'view'}
               />
             </FormControl>
           </FormItem>
@@ -104,7 +104,7 @@ const AdminForm = ({
                 {...field}
                 error={!!form.formState.errors.phone}
                 placeholder="Phone Number"
-                readOnly={mode === "view"}
+                readOnly={mode === 'view'}
               />
             </FormControl>
           </FormItem>
@@ -120,7 +120,7 @@ const AdminForm = ({
                 {...field}
                 error={!!form.formState.errors.loginId}
                 placeholder="Login ID"
-                readOnly={mode === "view"}
+                readOnly={mode === 'view'}
               />
             </FormControl>
           </FormItem>
@@ -135,11 +135,9 @@ const AdminForm = ({
               <FormControl>
                 <Input
                   {...field}
-                  error={
-                    form.formState.errors.password || fieldState.error?.message
-                  }
+                  error={form.formState.errors.password || fieldState.error?.message}
                   placeholder="Password"
-                  readOnly={mode === "view"}
+                  readOnly={mode === 'view'}
                   type="password"
                 />
               </FormControl>
@@ -147,18 +145,13 @@ const AdminForm = ({
           );
         }}
       />
-      {mode != "view" && (
+      {mode != 'view' && (
         <Flex justify="end" className="space-x-2">
-          <Button
-            size="lg"
-            variant="outline"
-            type="button"
-            onClick={resetHandler}
-          >
+          <Button size="lg" variant="outline" type="button" onClick={resetHandler}>
             Cancel
           </Button>
           <Button size="lg" loading={isLoading}>
-            {mode == "create" ? "Create" : "Update"}
+            {mode == 'create' ? 'Create' : 'Update'}
           </Button>
         </Flex>
       )}

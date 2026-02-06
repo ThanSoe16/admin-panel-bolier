@@ -1,8 +1,5 @@
-import {
-  fileUploadResponseSchema,
-  templateCategorySchema,
-} from "@/features/base/types";
-import { z } from "zod";
+import { fileUploadResponseSchema, templateCategorySchema } from '@/features/base/types';
+import { z } from 'zod';
 
 export const categoryTemplateSchema = templateCategorySchema;
 export type CategoryTemplateData = z.infer<typeof categoryTemplateSchema>;
@@ -11,7 +8,7 @@ export const categorySchema = z.object({
   id: z.string(),
   index: z.number(),
   engName: z.string(),
-  Status: z.enum(["ACTIVE", "INACTIVE"]),
+  Status: z.enum(['ACTIVE', 'INACTIVE']),
   createdAt: z.string(),
   updatedAt: z.string(),
   createdById: z.string(),
@@ -30,38 +27,38 @@ export const categoryFilterSchema = z.object({
 export type CategoryFilter = z.infer<typeof categoryFilterSchema>;
 
 export const createCategorySchema = z.object({
-  fileId: z.string().min(1, { message: "Image is required" }),
-  url: z.string().min(1, { message: "Image is required" }),
-  name: z.string().min(1, { message: "Image is required" }),
+  fileId: z.string().min(1, { message: 'Image is required' }),
+  url: z.string().min(1, { message: 'Image is required' }),
+  name: z.string().min(1, { message: 'Image is required' }),
   items: z.array(
     z.object({
-      langId: z.string().min(1, { message: "Language is required" }),
+      langId: z.string().min(1, { message: 'Language is required' }),
       name: z
         .string()
         .transform((val) => val.trim())
         .refine((val) => val.length > 0, {
-          message: "Category Name must be at least 1 character",
+          message: 'Category Name must be at least 1 character',
         }),
-    })
+    }),
   ),
 });
 
 export type CreateCategoryRequest = z.infer<typeof createCategorySchema>;
 export const updateCategorySchema = z.object({
-  id: z.string().min(1, { message: "Image is required" }),
-  fileId: z.string().min(1, { message: "Image is required" }),
-  url: z.string().min(1, { message: "Image is required" }),
+  id: z.string().min(1, { message: 'Image is required' }),
+  fileId: z.string().min(1, { message: 'Image is required' }),
+  url: z.string().min(1, { message: 'Image is required' }),
   name: z.string(),
   items: z.array(
     z.object({
-      langId: z.string().min(1, { message: "Language is required" }),
+      langId: z.string().min(1, { message: 'Language is required' }),
       name: z
         .string()
         .transform((val) => val.trim())
         .refine((val) => val.length > 0, {
-          message: "Category Name must be at least 1 character",
+          message: 'Category Name must be at least 1 character',
         }),
-    })
+    }),
   ),
 });
 
@@ -71,7 +68,7 @@ export const orderCategorySchema = z.object({
     z.object({
       id: z.string(),
       index: z.number(),
-    })
+    }),
   ),
 });
 

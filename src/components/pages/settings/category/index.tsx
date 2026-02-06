@@ -1,15 +1,15 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import SearchInput from "@/components/shared/search-input";
-import { columnDefs } from "./components/columnDefs";
-import CreateModal from "./components/CreateModal";
-import { useGetCategories } from "@/features/settings/category/services/queries";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import { useGetLandingLanguages } from "@/features/landing-languages/services/queries";
-import { useOrderCategory } from "@/features/settings/category/services/mutations";
-import { DraggableTable } from "@/components/shared/data-table/draggable-table";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import SearchInput from '@/components/shared/search-input';
+import { columnDefs } from './components/columnDefs';
+import CreateModal from './components/CreateModal';
+import { useGetCategories } from '@/features/settings/category/services/queries';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import { useGetLandingLanguages } from '@/features/landing-languages/services/queries';
+import { useOrderCategory } from '@/features/settings/category/services/mutations';
+import { DraggableTable } from '@/components/shared/data-table/draggable-table';
 
 const Category = () => {
   const { query } = usePagination();

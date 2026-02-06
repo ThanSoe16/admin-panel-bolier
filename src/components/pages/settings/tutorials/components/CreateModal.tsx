@@ -1,14 +1,14 @@
-"use client";
-import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loading } from "@/components/shared/loading";
-import { LandingLanguage } from "@/features/landing-languages/types";
-import { useCreateTutorial } from "@/features/settings/tutorials/services/mutations";
-import { CreateTutorialRequest, createTutorialSchema } from "@/features/settings/tutorials/types";
+'use client';
+import React from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loading } from '@/components/shared/loading';
+import { LandingLanguage } from '@/features/landing-languages/types';
+import { useCreateTutorial } from '@/features/settings/tutorials/services/mutations';
+import { CreateTutorialRequest, createTutorialSchema } from '@/features/settings/tutorials/types';
 import { TutorialsEnum } from '@/features/base/types/backend-defined-enums';
-import TutorialForm from "./TutorialForm";
+import TutorialForm from './TutorialForm';
 
 interface CreateModalProps {
   open: boolean;
@@ -17,28 +17,24 @@ interface CreateModalProps {
   isLoading?: boolean;
 }
 
-const CreateModal: React.FC<CreateModalProps> = ({
-  open,
-  handleClose,
-  languages,
-  isLoading,
-}) => {
+const CreateModal: React.FC<CreateModalProps> = ({ open, handleClose, languages, isLoading }) => {
   const createTutorial = useCreateTutorial();
-  
+
   const defaultValues: CreateTutorialRequest = {
     VideoType: TutorialsEnum.LANDING,
-    videoLink: "",
-    videoId: "",
-    TutorialContent: languages?.map((language) => ({
-      languageId: language.id,
-      name: "",
-      description: ""
-    })) ?? []
+    videoLink: '',
+    videoId: '',
+    TutorialContent:
+      languages?.map((language) => ({
+        languageId: language.id,
+        name: '',
+        description: '',
+      })) ?? [],
   };
 
   const form = useForm<CreateTutorialRequest>({
     resolver: zodResolver(createTutorialSchema),
-    defaultValues
+    defaultValues,
   });
 
   const submit = async (data: CreateTutorialRequest) => {
@@ -46,7 +42,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
       await createTutorial.mutateAsync(data);
       handleClose();
     } catch (error) {
-      console.error("Error creating tutorial:", error);
+      console.error('Error creating tutorial:', error);
     }
   };
 
@@ -72,4 +68,4 @@ const CreateModal: React.FC<CreateModalProps> = ({
   );
 };
 
-export default CreateModal; 
+export default CreateModal;

@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import { Loading } from "@/components/shared/loading";
-import { useGetEarningWithdrawalTNC } from "@/features/settings/terms-conditions/services/queries";
-import { Grid } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-import { formatDate } from "@/utils/dateTime";
-import TermsCard from "../terms/_components/TermsCard";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import { Loading } from '@/components/shared/loading';
+import { useGetEarningWithdrawalTNC } from '@/features/settings/terms-conditions/services/queries';
+import { Grid } from '@radix-ui/themes';
+import { useRouter } from 'next/navigation';
+import { formatDate } from '@/utils/dateTime';
+import TermsCard from '../terms/_components/TermsCard';
 
 const EarningWithdrawalTNC = () => {
   const router = useRouter();
@@ -19,7 +19,7 @@ const EarningWithdrawalTNC = () => {
         <Loading />
       ) : (
         data?.body?.data && (
-          <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+          <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
             {data?.body?.data?.data.map((item) => (
               <TermsCard
                 key={item.id}
@@ -30,7 +30,7 @@ const EarningWithdrawalTNC = () => {
                 description={item?.content}
                 onEdit={() =>
                   router.push(
-                    `/settings/earning-withdrawal-tnc/detail?language=${item?.Language?.key}`
+                    `/settings/earning-withdrawal-tnc/detail?language=${item?.Language?.key}`,
                   )
                 }
               />

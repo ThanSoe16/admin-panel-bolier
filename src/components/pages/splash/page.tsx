@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { Loading } from "@/components/shared/loading";
-import { routePermissionMap } from "@/data/route-permissions";
-import { matchFirstStoredPermission } from "@/utils/routeMatcher";
+import { Loading } from '@/components/shared/loading';
+import { routePermissionMap } from '@/data/route-permissions';
+import { matchFirstStoredPermission } from '@/utils/routeMatcher';
 
-import { Flex } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { Flex } from '@radix-ui/themes';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 
 const Splash: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       const match = matchFirstStoredPermission(routePermissionMap); // Make sure this returns { path: string }
       if (match) {
         router.push(match.path);
       } else {
-        router.replace("/login");
+        router.replace('/login');
       }
     } else {
-      router.replace("/login");
+      router.replace('/login');
     }
   }, []);
 

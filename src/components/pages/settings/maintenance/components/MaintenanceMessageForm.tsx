@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import CustomTextArea from '@/components/shared/custom-textarea';
@@ -22,24 +22,22 @@ export const MaintenanceMessageForm = ({
   onSubmit,
   maintenanceContents,
   form,
-  isPending
+  isPending,
 }: MaintenanceMessageFormProps) => {
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
         {maintenanceContents.map((content, index) => (
-          <div key={content.id} className='w-full mb-6'>
+          <div key={content.id} className="w-full mb-6">
             <div className="flex flex-row items-center space-x-4 justify-start mb-6">
               <Image
                 src={content.Language.File.url}
                 width={24}
                 height={24}
                 alt="icon"
-                className='rounded-full w-6 h-6 object-cover object-center'
+                className="rounded-full w-6 h-6 object-cover object-center"
               />
-              <p className='font-bold text-default text-base'>
-                For {content.Language.name}
-              </p>
+              <p className="font-bold text-default text-base">For {content.Language.name}</p>
             </div>
             <FormField
               control={form.control}
@@ -51,8 +49,8 @@ export const MaintenanceMessageForm = ({
                       textLimit={500}
                       showCount
                       disabled={!isEditing}
-                      placeholder='Maintenance Message'
-                      className='border rounded-[12px] w-full'
+                      placeholder="Maintenance Message"
+                      className="border rounded-[12px] w-full"
                       rows={6}
                       {...field}
                     />
@@ -69,7 +67,7 @@ export const MaintenanceMessageForm = ({
               <Button
                 variant="outline"
                 className="text-text-primary"
-                type='button'
+                type="button"
                 onClick={() => {
                   setIsEditing(false);
                   form.reset();
@@ -77,20 +75,13 @@ export const MaintenanceMessageForm = ({
               >
                 Cancel
               </Button>
-              <Button
-                type='submit'
-                loading={isPending}
-                addDoneIcon
-              >
+              <Button type="submit" loading={isPending} addDoneIcon>
                 Update
               </Button>
             </>
           ) : (
-            <Button
-              onClick={() => setIsEditing(true)}
-              type='button'
-            >
-              <PencilIcon className='w-6 h-6' />
+            <Button onClick={() => setIsEditing(true)} type="button">
+              <PencilIcon className="w-6 h-6" />
               Edit
             </Button>
           )}

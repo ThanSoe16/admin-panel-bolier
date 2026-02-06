@@ -1,8 +1,7 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { cn } from '@/lib/utils';
 
-export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   postfix?: React.ReactNode;
   preFix?: React.ReactNode;
   readonly?: boolean;
@@ -10,23 +9,9 @@ export interface TextareaProps
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      className,
-      preFix,
-      postfix,
-      disabled,
-      readOnly,
-      error,
-      maxLength,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, preFix, postfix, disabled, readOnly, error, maxLength, ...props }, ref) => {
     const [inputLength, setInputLength] = React.useState(
-      props.value?.toString().length ||
-        props.defaultValue?.toString().length ||
-        0
+      props.value?.toString().length || props.defaultValue?.toString().length || 0,
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -44,12 +29,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       <div className="relative w-full">
         <textarea
           className={cn(
-            readOnly || disabled ? "bg-gray-100" : " ",
-            error ? "border-error" : "border-border",
-            "peer flex min-h-[80px] w-full rounded-xl border px-3 py-3 text-sm shadow-sm transition-colors placeholder:text-gray-400 placeholder:text-sm focus:placeholder-transparent focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 md:text-base",
-            preFix && "pl-[40px]",
-            maxLength && "pr-[55px]",
-            className
+            readOnly || disabled ? 'bg-gray-100' : ' ',
+            error ? 'border-error' : 'border-border',
+            'peer flex min-h-[80px] w-full rounded-xl border px-3 py-3 text-sm shadow-sm transition-colors placeholder:text-gray-400 placeholder:text-sm focus:placeholder-transparent focus-visible:outline-none focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 md:text-base',
+            preFix && 'pl-[40px]',
+            maxLength && 'pr-[55px]',
+            className,
           )}
           ref={ref}
           disabled={disabled}
@@ -76,11 +61,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {props.placeholder}
         </label>
 
-        {preFix && (
-          <div className="absolute left-3 top-4 transform -translate-y-1/2">
-            {preFix}
-          </div>
-        )}
+        {preFix && <div className="absolute left-3 top-4 transform -translate-y-1/2">{preFix}</div>}
 
         {/* ✅ postfix area */}
         <div className="absolute right-3 top-2 text-default-secondary text-xs">
@@ -94,9 +75,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-Textarea.displayName = "Textarea";
+Textarea.displayName = 'Textarea';
 
 export { Textarea };

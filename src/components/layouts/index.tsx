@@ -1,14 +1,14 @@
-"use client";
-import React, { ReactNode, useEffect } from "react";
+'use client';
+import React, { ReactNode, useEffect } from 'react';
 
-import { ScrollArea } from "@radix-ui/themes";
+import { ScrollArea } from '@radix-ui/themes';
 
-import Header from "./Header";
-import useNetworkStatus from "@/features/base/hooks/useNetworkStatus";
-import NoInternet from "../pages/errors/NoInternet";
-import { SidebarProvider } from "../ui/sidebar";
-import { AppSidebar } from "./side-bar/app-sidebar";
-import { useRouter } from "next/navigation";
+import Header from './Header';
+import useNetworkStatus from '@/features/base/hooks/useNetworkStatus';
+import NoInternet from '../pages/errors/NoInternet';
+import { SidebarProvider } from '../ui/sidebar';
+import { AppSidebar } from './side-bar/app-sidebar';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   children: React.ReactNode;
@@ -54,9 +54,7 @@ function NavHeader() {
 function PageContainer(props: { children: ReactNode }) {
   return (
     <ScrollArea className="h-[calc(100vh-130px)] flex-grow flex flex-col justify-center items-center bg-secondary p-4">
-      <div className="p-4 pb-8 bg-background h-full rounded-lg">
-        {props.children}
-      </div>
+      <div className="p-4 pb-8 bg-background h-full rounded-lg">{props.children}</div>
     </ScrollArea>
   );
 }

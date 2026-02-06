@@ -1,29 +1,29 @@
-"use client";
-import { DataTable } from "@/components/shared/data-table";
-import { useGetAdmins, useGetRoles } from "@/features/admins/services/queries";
-import { usePagination } from "@/features/base/hooks/usePagination";
-import SearchInput from "@/components/shared/search-input";
-import { Box, Flex } from "@radix-ui/themes";
-import CreateButton from "@/components/shared/buttons/CreateButton";
-import { PageBreadcrumb } from "@/components/shared/breadcrumb";
-import { adminColDefs } from "./_components/AdminColDefs";
-import SelectBoxFilter from "@/components/shared/base/SelectBoxFilter";
-import { useQueryState } from "nuqs";
+'use client';
+import { DataTable } from '@/components/shared/data-table';
+import { useGetAdmins, useGetRoles } from '@/features/admins/services/queries';
+import { usePagination } from '@/features/base/hooks/usePagination';
+import SearchInput from '@/components/shared/search-input';
+import { Box, Flex } from '@radix-ui/themes';
+import CreateButton from '@/components/shared/buttons/CreateButton';
+import { PageBreadcrumb } from '@/components/shared/breadcrumb';
+import { adminColDefs } from './_components/AdminColDefs';
+import SelectBoxFilter from '@/components/shared/base/SelectBoxFilter';
+import { useQueryState } from 'nuqs';
 
 const Admins = () => {
   const { query } = usePagination();
-  const [role] = useQueryState("role");
+  const [role] = useQueryState('role');
 
   const admins = useGetAdmins({
     word: query.word,
     pageIndex: query.pageIndex,
     rowPerPage: query.rowPerPage,
-    adminRoleId: role == "all" ? "" : role ?? "",
+    adminRoleId: role == 'all' ? '' : (role ?? ''),
   });
   const roles = useGetRoles(query);
 
   const roleStatus = [
-    { label: "All Roles", value: "all" },
+    { label: 'All Roles', value: 'all' },
     ...(roles.data?.body?.data?.map((item) => ({
       label: item.name,
       value: item.id,
@@ -32,7 +32,7 @@ const Admins = () => {
 
   return (
     <div className="space-y-4">
-      <PageBreadcrumb links={[{ label: "Admin Lists", href: "#" }]} />
+      <PageBreadcrumb links={[{ label: 'Admin Lists', href: '#' }]} />
       <Box className="table-container">
         <DataTable
           columns={adminColDefs}
@@ -47,9 +47,7 @@ const Admins = () => {
                 <SearchInput placeholder="Search by admin name" />
               </Flex>
               <div className="w-[200px]">
-                {roleStatus && (
-                  <SelectBoxFilter arr={roleStatus} selectParam="role" />
-                )}
+                {roleStatus && <SelectBoxFilter arr={roleStatus} selectParam="role" />}
               </div>
             </div>
           )}

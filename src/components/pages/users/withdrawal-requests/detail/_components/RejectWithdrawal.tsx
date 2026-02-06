@@ -1,35 +1,35 @@
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useRejectWithdrawalRequest } from "@/features/withdrawal/services/mutations";
-import { WithdrawalRequestDetailData } from "@/features/withdrawal/types";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import { Flex } from "@radix-ui/themes";
-import { X } from "lucide-react";
-import { useState } from "react";
-import UserAccount from "./UserAccount";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import { matchRouteToStoredPermission } from "@/utils/routeMatcher";
-import { routePermissionMap } from "@/data/route-permissions";
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useRejectWithdrawalRequest } from '@/features/withdrawal/services/mutations';
+import { WithdrawalRequestDetailData } from '@/features/withdrawal/types';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import { Flex } from '@radix-ui/themes';
+import { X } from 'lucide-react';
+import { useState } from 'react';
+import UserAccount from './UserAccount';
+import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import { matchRouteToStoredPermission } from '@/utils/routeMatcher';
+import { routePermissionMap } from '@/data/route-permissions';
 
 const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
   const router = useRouter();
   const { mutateAsync, isPending } = useRejectWithdrawalRequest();
 
   const [open, setOpen] = useState(false);
-  const [otherReason, setOtherReason] = useState<string>("");
+  const [otherReason, setOtherReason] = useState<string>('');
 
   const pathname = usePathname();
   const match = matchRouteToStoredPermission(pathname, routePermissionMap);
 
-  if (!match?.includes("EDIT")) return null;
+  if (!match?.includes('EDIT')) return null;
 
   const exchangeRate = (data?.exchangeRate ?? 0) + (data?.exchangeFee ?? 0);
 
   const withdrawalPercentage =
-    data?.withdrawFeeType == "PERCENTAGE"
+    data?.withdrawFeeType == 'PERCENTAGE'
       ? (data?.withdrawFee ?? 0) / 100
       : (data?.withdrawFee ?? 0) / exchangeRate;
 
@@ -37,21 +37,11 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
 
   const withdrawalFeeAmount = requestedAmount * withdrawalPercentage;
 
-  const List = ({
-    name,
-    value,
-    minute,
-  }: {
-    name: string;
-    value: string;
-    minute?: boolean;
-  }) => {
+  const List = ({ name, value, minute }: { name: string; value: string; minute?: boolean }) => {
     return (
-      <Flex justify={"between"}>
+      <Flex justify={'between'}>
         <p className="">{name} : </p>
-        <p className={cn("text-right", minute && "text-destructive")}>
-          {value}
-        </p>
+        <p className={cn('text-right', minute && 'text-destructive')}>{value}</p>
       </Flex>
     );
   };
@@ -67,7 +57,7 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
   };
 
   const handleReset = () => {
-    setOtherReason("");
+    setOtherReason('');
     setOpen(false);
   };
 
@@ -78,7 +68,7 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
 
   return (
     <div>
-      <Button variant={"destructive"} onClick={() => setOpen(true)}>
+      <Button variant={'destructive'} onClick={() => setOpen(true)}>
         <X /> Reject
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
@@ -86,23 +76,23 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
           <DialogTitle>Reject Withdrawal</DialogTitle>
           <div className="space-y-1">
             <List
-              name={"Withdrawal Amount"}
-              value={"$ " + CurrencyFormat(data.totalRequestAmount)}
+              name={'Withdrawal Amount'}
+              value={'$ ' + CurrencyFormat(data.totalRequestAmount)}
             />
             <List
-              name={"Exchange Rate at Requested Time"}
-              value={"$1 = " + CurrencyFormat(exchangeRate) + " MMK"}
+              name={'Exchange Rate at Requested Time'}
+              value={'$1 = ' + CurrencyFormat(exchangeRate) + ' MMK'}
             />
             <List
-              name={"Withdrawal Amount in MMK"}
-              value={CurrencyFormat(requestedAmount) + " MMK "}
+              name={'Withdrawal Amount in MMK'}
+              value={CurrencyFormat(requestedAmount) + ' MMK '}
             />
             <List
-              name={"Withdrawal Service Fee"}
-              value={CurrencyFormat(withdrawalFeeAmount) + " MMK "}
+              name={'Withdrawal Service Fee'}
+              value={CurrencyFormat(withdrawalFeeAmount) + ' MMK '}
               minute
             />
-            <Flex justify={"between"} className=" pb-2">
+            <Flex justify={'between'} className=" pb-2">
               <p className="">Actual Withdrawal Amount : </p>
               <p className="text-right text-2xl font-semibold">
                 {CurrencyFormat(data.paidAmount)} MMK
@@ -110,9 +100,7 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
             </Flex>
             <UserAccount data={data.OnesiteUserReceivingAccount} />
             <div className="pt-2 space-y-2">
-              <h3 className="font-bold text-lg">
-                Please Explain Why You Reject This Withdrawal
-              </h3>
+              <h3 className="font-bold text-lg">Please Explain Why You Reject This Withdrawal</h3>
               {/* <Select value={reason} onValueChange={setReason}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Reason" />
@@ -133,13 +121,13 @@ const RejectWithdrawal = ({ data }: { data: WithdrawalRequestDetailData }) => {
                 maxLength={100}
               />
             </div>
-            <Flex justify={"end"} className="pt-4 space-x-2">
-              <Button variant={"outline"} size={"lg"} onClick={handleReset}>
+            <Flex justify={'end'} className="pt-4 space-x-2">
+              <Button variant={'outline'} size={'lg'} onClick={handleReset}>
                 Cancel
               </Button>
               <Button
-                size={"lg"}
-                variant={"destructive"}
+                size={'lg'}
+                variant={'destructive'}
                 disabled={!otherReason}
                 onClick={handleConfirm}
                 loading={isPending}

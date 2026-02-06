@@ -1,8 +1,8 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-import { Flex } from "@radix-ui/themes";
-import { v4 as uuidv4 } from "uuid";
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import { Flex } from '@radix-ui/themes';
+import { v4 as uuidv4 } from 'uuid';
 
 const PermissionItem = ({
   item,
@@ -12,18 +12,15 @@ const PermissionItem = ({
   toggleDropdown,
 }: {
   item: any;
-  value: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE">;
-  onChange: (value: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE">) => void;
-  mode: "create" | "update" | "view";
+  value: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'>;
+  onChange: (value: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'>) => void;
+  mode: 'create' | 'update' | 'view';
   toggleDropdown: (name: string) => void;
 }) => {
-  const allPermissions: Array<"VIEW" | "EDIT" | "CREATE" | "DELETE"> =
-    item.permissions;
+  const allPermissions: Array<'VIEW' | 'EDIT' | 'CREATE' | 'DELETE'> = item.permissions;
   const isAllSelected =
     allPermissions.length > 0 &&
-    allPermissions.every((perm: "VIEW" | "EDIT" | "CREATE" | "DELETE") =>
-      value.includes(perm)
-    );
+    allPermissions.every((perm: 'VIEW' | 'EDIT' | 'CREATE' | 'DELETE') => value.includes(perm));
 
   const handleSelectAll = () => {
     if (isAllSelected) {
@@ -41,22 +38,20 @@ const PermissionItem = ({
             toggleDropdown(item.name);
           }
         }}
-        className={cn("p-4 relative")}
-        wrap={{ initial: "wrap", md: "nowrap" }}
+        className={cn('p-4 relative')}
+        wrap={{ initial: 'wrap', md: 'nowrap' }}
       >
-        <div className="font-bold w-full md:w-[400px] truncate">
-          {item.title}
-        </div>
+        <div className="font-bold w-full md:w-[400px] truncate">{item.title}</div>
         <Flex className="w-full">
           <Flex
             className="w-full gap-4 md:gap-20 pt-4 md:pt-0"
-            wrap={{ initial: "wrap", md: "nowrap" }}
+            wrap={{ initial: 'wrap', md: 'nowrap' }}
           >
             <div className="flex items-center space-x-2">
               <Checkbox
                 checked={isAllSelected}
                 onCheckedChange={handleSelectAll}
-                disabled={mode === "view"}
+                disabled={mode === 'view'}
               />
               <Label htmlFor="all">All</Label>
             </div>
@@ -79,7 +74,7 @@ const PermissionItem = ({
                       checked={isChecked}
                       onCheckedChange={handleChange}
                       id={uuid}
-                      disabled={mode === "view"}
+                      disabled={mode === 'view'}
                     />
                     <Label htmlFor={uuid}>{permission}</Label>
                   </div>

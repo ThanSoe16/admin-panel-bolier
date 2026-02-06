@@ -1,57 +1,47 @@
-"use client";
-import dayjs from "dayjs";
-import {
-  parseAsBoolean,
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-} from "nuqs";
-import { useMemo } from "react";
+'use client';
+import dayjs from 'dayjs';
+import { parseAsBoolean, parseAsInteger, parseAsString, useQueryState } from 'nuqs';
+import { useMemo } from 'react';
 export const usePagination = () => {
-  const [pagination, setPagination] = useQueryState(
-    "pagination",
-    parseAsBoolean.withDefault(true)
-  );
+  const [pagination, setPagination] = useQueryState('pagination', parseAsBoolean.withDefault(true));
 
   const [word, setWord] = useQueryState(
-    "search",
-    parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+    'search',
+    parseAsString.withDefault('').withOptions({ clearOnDefault: true }),
   );
   const [tab, setTab] = useQueryState(
-    "tab",
-    parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+    'tab',
+    parseAsString.withDefault('').withOptions({ clearOnDefault: true }),
   );
   const [pageIndex, setPageIndex] = useQueryState(
-    "pageIndex",
-    parseAsInteger.withDefault(1).withOptions({ clearOnDefault: true })
+    'pageIndex',
+    parseAsInteger.withDefault(1).withOptions({ clearOnDefault: true }),
   );
   const [rowPerPage, setRowPerPage] = useQueryState(
-    "rowPerPage",
-    parseAsInteger.withDefault(10).withOptions({ clearOnDefault: true })
+    'rowPerPage',
+    parseAsInteger.withDefault(10).withOptions({ clearOnDefault: true }),
   );
   const [uuid, setUUID] = useQueryState(
-    "uuid",
-    parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+    'uuid',
+    parseAsString.withDefault('').withOptions({ clearOnDefault: true }),
   );
   const [status, setStatus] = useQueryState(
-    "status",
-    parseAsString.withDefault("all").withOptions({ clearOnDefault: true })
+    'status',
+    parseAsString.withDefault('all').withOptions({ clearOnDefault: true }),
   );
   const [language, setLanguage] = useQueryState(
-    "language",
-    parseAsString.withDefault("en").withOptions({ clearOnDefault: true })
+    'language',
+    parseAsString.withDefault('en').withOptions({ clearOnDefault: true }),
   );
   const [date, setDate] = useQueryState(
-    "date",
-    parseAsString
-      .withDefault(dayjs().format("YYYY-MM-DD"))
-      .withOptions({ clearOnDefault: true })
+    'date',
+    parseAsString.withDefault(dayjs().format('YYYY-MM-DD')).withOptions({ clearOnDefault: true }),
   );
-  const [start, setStarting] = useQueryState("start");
-  const [end, setEnding] = useQueryState("end");
+  const [start, setStarting] = useQueryState('start');
+  const [end, setEnding] = useQueryState('end');
   const [mode, setMode] = useQueryState(
-    "mode",
-    parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+    'mode',
+    parseAsString.withDefault('').withOptions({ clearOnDefault: true }),
   );
 
   const handleSearchChange = (value: string | null) => {

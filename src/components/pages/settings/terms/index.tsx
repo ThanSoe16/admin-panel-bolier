@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import { Loading } from "@/components/shared/loading";
-import TermsCard from "./_components/TermsCard";
-import { useGetTermsConditions } from "@/features/settings/terms-conditions/services/queries";
-import { Grid } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-import { formatDate } from "@/utils/dateTime";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import { Loading } from '@/components/shared/loading';
+import TermsCard from './_components/TermsCard';
+import { useGetTermsConditions } from '@/features/settings/terms-conditions/services/queries';
+import { Grid } from '@radix-ui/themes';
+import { useRouter } from 'next/navigation';
+import { formatDate } from '@/utils/dateTime';
 
 const TermsConditions = () => {
   const router = useRouter();
@@ -19,7 +19,7 @@ const TermsConditions = () => {
         <Loading />
       ) : (
         data?.body?.data && (
-          <Grid columns={{ initial: "1", md: "2" }} className="gap-4">
+          <Grid columns={{ initial: '1', md: '2' }} className="gap-4">
             {data?.body?.data?.map((item) => (
               <TermsCard
                 key={item.id}
@@ -33,7 +33,6 @@ const TermsConditions = () => {
                 }
               />
             ))}
-          
           </Grid>
         )
       )}

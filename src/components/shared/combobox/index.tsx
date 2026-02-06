@@ -1,9 +1,9 @@
-"use client";
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+'use client';
+import * as React from 'react';
+import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -11,12 +11,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 interface ComboboxProps {
   className?: string;
@@ -27,13 +23,13 @@ interface ComboboxProps {
   placeholder?: string;
   value: string;
   setValue: (value: string) => void;
-  position?: "top" | "bottom";
+  position?: 'top' | 'bottom';
   onSearchChange?: (searchValue: string) => void;
 }
 
 const Combobox: React.FC<ComboboxProps> = ({
-  className = "",
-  position = "bottom",
+  className = '',
+  position = 'bottom',
   options,
   placeholder,
   value,
@@ -46,14 +42,14 @@ const Combobox: React.FC<ComboboxProps> = ({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant={"secondary"}
+          variant={'secondary'}
           role="combobox"
           aria-expanded={open}
           className={`min-w-full justify-between border bg-white h-12 font-normal text-default  ${className}`}
         >
           {value
             ? options.find((item) => item.value === value)?.label
-            : `${placeholder ? placeholder : "Select"}`}
+            : `${placeholder ? placeholder : 'Select'}`}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -63,7 +59,7 @@ const Combobox: React.FC<ComboboxProps> = ({
       >
         <Command className="w-full max-h-[30dvh] ">
           <CommandInput
-            placeholder={placeholder ?? "Search..."}
+            placeholder={placeholder ?? 'Search...'}
             // value={value}
             onValueChange={onSearchChange}
           />
@@ -76,16 +72,13 @@ const Combobox: React.FC<ComboboxProps> = ({
                   value={item.value}
                   keywords={[item.label.toLowerCase()]}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setValue(currentValue === value ? '' : currentValue);
                     setOpen(false);
                   }}
                 >
                   {item.label}
                   <Check
-                    className={cn(
-                      "ml-auto",
-                      value === item.value ? "opacity-100" : "opacity-0"
-                    )}
+                    className={cn('ml-auto', value === item.value ? 'opacity-100' : 'opacity-0')}
                   />
                 </CommandItem>
               ))}

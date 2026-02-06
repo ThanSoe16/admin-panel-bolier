@@ -1,5 +1,5 @@
-import TermsConditions from "@/components/pages/settings/terms";
-import { NextPage } from "next";
+import TermsConditions from '@/components/pages/settings/terms';
+import { NextPage } from 'next';
 
 const TermsAndConditionPage: NextPage = () => {
   return <TermsConditions />;

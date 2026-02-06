@@ -1,37 +1,37 @@
-"use client";
-import React from "react";
-import PageTitle from "@/components/shared/PageTitle";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import { CurrencyFormat } from "@/utils/currencyFormat";
-import IncomeReport from "./components/IncomeReport";
-import PopularCategory from "./components/PopularCategory";
-import { useGetDashboardData } from "@/features/dashboard/services/queries";
-import { Loading } from "@/components/shared/loading";
-import { formatYear } from "@/utils/dateTime";
+'use client';
+import React from 'react';
+import PageTitle from '@/components/shared/PageTitle';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { CurrencyFormat } from '@/utils/currencyFormat';
+import IncomeReport from './components/IncomeReport';
+import PopularCategory from './components/PopularCategory';
+import { useGetDashboardData } from '@/features/dashboard/services/queries';
+import { Loading } from '@/components/shared/loading';
+import { formatYear } from '@/utils/dateTime';
 
 const Dashboard = () => {
   const { data, isLoading } = useGetDashboardData();
 
   const dashboardMetaData = [
     {
-      icon: "/dashboard/users.svg",
-      label: "New Users",
+      icon: '/dashboard/users.svg',
+      label: 'New Users',
       value: data?.body?.data?.newUsers,
-      url: "/users",
+      url: '/users',
     },
     {
-      icon: "/dashboard/templates.svg",
-      label: "Template Sales",
+      icon: '/dashboard/templates.svg',
+      label: 'Template Sales',
       value: data?.body?.data?.templateSales,
-      url: "/sale-history/template-sales",
+      url: '/sale-history/template-sales',
     },
     {
-      icon: "/dashboard/blog.svg",
-      label: "Blog Site Sales",
+      icon: '/dashboard/blog.svg',
+      label: 'Blog Site Sales',
       value: data?.body?.data?.blogSiteSales,
-      url: "/sale-history/blog-site",
+      url: '/sale-history/blog-site',
     },
   ];
   if (isLoading) return <Loading />;
@@ -62,8 +62,8 @@ const Dashboard = () => {
                       <div className="flex flex-col justify-center items-start gap-1">
                         <p className="text-default-secondary"> {item.label} </p>
                         <p className="text-default font-bold">
-                          {" "}
-                          {CurrencyFormat(item.value ?? 0)}{" "}
+                          {' '}
+                          {CurrencyFormat(item.value ?? 0)}{' '}
                         </p>
                       </div>
                     </div>
@@ -71,8 +71,8 @@ const Dashboard = () => {
 
                   <div
                     className={cn(
-                      index === 2 ? "hidden" : "md:block",
-                      "h-[80%] w-[1px] bg-[#E5E5E5] mr-4 hidden",
+                      index === 2 ? 'hidden' : 'md:block',
+                      'h-[80%] w-[1px] bg-[#E5E5E5] mr-4 hidden',
                     )}
                   />
                 </div>

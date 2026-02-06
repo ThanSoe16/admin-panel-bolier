@@ -24,7 +24,7 @@ const MultiSelect: React.FC<AnimatedMultiProps> = ({
   className = '',
   placeholder = 'Select',
   minHeight = '36px',
-  isSearchable = true
+  isSearchable = true,
 }) => {
   const customStyles: StylesConfig<IOptions, true> = {
     control: (provided, state) => ({
@@ -60,8 +60,8 @@ const MultiSelect: React.FC<AnimatedMultiProps> = ({
       backgroundColor: state.isSelected
         ? 'var(--brand-100)'
         : state.isFocused
-        ? 'var(--brand-100)'
-        : provided.backgroundColor,
+          ? 'var(--brand-100)'
+          : provided.backgroundColor,
       zIndex: 1000,
       color: 'black',
       '&:hover': {

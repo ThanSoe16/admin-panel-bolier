@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 import {
   ColumnDef,
@@ -12,19 +12,12 @@ import {
   Row,
   SortingState,
   useReactTable,
-} from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../ui/table";
-import { Pagination } from "./Pagination";
-import { cn } from "@/lib/utils";
-import { PaginationTypes } from "./table-base-types";
-import { Loading } from "../loading";
+} from '@tanstack/react-table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table';
+import { Pagination } from './Pagination';
+import { cn } from '@/lib/utils';
+import { PaginationTypes } from './table-base-types';
+import { Loading } from '../loading';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -58,12 +51,11 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
-  const pageStartIndex =
-    ((query?.pageIndex ?? 1) - 1) * (query?.rowPerPage ?? 20);
+  const pageStartIndex = ((query?.pageIndex ?? 1) - 1) * (query?.rowPerPage ?? 20);
   const displayColumns = isShowNo
     ? [
         {
-          accessorKey: "no",
+          accessorKey: 'no',
           header: () => <span className="pl-2">No.</span>,
           cell: ({ row }: { row: Row<TData> }) => (
             <span className="pl-4">{pageStartIndex + row.index + 1}</span>
@@ -105,17 +97,12 @@ export function DataTable<TData, TValue>({
   }, [data]);
 
   return (
-    <div
-      className={cn(
-        `flex flex-col h-full w-full space-y-3`,
-        tablewrapperclasses
-      )}
-    >
+    <div className={cn(`flex flex-col h-full w-full space-y-3`, tablewrapperclasses)}>
       {renderHeader ? renderHeader() : null}
       <div
         className={cn(
-          className ? className : "",
-          "relative h-full w-full flex-grow rounded-md overflow-auto"
+          className ? className : '',
+          'relative h-full w-full flex-grow rounded-md overflow-auto',
         )}
       >
         {isLoading ? (
@@ -133,10 +120,7 @@ export function DataTable<TData, TValue>({
                       >
                         {header.isPlaceholder
                           ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                          : flexRender(header.column.columnDef.header, header.getContext())}
                       </TableHead>
                     );
                   })}
@@ -151,10 +135,8 @@ export function DataTable<TData, TValue>({
                     <TableRow
                       key={key}
                       className={cn(
-                        "border-b transition-colors",
-                        shouldHighlight
-                          ? "bg-gray-200"
-                          : "bg-white hover:bg-gray-50"
+                        'border-b transition-colors',
+                        shouldHighlight ? 'bg-gray-200' : 'bg-white hover:bg-gray-50',
                       )}
                     >
                       {row.getVisibleCells().map((cell, index) => {
@@ -162,15 +144,9 @@ export function DataTable<TData, TValue>({
                           <TableCell
                             key={cell.id}
                             style={{ minWidth: `${cell.column.getSize()}px` }}
-                            className={cn(
-                              "pl-3",
-                              shouldHighlight && index !== 0 && "opacity-40"
-                            )}
+                            className={cn('pl-3', shouldHighlight && index !== 0 && 'opacity-40')}
                           >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </TableCell>
                         );
                       })}
@@ -179,10 +155,7 @@ export function DataTable<TData, TValue>({
                 })
               ) : (
                 <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center "
-                  >
+                  <TableCell colSpan={columns.length} className="h-24 text-center ">
                     No results.
                   </TableCell>
                 </TableRow>
@@ -192,13 +165,9 @@ export function DataTable<TData, TValue>({
         )}
       </div>
       {!hidePagination && query && total ? (
-        <Pagination
-          total={total}
-          currentPage={query.pageIndex}
-          pageSize={query.rowPerPage}
-        />
+        <Pagination total={total} currentPage={query.pageIndex} pageSize={query.rowPerPage} />
       ) : (
-        ""
+        ''
       )}
     </div>
   );

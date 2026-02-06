@@ -1,14 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 
 interface PhoneDialogProps {
   open: boolean;
@@ -16,19 +11,15 @@ interface PhoneDialogProps {
   handleOkay: (phone: string) => void;
 }
 
-const PhoneDialog: React.FC<PhoneDialogProps> = ({
-  open,
-  handleClose,
-  handleOkay,
-}) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+const PhoneDialog: React.FC<PhoneDialogProps> = ({ open, handleClose, handleOkay }) => {
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleClick = () => {
     try {
       const rawData = phoneNumber?.trim();
 
       if (!rawData) {
-        toast.error("Please enter phone number");
+        toast.error('Please enter phone number');
         return;
       }
 
@@ -38,7 +29,7 @@ const PhoneDialog: React.FC<PhoneDialogProps> = ({
       //if you made any changes on regex please update the comment
 
       if (!isValidPhone) {
-        toast.error("Invalid Phone Number");
+        toast.error('Invalid Phone Number');
         return;
       }
 
