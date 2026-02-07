@@ -3,12 +3,12 @@ import React, { ReactNode } from 'react';
 
 import { ScrollArea } from '@radix-ui/themes';
 
-import Header from './header';
 import useNetworkStatus from '@/features/base/hooks/useNetworkStatus';
 import { SidebarProvider } from '../ui/sidebar';
 import { AppSidebar } from './side-bar';
 import { useRouter } from 'next/navigation';
 import NoInternet from '../pages/errors/no-internet';
+import Header from './Header';
 
 interface Props {
   children: React.ReactNode;

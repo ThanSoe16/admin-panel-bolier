@@ -13,8 +13,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Admin Panel',
-  description: 'Admin Panel',
+  title: 'One Site Blog Super Admin',
+  description: 'One Site Blog Super Admin Panel',
 };
 
 export default function RootLayout({
